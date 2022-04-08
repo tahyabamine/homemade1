@@ -1,0 +1,13 @@
+<img src="{{asset(logo.svg)}}" class="img-fluid|thumbnail rounded-top|rounded-end|rounded-bottom|rounded-start|rounded-circle|" alt="">
+<h1>Bonjour!</h1>
+
+<p>
+Vous venez de créer un compte sur home-made.fr. Avant de pouvoir utiliser votre compte, vous devez vérifier que cette adresse e-mail est bien la vôtre en cliquant ici :  <a href="{{ signedUrl }}">Lien de confirmation</a>.
+
+   
+    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Cordialement!
+</p>

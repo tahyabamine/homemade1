@@ -1,0 +1,29 @@
+:root {
+  --font-family: "Roboto", sans-serif;
+  --dark: ;
+  --primary: #583bb6;
+  --dark: #444;
+  --background-light: #f5f8fb;
+  --text-color: #444;
+  --text-color-light: #fff;
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  --border: 1px solid #eee;
+  --button-red: #d42150;
+}
+body {
+  height: 100vh;
+}
+.navbar {
+  box-shadow: var(--box-shadow);
+  background-color: var(--primary);
+  font-family: var(--font-family);
+}
+
+.fa-plus-square {
+  color: white;
+}
+.icon {
+  height: 30px;
+  width: 30px;
+}
