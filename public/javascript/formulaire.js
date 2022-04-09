@@ -61,3 +61,16 @@ function fixStepIndicator(n) {
   }
   x[n].className += " active";
 }
+
+e = true;
+function change() {
+  if (e) {
+    document.getElementById("pass").setAttribute("type", "text");
+    document.getElementById("eye").setAttribute("class", "bi-eye-fill");
+    e = false;
+  } else {
+    document.getElementById("pass").setAttribute("type", "password");
+    document.getElementById("eye").setAttribute("class", "bi-eye-slash");
+    e = true;
+  }
+}

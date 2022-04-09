@@ -1,5 +1,6 @@
 body {
   background: #eee;
+  font-family: var(--font-family);
 }
 
 #regForm {
@@ -11,7 +12,7 @@ body {
 }
 
 #register {
-  color: #6a1b9a;
+  color: #583bb6;
 }
 
 h1 {
@@ -20,7 +21,7 @@ h1 {
 
 input {
   padding: 10px;
-  width: 100%;
+  width: 90%;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
@@ -29,8 +30,8 @@ input {
 }
 
 .tab input:focus {
-  border: 1px solid #6a1b9a !important;
-  outline: none;
+  border: 1px solid #583bb6 !important;
+  outline: #583bb6;
 }
 
 input.invalid {
@@ -42,7 +43,7 @@ input.invalid {
 }
 
 button {
-  background-color: #6a1b9a;
+  background-color: #583bb6;
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -54,10 +55,6 @@ button {
 
 button:hover {
   opacity: 0.8;
-}
-
-button:focus {
-  outline: none !important;
 }
 
 #prevBtn {
@@ -84,7 +81,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   font-size: 15px;
-  color: #6a1b9a;
+  color: #583bb6;
   opacity: 0.5;
 }
 
@@ -94,7 +91,7 @@ button:focus {
 
 .step.finish {
   color: #fff;
-  background: #6a1b9a;
+  background: #583bb6;
   opacity: 1;
 }
 
@@ -106,4 +103,7 @@ button:focus {
 
 .thanks-message {
   display: none;
+}
+#eye {
+  margin-left: 5px;
 }
