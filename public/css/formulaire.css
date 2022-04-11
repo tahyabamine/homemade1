@@ -10,6 +10,9 @@ body {
   padding: 40px;
   border-radius: 10px;
 }
+#nextBtn {
+  display: inline;
+}
 
 #register {
   color: #583bb6;
@@ -106,4 +109,13 @@ button:hover {
 }
 #eye {
   margin-left: 5px;
+}
+#button-eye {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  text-align: center;
+}
+#envoyer {
+  display: none;
 }
