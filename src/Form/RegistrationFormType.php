@@ -40,7 +40,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('prenom', TextType::class,  [
                 'attr' => ['placeholder' => 'Prénom ...'],
-                'label' => false
+                'label' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a firstname',
+                    ]),
+                ]
             ])
             ->add('region', EntityType::class, [
                 'class' => Region::class,
@@ -62,18 +67,40 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => ['placeholder' => 'Email ...'],
                 'label' => false,
-                'constraints' => [new Email]
+                'constraints' => [new Email],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a email',
+                    ]),
+                ]
             ])
             ->add('codePostal', NumberType::class, [
+                'attr' => ['name' => 'cp'],
                 'constraints' => [new Length([
                     'min' => 5,
                     'max' => 5
                 ])],
-                'attr' => ['placeholder' => 'Email ...'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'veuillez rensseigner votre code postale',
+                    ]),
+                ],
+                'attr' => ['placeholder' => 'Code Postale ...'],
                 'label' => false,
             ])
-            ->add('numeroRue', NumberType::class)
-            ->add('nomRue', TextType::class)
+            ->add('numeroRue', NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'veuillez rensseigner le numero de votre maison',
+                    ]),
+                ]
+            ])
+            ->add('nomRue', TextType::class, [
+                'attr' => ['name' => 'adresse']
+            ])
+            ->add('ville', TextType::class, [
+                'attr' => ['name' => 'ville']
+            ])
             ->add('complementAdresse', TextType::class, ['required' => false,])
             ->add(
                 'pseudo',

@@ -1,92 +1,117 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
+css %}
 
-{% block title %}Register{% endblock %}
-{% block css %}
-   
-    <link
-      rel="stylesheet"
-      href="{{ asset('css/formulaire.css') }}"
-      type="text/css"
-    />
-      <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-{% endblock %}
+<link
+  rel="stylesheet"
+  href="{{ asset('css/formulaire.css') }}"
+  type="text/css"
+/>
+{# <link
+  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
 
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/> #}
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
 
-<div class="container">
-    
-    <h1>Créer un compte</h1>
+{% endblock %} {% block body %} {% for flash_error in
+app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
 
-<div class="container mt-5">
-                {{form_start(registrationForm,{ 'id': 'regForm'})}}
+<h1>Créer un compte</h1>
+<div id="formulaire">
+  <div class="container mt-5">
     <div class="row d-flex justify-content-center align-items-center">
-
-        <div class="col-md-8">
-          
-                <h1 id="register"></h1>
-                  <div class="all-steps" id="all-steps"> <span class="step"></span> <span class="step"></span> <span class="step"></span>  </div>
-                <div class="tab input">
-                                <h3 id="register" class="mb-5 text-center"><i class="bi bi-info"></i>
-  Informations personnelles</h3>
-
-
-                    <p> {{form_row(registrationForm.nom)}} </p>
-                    <p> {{form_row(registrationForm.prenom)}}</p>
-                    <p> {{form_row(registrationForm.email)}}</p>
-                    <p> {{form_row(registrationForm.genre)}}</p>
-                    <div class='d-flex align-items-center'> {{form_row(registrationForm.plainPassword,{ 'id': 'pass'})}}
-                    <button id="button-eye"><i id='eye' class="bi ms-2 bi-eye-slash" onclick="change()"></i></button>
-</div>
-
-                </div>
-                <div class="tab">
-                                <h3 id="register" class="mb-5 text-center">Adresse</h3>
-                    <p>{{form_row(registrationForm.nomRue)}}</p>
-                    <p>{{form_row(registrationForm.numeroRue)}}</p>
-                    <p>{{form_row(registrationForm.codePostal)}}</p>
-                    <p>{{form_row(registrationForm.complementAdresse)}}</p>
-                </div>
-                <div class="tab">
-                    <h6>Complement</h6>
-                    <p>{{form_row(registrationForm.avatar)}}</p>
-                    <p>{{form_row(registrationForm.region)}}</p>
-                    <p>{{form_row(registrationForm.specialite)}}</p>
-                    <p>{{form_row(registrationForm.pseudo)}}</p>
-                    <p>{{form_row(registrationForm.agreeTerms)}}</p>
-                    	{{ form_rest(registrationForm) }}
-               <div>
-
-               </div>
-	{% for error in errors %}
-    <ul>
-    <li>{{error}}</li>
-    </ul>
-    {% endfor %}
-                </div>
-               
-
-                <div style="overflow:auto;" id="nextprevious">
-                    <div style="float:right;"> <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onclick="nextPrev(1)"></button> </div>
-                </div>
-
-
-           
-    </div>
+      <div class="col-md-8">
+        <h1 id="register"></h1>
+        <div class="all-steps" id="all-steps">
+          <span class="step"></span> <span class="step"></span>
+          <span class="step"></span>
         </div>
-{{form_end(registrationForm)}}
-</div>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <div class="tab input">
+          <h3 id="register" class="mb-5 text-center">
+            <i class="bi bi-info"></i> Informations personnelles
+          </h3>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{asset('javascript/formulaire.js')}}"></script>
+          {{ form_start(registrationForm) }}
+          <p>{{ form_widget(registrationForm.nom) }}</p>
+          <p>{{ form_widget(registrationForm.prenom) }}</p>
+          <p>{{ form_widget(registrationForm.email) }}</p>
+          <p>{{ form_widget(registrationForm.genre) }}</p>
+          <div class="d-flex align-items-center">
+            {{ form_row(registrationForm.plainPassword, { id: "pass" }) }}
+            <button id="button-eye">
+              <i id="eye" class="bi ms-2 bi-eye-slash" onclick="change()"></i>
+            </button>
+          </div>
+        </div>
+        <div class="tab">
+          <h3 id="register" class="mb-5 text-center">Adresse</h3>
+          <p>{{ form_row(registrationForm.numeroRue) }}</p>
+          <p>{{ form_row(registrationForm.complementAdresse) }}</p>
+          <p>{{ form_row(registrationForm.codePostal, { id: "cp" }) }}</p>
+          <p>{{ form_row(registrationForm.ville, { id: "ville" }) }}</p>
+          <p>{{ form_row(registrationForm.nomRue, { id: "adresse" }) }}</p>
+        </div>
+        <div class="tab">
+          <h6>Complement</h6>
+          <p>{{ form_row(registrationForm.avatar) }}</p>
+          <p>{{ form_row(registrationForm.region) }}</p>
+          <p>{{ form_row(registrationForm.specialite) }}</p>
+          <p>{{ form_row(registrationForm.pseudo) }}</p>
+          <p>{{ form_row(registrationForm.agreeTerms) }}</p>
+        {{form_errors(registrationForm.nom)}}
+          {{ form_rest(registrationForm) }}
 
+
+        </div>
+
+        <div style="overflow: auto" id="nextprevious">
+          <div style="float: right">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+              <i class="fa fa-angle-double-left"></i>
+            </button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)"></button>
+          </div>
+        </div>
+
+        {{ form_end(registrationForm) }}
+      </div>
+    </div>
+  </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+{# 
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+></script> #}
+
+
+<script src="{{ asset('javascript/formulaire.js') }}"></script>
+<script src="{{ asset('javascript/apiadresse.js') }}"></script>
 
 {% endblock %}

@@ -109,6 +109,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $genre;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ville;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -417,6 +422,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGenre(?Genre $genre): self
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

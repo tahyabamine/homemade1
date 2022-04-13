@@ -69,9 +69,13 @@
                   ><i class="fa fa-home" aria-hidden="true"> Acceuil </i></a
                 >
               </li>
+              {% if app.user %}
+                
+           {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{{path('app_login')}}">Compte</a>
               </li>
+                 {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Recherche </a>
               </li>
