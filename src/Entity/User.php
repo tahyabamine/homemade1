@@ -114,11 +114,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $ville;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Messenger::class, mappedBy="envoyeur")
+     */
+    private $yes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="users")
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->specialite = new ArrayCollection();
         $this->rates = new ArrayCollection();
+        $this->yes = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -434,6 +446,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(string $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Messenger>
+     */
+    public function getYes(): Collection
+    {
+        return $this->yes;
+    }
+
+    public function addYe(Messenger $ye): self
+    {
+        if (!$this->yes->contains($ye)) {
+            $this->yes[] = $ye;
+            $ye->setEnvoyeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(Messenger $ye): self
+    {
+        if ($this->yes->removeElement($ye)) {
+            // set the owning side to null (unless already changed)
+            if ($ye->getEnvoyeur() === $this) {
+                $ye->setEnvoyeur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Annonce>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Annonce $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Annonce $favori): self
+    {
+        $this->favoris->removeElement($favori);
 
         return $this;
     }

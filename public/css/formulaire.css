@@ -1,12 +1,6 @@
-body {
-  background: #eee;
-  font-family: var(--font-family);
-}
-
 #regForm {
-  background-color: #ffffff;
   margin: 0px auto;
-  font-family: Raleway;
+  font-family: var(--font-family);
   padding: 40px;
   border-radius: 10px;
 }
@@ -43,6 +37,10 @@ input.invalid {
 
 .tab {
   display: none;
+}
+.required:after {
+  content: " *";
+  color: red;
 }
 
 button {

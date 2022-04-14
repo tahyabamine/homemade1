@@ -4,9 +4,7 @@
     <title>{% block title %}Homemade{% endblock %}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-    />
+    <meta name="viewport" />
 
     <!-- Bootstrap CSS v5.0.2 -->
     <link
@@ -36,12 +34,12 @@
       rel="stylesheet"
     />
     <link rel="icon" href="{{ asset('icons/favicon.ico') }}" />
-    {% block css %}
     <link
       rel="stylesheet"
       href="{{ asset('css/style.css') }}"
       type="text/css"
     />
+    {% block css %}
     {% endblock %}
   </head>
   <body>
@@ -65,17 +63,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{path('app_acceuil')}}"
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="{{ path('app_acceuil') }}"
                   ><i class="fa fa-home" aria-hidden="true"> Acceuil </i></a
                 >
               </li>
-              {% if app.user %}
-                
-           {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{path('app_login')}}">Compte</a>
-              </li>
-                 {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="#">Recherche </a>
               </li>
@@ -85,6 +79,25 @@
                   <i class="fa fa-plus-square fa-xl" aria-hidden="true"></i
                 ></a>
               </li>
+              {% if app.user %}
+              <a class="nav-link" href="{{ path('app_logout') }}"
+                >Deconnexion</a
+              >
+              {% if app.user.avatar is empty %}
+           
+              <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span>
+           {% else %}
+              <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span>
+              <span>
+
+                <img src="{{asset('avatars/' ~ app.user.avatar) }}" class="img-fluid avatar rounded" alt="" />
+              </span>
+              {% endif %}
+             {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Compte</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>

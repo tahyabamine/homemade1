@@ -49,10 +49,16 @@ class Annonce
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,6 +163,33 @@ class Annonce
             if ($image->getAnnonce() === $this) {
                 $image->setAnnonce(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavori($this);
         }
 
         return $this;

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{app.user.nom ~' '~ app.user.prenom }}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{asset("css/sidebar.css")}}">
+{% endblock %}
+
+{% block body %}
+
+<div class="containair">
+<div class="row">
+<div class="col-6"></div>
+<div class="sidebar col-12">
+  <a class="active" href="{{path('app_editProfile', {user: app.user.id})}}">Edit profile</a>
+  <a href="#">Mes annonces</a>
+  <a href="#">Favoris</a>
+  <a href="#">Messenger</a>
+</div>
+</div>
+</div>
+
+{% endblock %}

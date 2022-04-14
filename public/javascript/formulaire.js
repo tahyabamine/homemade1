@@ -75,3 +75,15 @@ function change() {
     e = true;
   }
 }
+var id = 0;
+function ajouter() {
+  id++;
+  var container = document.getElementById("cont");
+  var elem = document.getElementById("specialite");
+  var input = elem.cloneNode(true);
+  input.setAttribute("id", id);
+  input.setAttribute("value", id);
+  input.setAttribute("name", "registration_form[specialite] " + id);
+  container.appendChild(input);
+  container.innerHTML += "<br>";
+}

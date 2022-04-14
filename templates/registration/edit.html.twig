@@ -60,14 +60,7 @@ app.flashes('verify_email_error') %}
           <p>{{ form_errors(registrationForm.genre) }}</p>
           {{ form_label(registrationForm.genre) }}
           <p>{{ form_widget(registrationForm.genre) }}</p>
-          <div class="d-flex align-items-center justify-content-evenly">
-         {{ form_label(registrationForm.plainPassword) }}
-            {{ form_widget(registrationForm.plainPassword, { id: "pass" }) }}
-            <button id="button-eye">
-              <i id="eye" class="bi ms-2 bi-eye-slash" onclick="change()"></i>
-            </button>
-          {{ form_errors(registrationForm.plainPassword) }}
-          </div>
+         
         </div>
         <div class="tab">
           <h3 id="register" class="mb-5 text-center">Adresse</h3>
