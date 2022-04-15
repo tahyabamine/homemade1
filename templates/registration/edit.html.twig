@@ -32,116 +32,68 @@ app.flashes('verify_email_error') %}
 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 {% endfor %}
 
-<h1>Créer un compte</h1>
-<div id="regform">
-  <div class="container mt-5">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-8">
-        <h1 id="register"></h1>
-        <div class="all-steps" id="all-steps">
-          <span class="step"></span> <span class="step"></span>
-          <span class="step"></span>
-        </div>
-        <div class="tab ">
-          <h3 id="register" class="mb-5 text-center">
-            <i class="bi bi-info"></i> Informations personnelles
-          </h3>
+<h1>Edit profilee</h1>
 
-          {{ form_start(registrationForm) }}
-          <p>{{ form_errors(registrationForm.nom) }}</p>
-          <p>{{ form_widget(registrationForm.nom) }}</p>
 
-          <p>{{ form_errors(registrationForm.prenom) }}</p>
-          <p>{{ form_widget(registrationForm.prenom) }}</p>
+          {{ form_start(form) }}
+          <p>{{ form_errors(form.nom) }}</p>
+          <p>{{ form_widget(form.nom) }}</p>
 
-          <p>{{ form_errors(registrationForm.email) }}</p>
-          <p>{{ form_widget(registrationForm.email) }}</p>
+          <p>{{ form_errors(form.prenom) }}</p>
+          <p>{{ form_widget(form.prenom) }}</p>
 
-          <p>{{ form_errors(registrationForm.genre) }}</p>
-          {{ form_label(registrationForm.genre) }}
-          <p>{{ form_widget(registrationForm.genre) }}</p>
-         
-        </div>
-        <div class="tab">
-          <h3 id="register" class="mb-5 text-center">Adresse</h3>
-          <p>{{ form_errors(registrationForm.numeroRue) }}</p>
-          <p>{{ form_widget(registrationForm.numeroRue) }}</p>
+              <p>{{ form_errors(form.genre) }}</p>
+          {{ form_label(form.genre) }}
+          <p>{{ form_widget(form.genre) }}</p>
+               <p>{{ form_errors(form.pseudo) }}</p>
+          {{ form_label(form.pseudo) }}
 
-          <p>{{ form_errors(registrationForm.complementAdresse) }}</p>
-          <p>{{ form_widget(registrationForm.complementAdresse) }}</p>
+          <p>{{ form_widget(form.pseudo) }}</p>
 
-          <p>{{ form_errors(registrationForm.codePostal) }}</p>
-          <p>{{ form_widget(registrationForm.codePostal,{ id: "cp" }) }}</p>
+  
+          <p>{{ form_errors(form.numeroRue) }}</p>
+          <p>{{ form_widget(form.numeroRue) }}</p>
 
-          <p>{{ form_errors(registrationForm.ville) }}</p>
-          <p>{{ form_widget(registrationForm.ville, { id: "ville" }) }}</p>
+          <p>{{ form_errors(form.complementAdresse) }}</p>
+          <p>{{ form_widget(form.complementAdresse) }}</p>
 
-          <p>{{ form_errors(registrationForm.nomRue) }}</p>
-          <p>{{ form_widget(registrationForm.nomRue, { id: "adresse" }) }}</p>
-        </div>
-        <div class="tab">
-          <h3 id="register" class="mb-5 text-center">Complément</h3>
+          <p>{{ form_errors(form.codePostal) }}</p>
+          <p>{{ form_widget(form.codePostal,{ id: "cp" }) }}</p>
 
-          <div>
-          {{ form_errors(registrationForm.avatar) }}
-          {{ form_label(registrationForm.avatar) }}
+          <p>{{ form_errors(form.ville) }}</p>
+          <p>{{ form_widget(form.ville, { id: "ville" }) }}</p>
 
-          {{ form_widget(registrationForm.avatar) }}
-          </div>
+          <p>{{ form_errors(form.nomRue) }}</p>
+          <p>{{ form_widget(form.nomRue, { id: "adresse" }) }}</p>
+  
+      
 
-     <p>    {{ form_errors(registrationForm.region) }}</p>
-          {{ form_label(registrationForm.region) }}
+     <p>    {{ form_errors(form.region) }}</p>
+          {{ form_label(form.region) }}
 
-       <p> {{ form_widget(registrationForm.region) }}<p/>
+       <p> {{ form_widget(form.region) }}<p/>
 
-          <p>{{ form_errors(registrationForm.specialite) }}</p>
-          {{ form_label(registrationForm.specialite) }}
+          <p>{{ form_errors(form.specialite) }}</p>
+          {{ form_label(form.specialite) }}
 
           {# <div id="cont"> #}
-          {{ form_widget(registrationForm.specialite, { id: "specialite" })  }}
+          {{ form_widget(form.specialite, { id: "specialite" })  }}
           {# <a onclick="ajouter()"><i class="fa fa-plus-square" aria-hidden="true"></i> Ajouter des spécialites</a>
           </div> #}
 
-          <p>{{ form_errors(registrationForm.pseudo) }}</p>
-          {{ form_label(registrationForm.pseudo) }}
+     {{form_rest(form)}}
+     
 
-          <p>{{ form_widget(registrationForm.pseudo) }}</p>
+      
 
-          <p>{{ form_widget(registrationForm.agreeTerms) }}</p>
-          {{ form_rest(registrationForm) }}
-
-
-        </div>
-
-        <div style="overflow: auto" id="nextprevious">
-          <div style="float: right">
-            <button type="button" id="prevBtn" onclick="nextPrev(-1)">
-              <i class="fa fa-angle-double-left"></i>
-            </button>
-            <button type="button" id="nextBtn" onclick="nextPrev(1)"></button>
-          </div>
-        </div>
-
-        {{ form_end(registrationForm) }}
+        {{ form_end(form) }}
       </div>
     </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-{# 
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-></script> #}
+
 
 
 <script src="{{ asset('javascript/formulaire.js') }}"></script>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,7 +36,7 @@ class Annonce
     private $contenue;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $dateDePublication;
 
@@ -45,7 +46,7 @@ class Annonce
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity=Image::class, cascade={"persist"}, mappedBy="annonce")
      */
     private $images;
 
@@ -59,6 +60,7 @@ class Annonce
         $this->categorie = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->dateDePublication = new DateTime();
     }
 
     public function getId(): ?int
@@ -145,6 +147,11 @@ class Annonce
     {
         return $this->images;
     }
+    // public function setImage($image)
+    // {
+    //     $this->image = $image;
+    //     return $this;
+    // }
 
     public function addImage(Image $image): self
     {

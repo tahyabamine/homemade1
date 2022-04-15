@@ -19,6 +19,10 @@ body {
   box-shadow: var(--box-shadow);
   background-color: var(--primary);
 }
+.navbar li:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
 .dropdown {
   border-radius: 15%;
 }

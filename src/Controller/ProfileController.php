@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\EditProfileType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,7 @@ class ProfileController extends AbstractController
 
         $user = $er->find($user);
 
-        $formulaire = $this->createForm(RegistrationFormType::class, $user, ['is_update' => true]);
+        $formulaire = $this->createForm(EditProfileType::class, $user);
 
         $formulaire->handleRequest($request);
 
@@ -38,8 +39,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app_acceuil');
         } else {
             return $this->render('registration/edit.html.twig', [
-                'registrationForm' => $formulaire->createView(),
-                'is_update' => true
+                'form' => $formulaire->createView(),
 
 
             ]);

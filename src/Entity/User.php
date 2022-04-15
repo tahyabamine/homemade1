@@ -496,7 +496,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    public function getNomEtPrenom()
+    {
+        return ucfirst($this->prenom) . ' ' . mb_strtoupper($this->nom);
+    }
     public function removeFavori(Annonce $favori): self
     {
         $this->favoris->removeElement($favori);

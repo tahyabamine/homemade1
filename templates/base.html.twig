@@ -74,7 +74,7 @@
                 <a class="nav-link" href="#">Recherche </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"
+                <a class="nav-link" href="{{path('create_annonce')}}"
                   >Déposer une annonce
                   <i class="fa fa-plus-square fa-xl" aria-hidden="true"></i
                 ></a>
@@ -85,9 +85,9 @@
               >
               {% if app.user.avatar is empty %}
            
-              <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span>
+             <a href="{{ path('app_profile') }}"> <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span></a>
            {% else %}
-              <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span>
+            <a href="{{ path('app_profile') }}">  <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span></a>
               <span>
 
                 <img src="{{asset('avatars/' ~ app.user.avatar) }}" class="img-fluid avatar rounded" alt="" />
