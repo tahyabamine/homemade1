@@ -39,12 +39,11 @@
       href="{{ asset('css/style.css') }}"
       type="text/css"
     />
-    {% block css %}
-    {% endblock %}
+    {% block css %} {% endblock %}
   </head>
   <body>
     <div class="contenair">
-      <nav class="navbar navbar-expand-lg p-0 navbar-dark">
+      <nav class="navbar  navbar-expand-lg p-0 navbar-dark">
         <div class="container">
           <a class="navbar-brand" href="/">
             <img src="logo.svg" class="rounded" alt="logo"
@@ -74,31 +73,63 @@
                 <a class="nav-link" href="#">Recherche </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{path('create_annonce')}}"
+                <a class="nav-link" href="{{ path('create_annonce') }}"
                   >Déposer une annonce
                   <i class="fa fa-plus-square fa-xl" aria-hidden="true"></i
                 ></a>
               </li>
-              {% if app.user %}
-              <a class="nav-link" href="{{ path('app_logout') }}"
-                >Deconnexion</a
-              >
-              {% if app.user.avatar is empty %}
-           
-             <a href="{{ path('app_profile') }}"> <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span></a>
-           {% else %}
-            <a href="{{ path('app_profile') }}">  <span class="nav-link float-end"> Bienvenue {{ app.user.pseudo }} !</span></a>
-              <span>
+              {% if app.user %} 
+              <li class="nav-item dropdown ">
+                <a
+                  class="nav-link dropdown-toggle "
+                  href="{{ path('app_profile') }}"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Bienvenue {{ app.user.pseudo }} !
+                </a>
 
-                <img src="{{asset('avatars/' ~ app.user.avatar) }}" class="img-fluid avatar rounded" alt="" />
-              </span>
-              {% endif %}
-             {% else %}
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{path('app_editProfile', {user: app.user.id})}}">Modiefier Mon profile</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Mes annonce</a>
+                  </li>                  <li>
+                    <a class="dropdown-item" href="#">Favoris</a>
+                  </li>
+                                    <li>
+                    <a class="dropdown-item" href="#">Boite de reception</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}"
+                      >Deconnexion</a
+                    >
+                  </li>
+                </ul>
+              </li>
+                  {% if app.user.avatar  is not empty %}
+<li>
+                    <a class="" href="{{ path('app_profile') }}">
+   
+                  <img 
+                    src="{{asset('avatars/' ~ app.user.avatar) }}"
+                    class="img-fluid avatar rounded"
+                    alt=""
+                />
+                </a>
+             </li>
+    </div>
+    {% endif %}
+
+              {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_login') }}">Compte</a>
               </li>
               {% endif %}
             </ul>
+  
           </div>
         </div>
       </nav>

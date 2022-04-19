@@ -36,7 +36,9 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez rensseigner votre nom',
                     ]),
-                ]
+
+                ],
+                'attr' => ['class' => 'req']
             ])
             ->add('prenom', TextType::class,  [
                 'attr' => ['placeholder' => 'Prénom '],
@@ -145,6 +147,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('genre', EntityType::class, [
                 'label' => 'Genre',
+                'attr' => ['class' => 'req'],
+
 
                 'required' => false,
                 'class' => Genre::class,

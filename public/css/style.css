@@ -25,6 +25,11 @@ body {
 }
 .dropdown {
   border-radius: 15%;
+  box-shadow: var(--box-shadow);
+}
+.dropdown-item:hover {
+  background-color: var(--primary);
+  color: #fff;
 }
 .btn-secondary.dropdown-toggle.btn {
   background-color: var(--primary);

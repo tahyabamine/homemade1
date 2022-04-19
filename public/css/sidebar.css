@@ -77,6 +77,10 @@ body {
   margin: 0.6rem 2rem;
   height: 10rem;
   box-shadow: var(--box-shadow);
+  text-decoration: none;
+}
+.card p {
+  color: black;
 }
 .card:hover {
   cursor: pointer;
