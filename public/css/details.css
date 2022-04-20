@@ -1,0 +1,12 @@
+.carousel-item img {
+  object-fit: cover;
+  height: 300px !important;
+  width: 350px;
+}
+.carousel {
+  background-color: gray;
+  box-shadow: var(--box-shadow);
+}
+.details {
+  height: 100vh;
+}

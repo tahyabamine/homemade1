@@ -55,6 +55,13 @@ class Annonce
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prix;
+
+
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
@@ -198,6 +205,18 @@ class Annonce
         if ($this->users->removeElement($user)) {
             $user->removeFavori($this);
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(?float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }
