@@ -2,23 +2,38 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\EditProfileType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use App\Repository\AnnonceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Security;
 
 class ProfileController extends AbstractController
 {
     /**
      * @Route("/profile", name="app_profile")
      */
-    public function index(): Response
+    public function index(AnnonceRepository $an,  Request $request): Response
     {
+
+        $limite = 1;
+        $page = (int) $request->query->get('page', 1);
+        $user = $this->getUser();
+        $annonces = $an->getPaginatedAnnonce($page, $limite, $user);
+        $total = $an->getAllAnnonces($user);
+
         return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
+            'annonce' => $annonces,
+            'limite' => $limite,
+            'page' => $page,
+            'total' => $total
+
         ]);
     }
 

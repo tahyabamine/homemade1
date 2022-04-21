@@ -6,6 +6,7 @@ use App\Entity\Annonce;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\Expr\OrderBy;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -45,6 +46,25 @@ class AnnonceRepository extends ServiceEntityRepository
         }
     }
 
+    public function getPaginatedAnnonce($page, $limite, $user = null)
+    {
+
+        $query = $this->createQueryBuilder('a')
+            ->where('a.user = :id')
+            ->OrderBy('a.dateDePublication')
+            ->setFirstResult(($page * $limite) - $limite)
+            ->setMaxResults($limite)
+            ->setParameter('id', $user);
+        return $query->getQuery()->getResult();
+    }
+    public function getAllAnnonces($user = null)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.user = :id')
+            ->setParameter('id', $user);
+        return $query->getQuery()->getSingleScalarResult();
+    }
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
