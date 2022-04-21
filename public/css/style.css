@@ -15,6 +15,16 @@ body {
   font-family: var(--font-family);
   height: 100vh;
 }
+.middle {
+  flex: 3;
+  box-shadow: var(--box-shadow);
+  margin-top: 2%;
+  margin-bottom: 1%;
+  padding: 2% 1%;
+}
+.title {
+  color: var(--primary);
+}
 .navbar {
   box-shadow: var(--box-shadow);
   background-color: var(--primary);

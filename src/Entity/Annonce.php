@@ -213,6 +213,15 @@ class Annonce
     {
         return $this->prix;
     }
+    public function resume($taille = 200): string
+    {
+
+        if (strlen($this->contenue) > $taille)
+            $resume = substr($this->contenue, 0, $taille) . '...';
+        else $resume = $this->contenue;
+
+        return $resume;
+    }
 
     public function setPrix(?float $prix): self
     {

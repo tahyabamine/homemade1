@@ -10,3 +10,53 @@
 .details {
   height: 100vh;
 }
+.coloredTitle {
+  color: #583bb6;
+  text-align: center;
+  padding: 1%;
+}
+.row {
+  margin: 8% 5%;
+}
+.right p {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: var(--text-color);
+  text-align: justify;
+}
+.right {
+  border: 1px solid var(--background-light);
+}
+#price {
+  font-size: 20px;
+  vertical-align: top;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 35px;
+  background-color: #f6f8fd;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0.625em;
+  font-weight: bold;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  clip-path: ellipse(50% 50%);
+}
+#message {
+  background-color: var(--primary);
+  color: #ffffff;
+  width: 10em;
+  height: 3em;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  vertical-align: top;
+  font-weight: bold;
+  box-shadow: var(--box-shadow);
+}

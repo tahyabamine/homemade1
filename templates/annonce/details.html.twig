@@ -4,11 +4,11 @@
 
 {% endblock %} {% block body %}
 <div class="container details">
-<div class="row mt-5">
-<div class="col-6">
+<div class="row ">
+<div class="col-lg-6 col-sm-12">
                   <div
                     id="carouselExampleControls"
-                    class="carousel slide w-75 "
+                    class="carousel slide w-100 "
                     data-bs-ride="carousel"
                   >
           <div class="carousel-inner" role="listbox" data-interval="10000000">
@@ -45,9 +45,31 @@
                     </button>
                   </div> 
                   </div>
-<div class="col-6 right">
-<h1>{{annonce.titre}}</h1>
-</div
+<div class="col-lg-6 col-sm-12 right ">
+<h1 class='coloredTitle '>{{annonce.titre}}</h1>
+<p>{{annonce.contenue}}</p>
+<span id="price">{{annonce.prix}} €</span>
+<small class="text-muted m-1">{{annonce.dateDePublication|date("d/m/Y g:ia", "Europe/Paris")}}</small>
+
+</div>
+<div class="middle d-flex  flex-column col-lg-6 col-sm-12">
+<div class='d-flex justify-content-center align-items-center'>
+<img class="m-3 avatar" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+<h6 class=' title'>Par : {{annonce.user.pseudo}}</h6>
+</div>
+<div class='d-flex justify-content-center align-items-center'>
+          <button id="message" class='m-4'>
+             Message
+          </button>
+                    <button id="message">
+            Acheter
+          </button>
+</div>
+
+
+</div>
+<div class=" col-lg-6 col-sm-12">
+
 
                   </div>
                   </div>

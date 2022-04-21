@@ -75,8 +75,8 @@ body {
 }
 .card {
   margin: 0.6rem 2rem;
-  height: 10rem;
-  box-shadow: var(--box-shadow);
+  height: fit-content;
+  /* box-shadow: var(--box-shadow); */
   text-decoration: none;
 }
 .card p {
