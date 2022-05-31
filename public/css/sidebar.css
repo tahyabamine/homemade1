@@ -68,6 +68,7 @@ body {
   box-shadow: var(--box-shadow);
   margin-top: 2%;
   margin-bottom: 1%;
+  object-fit: contain;
 }
 .coloredTitle {
   color: #583bb6;

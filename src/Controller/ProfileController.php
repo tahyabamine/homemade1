@@ -22,7 +22,7 @@ class ProfileController extends AbstractController
     public function index(AnnonceRepository $an,  Request $request): Response
     {
 
-        $limite = 1;
+        $limite = 4;
         $page = (int) $request->query->get('page', 1);
         $user = $this->getUser();
         $annonces = $an->getPaginatedAnnonce($page, $limite, $user);

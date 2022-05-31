@@ -5,7 +5,7 @@
 {% endblock %} {% block body %}
 <div class="container details">
 <div class="row ">
-<div class="col-lg-6 col-sm-12">
+<div class="col-lg-8 col-sm-12">
                   <div
                     id="carouselExampleControls"
                     class="carousel slide w-100 "
@@ -45,30 +45,40 @@
                     </button>
                   </div> 
                   </div>
-<div class="col-lg-6 col-sm-12 right ">
-<h1 class='coloredTitle '>{{annonce.titre}}</h1>
-<p>{{annonce.contenue}}</p>
-<span id="price">{{annonce.prix}} €</span>
-<small class="text-muted m-1">{{annonce.dateDePublication|date("d/m/Y g:ia", "Europe/Paris")}}</small>
-
-</div>
-<div class="middle d-flex  flex-column col-lg-6 col-sm-12">
+                  <div class="middle d-flex  flex-column col-lg-4 col-sm-12">
 <div class='d-flex justify-content-center align-items-center'>
+{% if app.user.avatar is empty %}
+<img class="m-3 avatar" src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200009.jpg" alt="">
+    {% else %}
 <img class="m-3 avatar" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
-<h6 class=' title'>Par : {{annonce.user.pseudo}}</h6>
+{% endif %}
+<h6 class=' title'>Par : {{annonce.user.pseudo |capitalize  }}</h6>
 </div>
 <div class='d-flex justify-content-center align-items-center'>
           <button id="message" class='m-4'>
              Message
           </button>
                     <button id="message">
-            Acheter
+            Commender
           </button>
 </div>
 
 
 </div>
-<div class=" col-lg-6 col-sm-12">
+<div class="col-lg-8 col-sm-12 right ">
+<h1 class='coloredTitle '>{{annonce.titre}}</h1>
+<p>{{annonce.contenue}}</p>
+{% if annonce.prix is  not empty %}
+<span id="price">{{annonce.prix}} €</span>
+{% endif %}
+<small class="text-muted m-1">{{annonce.dateDePublication| ago ( locale = "fr") }}</small>
+
+</div>
+
+
+
+</div>
+<div class=" col-lg-4 col-sm-12">
 
 
                   </div>

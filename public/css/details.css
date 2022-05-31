@@ -6,6 +6,7 @@
 .carousel {
   background-color: gray;
   box-shadow: var(--box-shadow);
+  cursor: zoom-in;
 }
 .details {
   height: 100vh;

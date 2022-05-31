@@ -48,6 +48,9 @@ body {
 .fa-plus-square {
   color: white;
 }
+.bi {
+  color: white;
+}
 .icon {
   height: 30px;
   width: 30px;
@@ -56,4 +59,10 @@ body {
   height: 3.125rem;
   width: 3.125rem;
   clip-path: ellipse(50% 50%);
+}
+
+.pagetitle {
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
