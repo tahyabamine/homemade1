@@ -1,13 +1,15 @@
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnonceController!{% endblock %}
-
-{% block body %}
-<div class="container">
-<h1>Ajouter une annonce</h1>
-{{form(form)}}
-
-</div>
+{% block title %}Deposer une annonce
 {% endblock %}
 
+{% block body %}
+	{% if app.user %}
+
+		<div class="container">
+			<h1>Ajouter une annonce</h1>
+			{{form(form)}}
+
+			</div>
+		{% endif %}
+	{% endblock %}

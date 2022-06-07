@@ -215,10 +215,11 @@
 							<h3 class="title">{{annonce.titre}}</h3>
 
 							<p>{{annonce.resume()}}</p>
-
-							<p class="text-muted">Annonce par
-								<a href="#">{{annonce.user.nomEtprenom()}}</a>
-							</p>
+							{% if  annonce.user is not empty %}
+								<p class="text-muted">Annonce par
+									<a href="#">{{annonce.user.nom}}</a>
+								</p>
+							{% endif %}
 
 						</div>
 					</div>

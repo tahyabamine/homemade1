@@ -14,11 +14,14 @@ use Symfony\Component\Validator\Constraints\IpValidator;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AnnonceController extends AbstractController
 {
     /**
      * @Route("/annonce/create", name="create_annonce")
+     * 
+     *  @IsGranted("ROLE_USER")
      */
     public function creatAnnonce(Request $request, AnnonceRepository $an): Response
     {
