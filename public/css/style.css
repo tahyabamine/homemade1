@@ -1,19 +1,28 @@
 :root {
   --font-family: "Roboto", sans-serif;
-  --dark: ;
-  --primary: #583bb6;
-  --dark: #444;
-  --background-light: #f5f8fb;
+  --dark: #000000;
+  --primary: #e26d5c;
+  --light: #444;
+  --secondary: #fcf0d8;
+  --background-light: #f5ca78;
   --text-color: #444;
   --text-color-light: #fff;
   --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   --border: 1px solid #eee;
-  --button-red: #d42150;
+  --button-red: #e26d5c;
 }
 body {
   font-family: var(--font-family);
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
   height: 100vh;
+  background-color: var(--secondary);
+}
+.logo {
+  margin: 0%;
+  padding: 0%;
 }
 .middle {
   flex: 3;
@@ -27,25 +36,21 @@ body {
 }
 .navbar {
   box-shadow: var(--box-shadow);
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
 }
 .navbar li:hover {
   cursor: pointer;
   transform: scale(1.01);
+  color: #fff;
 }
-.dropdown {
-  border-radius: 15%;
-  box-shadow: var(--box-shadow);
-}
+
 .dropdown-item:hover {
   background-color: var(--primary);
   color: #fff;
-}
-.btn-secondary.dropdown-toggle.btn {
-  background-color: var(--primary);
+  text-decoration-line: none;
 }
 
-.fa-plus-square {
+.fa {
   color: white;
 }
 .bi {

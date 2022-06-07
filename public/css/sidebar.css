@@ -71,7 +71,7 @@ body {
   object-fit: contain;
 }
 .coloredTitle {
-  color: #583bb6;
+  color: var(--primary);
   text-align: left;
 }
 .card {

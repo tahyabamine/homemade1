@@ -46,7 +46,7 @@ class Annonce
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, cascade={"persist"}, mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity=Image::class, cascade={"persist"}, mappedBy="annonce",cascade={"persist", "remove"})
      */
     private $images;
 

@@ -12,7 +12,7 @@
   height: 100vh;
 }
 .coloredTitle {
-  color: #583bb6;
+  color: var(--primary);
   text-align: center;
   padding: 1%;
 }

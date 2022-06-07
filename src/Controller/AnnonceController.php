@@ -81,4 +81,41 @@ class AnnonceController extends AbstractController
             'annonce' => $annonce,
         ]);
     }
+    /**
+     * @Route("/annonce/{id}/update", name="update")
+     */
+    public function update($id, AnnonceRepository $an, Request $request)
+    {
+
+        $annonce = $an->find($id);
+
+        $formulaire = $this->createForm(AnnonceType::class, $annonce);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $an->add($annonce);
+            return $this->redirectToRoute('app_profile');
+        } else {
+            return $this->render('annonce/form.html.twig', [
+                'form' => $formulaire->createView(),
+            ]);
+        }
+    }
+    /**
+     * @Route("/annonce/{id}/delete", name="delete")
+     */
+    public function delete($id, AnnonceRepository $an)
+    {
+
+        $annonce = $an->find($id);
+        if (!$annonce) {
+            throw $this->createNotFoundException(
+                "L\'annonce n\'exist pas': " . $id
+            );
+        } else
+            $an->remove($annonce);
+
+        return $this->redirectToRoute('app_profile');
+    }
 }

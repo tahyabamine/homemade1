@@ -9,7 +9,7 @@
 }
 
 #register {
-  color: #583bb6;
+  color: var(--primary);
 }
 
 h1 {
@@ -27,8 +27,8 @@ h1 {
 }
 
 .tab input:focus {
-  border: 1px solid #583bb6 !important;
-  outline: #583bb6;
+  border: 1px solid var(--primary) !important;
+  outline: var(--primary);
 }
 
 input.invalid {
@@ -44,7 +44,7 @@ input.invalid {
 }
 
 button {
-  background-color: #583bb6;
+  background-color: var(--primary);
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -82,7 +82,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   font-size: 15px;
-  color: #583bb6;
+  color: var(--primary);
   opacity: 0.5;
 }
 
@@ -92,7 +92,7 @@ button:hover {
 
 .step.finish {
   color: #fff;
-  background: #583bb6;
+  background: var(--primary);
   opacity: 1;
 }
 
