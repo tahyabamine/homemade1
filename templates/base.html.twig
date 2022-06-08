@@ -107,98 +107,6 @@
           </div>
         </nav>
 
-
-<!-- <nav class="navbar navbar-expand-lg p-0 navbar-dark">
-																																								<div class="container ms-auto order-0">
-																																									<a class="navbar-brand" href="/">
-																																										<img src="{{asset('logo.svg')}}" class="rounded" alt="logo"/></a>
-																																									<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-																																										<span class="navbar-toggler-icon"></span>
-																																									</button>
-																																									<div class="collapse navbar-collapse" id="navbarNav">
-																																										<ul class="navbar-nav">
-																																											<li class="nav-item">
-																																												<a class="nav-link active" aria-current="page" href="{{ path('app_acceuil') }}">
-																																													<i class="fa fa-home" aria-hidden="true">
-																																														Acceuil
-																																													</i>
-																																												</a>
-																																											</li>
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="#">Recherche
-																																												</a>
-																																											</li>
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="{{ path('create_annonce') }}">Déposer
-																																																																																																																																																																																																																																																																									                  une annonce
-																																													<i class="fa fa-plus-square fa-xl" aria-hidden="true"></i>
-																																												</a>
-																																											</li>
-																																											{% if app.user %}
-																																												<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-																																													<ul class="navbar-nav ms-auto">
-																																														{% if app.user.avatar is not empty %}
-																																															<li class="nav-item">
-																																			
-																																																<a class="nav-link" href="{{ path('app_profile') }}">
-																																			
-																																			
-																																																	<img src="{{asset('avatars/' ~ app.user.avatar) }}" class="img-fluid avatar rounded" alt=""/>
-																																																</a>
-																																															</li>
-																																														{% else %}
-																																															<li class="nav-item">
-																																			
-																																																<a class="nav-link" href="{{ path('app_profile') }}">
-																																			
-																																			
-																																																	<img src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200009.jpg" class="img-fluid avatar rounded" alt=""/>
-																																																</a>
-																																															</li>
-																																														</div>
-																																													{% endif %}
-																																			
-																																													<li class="nav-item">
-																																														<a class="nav-link" href="{{ path('app_profile') }}">
-																																															Bienvenue
-																																															{{ app.user.pseudo }}
-																																															!</a>
-																																													</li>
-																																													<li class="nav-item dropdown">
-																																														<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																																															<i class="fas fa-user"></i>
-																																														</a>
-																																														<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-																																															<li>
-																																																<a class="dropdown-item" href="{{ path('app_profile') }}">Mon profile</a>
-																																			
-																																															</li>
-																																															<li>
-																																																<a class="dropdown-item" href="{{path('app_editProfile', {user: app.user.id})}}">Modifier mon profile</a>
-																																			
-																																															</li>
-																																															<li>
-																																																<a class="dropdown-item" href="#">Boite de reception</a>
-																																			
-																																															</li>
-																																															<li><hr class="dropdown-divider"/></li>
-																																															<li>
-																																																<a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
-																																															</li>
-																																														</ul>
-																																													</li>
-																																												</ul>
-																																											</div>
-																																										{% else %}
-																																											<li class="nav-item">
-																																												<a class="nav-link" href="{{ path('app_login') }}">Compte</a>
-																																											</li>
-																																										{% endif %}
-																																									</li>
-																																								</div>
-																																							</div>
-																																						</div>
-																																			</nav> -->
 {% for error in app.flashes('errors') %}
 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -243,7 +151,7 @@
 	<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 		<h6 class="text-uppercase fw-bold mb-4">Questions ?</h6>
 		<p>
-			<a class="text-reset" href="#">
+			<a class="text-reset" href="{{path('app_contact')}}">
 				<i class="bi bi-envelope"></i>Nous Contacter</a>
 		</p>
 		<p>
