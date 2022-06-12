@@ -26,7 +26,7 @@ class ContactController extends AbstractController
 
             // J'envoie mon mail
             $email = new Email();
-            $email->from('tahya.bamine@outlook.fr')
+            $email->from('contact@tahya-abdesssalam.com')
                 ->to($data['email'])
                 ->subject($data['sujet'])
                 ->text($data['message']);
