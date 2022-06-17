@@ -2,19 +2,21 @@
 
 namespace App\Form;
 
-use App\Entity\Genre;
 use App\Entity\User;
+use App\Entity\Genre;
 use App\Entity\Region;
 use App\Entity\Specialite;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -22,7 +24,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Validator\Constraints\Email;
 
 class RegistrationFormType extends AbstractType
 {
@@ -30,101 +31,36 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'attr' => ['placeholder' => 'Nom'],
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez rensseigner votre nom',
+                        'message' => 'Veuillez renseigner votre nom',
                     ]),
 
                 ],
                 'attr' => ['class' => 'req']
             ])
+
             ->add('prenom', TextType::class,  [
-                'attr' => ['placeholder' => 'Prénom '],
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez rensseigner votre prénom',
+                        'message' => 'Veuillez renseigner votre prénom',
                     ]),
                 ]
             ])
-            ->add('region', EntityType::class, [
-                'class' => Region::class,
-                'required' => false,
-                'choice_label' => 'nom',
-                'label' => 'Choisissez votre secteur d\'activite ',
 
-
-            ])
-            ->add('specialite', EntityType::class, [
-                'class' => Specialite::class,
-                'mapped' => false,
-                'required' => false,
-                'choice_label' => 'nom',
-                'label' => 'Choisissez vos spécialités',
-
-            ])
             ->add('email', EmailType::class, [
-                'attr' => ['placeholder' => 'Email'],
-                'required' => false,
+                'required' => true,
                 'constraints' => [new Email],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez rensseigner votre Email',
+                        'message' => 'Veuillez renseigner votre Email',
                     ]),
                 ]
             ])
-            ->add('codePostal', NumberType::class, [
 
-                'required' => false,
-                'constraints' => [new Length([
-                    'min' => 5,
-                    'max' => 5
-                ])],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner votre code postale',
-                    ]),
-                ],
-                'attr' => ['placeholder' => 'Code Postale ...'],
-
-            ])
-            ->add('numeroRue', NumberType::class, [
-                'attr' => ['placeholder' => 'Numéro'],
-
-                'required' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le numéro de votre rue',
-                    ]),
-                ]
-            ])
-            ->add('nomRue', TextType::class, [
-                'attr' => ['placeholder' => 'Rue'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le nom de votre rue',
-                    ]),
-                ],
-                'required' => false,
-
-            ])
-            ->add('ville', TextType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'Ville'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le nom de votre ville',
-                    ]),
-                ],
-            ])
-            ->add('complementAdresse', TextType::class, ['required' => false,])
-            ->add(
-                'pseudo',
-                TextType::class,
-                [
-                    'attr' => ['placeholder' => 'Pseudo.'],
+            ->add('pseudo',TextType::class,[
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Veuillez rensseigner votre pseudo',
@@ -146,6 +82,7 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('genre', EntityType::class, [
+
                 'label' => 'Genre',
                 'attr' => ['class' => 'req'],
 
@@ -159,7 +96,8 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
                 'mapped' => false,
 
-                'required' => false,
+                'required' => true,
+                'label' => 'Mot de passe',
                 'attr' => ['type' => 'password'],
                 'attr' => ['placeholder' => 'Mot de passe'],
 
@@ -175,6 +113,10 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('numTel', TelType::class, [
+                'label' => 'Numéro de téléphone',
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

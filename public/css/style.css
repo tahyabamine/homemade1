@@ -38,6 +38,9 @@ body {
   box-shadow: var(--box-shadow);
   background-color: var(--primary) !important;
 }
+.navbar li{
+  padding-left: 10px;
+}
 .navbar li:hover {
   cursor: pointer;
   transform: scale(1.01);
@@ -70,4 +73,26 @@ body {
   border-bottom: 1px solid #cccccc;
   padding-bottom: 30px;
   margin-bottom: 30px;
+}
+.register{
+  margin:auto;
+  width: 50%;
+  background-color: #ffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+
+}
+.page{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.btn-primary{
+background-color: #e26d5c;
+border-color: #e26d5c;
+box-shadow: var(--box-shadow);
+}
+.form-select{
+  height: 30px;
 }

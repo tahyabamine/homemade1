@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AddAdresseType;
 use App\Form\EditProfileType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -52,6 +53,26 @@ class ProfileController extends AbstractController
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
             return $this->redirectToRoute('app_acceuil');
+        } else {
+            return $this->render('registration/edit.html.twig', [
+                'form' => $formulaire->createView(),
+
+
+            ]);
+        }
+    }
+    #[Route('/profile/ajout/{user}', name: 'app_ajoutAdresse')]
+    public function addAdresse($user, UserRepository $er, Request $request)
+    {
+        $user = $er->find($user);
+
+        $formulaire = $this->createForm(AddAdresseType::class, $user);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($user);
+            return $this->redirectToRoute('app_profile');
         } else {
             return $this->render('registration/edit.html.twig', [
                 'form' => $formulaire->createView(),

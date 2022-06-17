@@ -27,7 +27,7 @@ class EditProfileType extends AbstractType
 
             ->add('nom', TextType::class, [
                 'attr' => ['placeholder' => 'Nom'],
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez rensseigner votre nom',
@@ -36,74 +36,13 @@ class EditProfileType extends AbstractType
             ])
             ->add('prenom', TextType::class,  [
                 'attr' => ['placeholder' => 'Prénom '],
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez rensseigner votre prénom',
                     ]),
                 ]
             ])
-            ->add('region', EntityType::class, [
-                'class' => Region::class,
-                'required' => false,
-                'choice_label' => 'nom',
-                'label' => 'Choisissez votre secteur d\'activite ',
-
-
-            ])
-            ->add('specialite', EntityType::class, [
-                'class' => Specialite::class,
-                'mapped' => false,
-                'required' => false,
-                'choice_label' => 'nom',
-                'label' => 'Choisissez vos spécialités',
-
-            ])
-            ->add('codePostal', NumberType::class, [
-
-                'required' => false,
-                'constraints' => [new Length([
-                    'min' => 5,
-                    'max' => 5
-                ])],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner votre code postale',
-                    ]),
-                ],
-                'attr' => ['placeholder' => 'Code Postale ...'],
-
-            ])
-            ->add('numeroRue', NumberType::class, [
-                'attr' => ['placeholder' => 'Numéro'],
-
-                'required' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le numéro de votre rue',
-                    ]),
-                ]
-            ])
-            ->add('nomRue', TextType::class, [
-                'attr' => ['placeholder' => 'Rue'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le nom de votre rue',
-                    ]),
-                ],
-                'required' => false,
-
-            ])
-            ->add('ville', TextType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'Ville'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez rensseigner le nom de votre ville',
-                    ]),
-                ],
-            ])
-            ->add('complementAdresse', TextType::class, ['required' => false,])
             ->add(
                 'pseudo',
                 TextType::class,
@@ -124,7 +63,7 @@ class EditProfileType extends AbstractType
                 'class' => Genre::class,
                 'choice_label' => 'nom',
             ])
-            ->add('Envoyer', SubmitType::class);
+            ->add('Modifier', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

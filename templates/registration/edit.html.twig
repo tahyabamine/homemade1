@@ -31,65 +31,13 @@ css %}
 app.flashes('verify_email_error') %}
 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 {% endfor %}
+<div class='container page'>
+  <div class="register">
+<h2 class="mb-5 text-center">Modifier votre profile</h1>
 
-<h1>Edit profilee</h1>
 
+          {{ form(form) }}
 
-          {{ form_start(form) }}
-          <p>{{ form_errors(form.nom) }}</p>
-          <p>{{ form_widget(form.nom) }}</p>
-
-          <p>{{ form_errors(form.prenom) }}</p>
-          <p>{{ form_widget(form.prenom) }}</p>
-
-              <p>{{ form_errors(form.genre) }}</p>
-          {{ form_label(form.genre) }}
-          <p>{{ form_widget(form.genre) }}</p>
-               <p>{{ form_errors(form.pseudo) }}</p>
-          {{ form_label(form.pseudo) }}
-
-          <p>{{ form_widget(form.pseudo) }}</p>
-
-  
-          <p>{{ form_errors(form.numeroRue) }}</p>
-          <p>{{ form_widget(form.numeroRue) }}</p>
-
-          <p>{{ form_errors(form.complementAdresse) }}</p>
-          <p>{{ form_widget(form.complementAdresse) }}</p>
-
-          <p>{{ form_errors(form.codePostal) }}</p>
-          <p>{{ form_widget(form.codePostal,{ id: "cp" }) }}</p>
-
-          <p>{{ form_errors(form.ville) }}</p>
-          <p>{{ form_widget(form.ville, { id: "ville" }) }}</p>
-
-          <p>{{ form_errors(form.nomRue) }}</p>
-          <p>{{ form_widget(form.nomRue, { id: "adresse" }) }}</p>
-  
-      
-
-     <p>    {{ form_errors(form.region) }}</p>
-          {{ form_label(form.region) }}
-
-       <p> {{ form_widget(form.region) }}<p/>
-
-          <p>{{ form_errors(form.specialite) }}</p>
-          {{ form_label(form.specialite) }}
-
-          {# <div id="cont"> #}
-          {{ form_widget(form.specialite, { id: "specialite" })  }}
-          {# <a onclick="ajouter()"><i class="fa fa-plus-square" aria-hidden="true"></i> Ajouter des spécialites</a>
-          </div> #}
-
-     {{form_rest(form)}}
-     
-
-      
-
-        {{ form_end(form) }}
-      </div>
-    </div>
-  </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

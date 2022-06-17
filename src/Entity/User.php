@@ -50,17 +50,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $prenom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $codePostal;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nomRue;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $numeroRue;
 
@@ -110,7 +110,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $genre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ville;
 
@@ -123,6 +123,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="users")
      */
     private $favoris;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numTel;
 
     public function __construct()
     {
@@ -503,6 +508,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFavori(Annonce $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    public function getNumTel(): ?string
+    {
+        return $this->numTel;
+    }
+
+    public function setNumTel(?string $numTel): self
+    {
+        $this->numTel = $numTel;
 
         return $this;
     }
