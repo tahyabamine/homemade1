@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MessengerRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,12 +19,12 @@ class Messenger
     private $id;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $isRead;
+    private $isRead = 0;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $contenue;
 
@@ -41,6 +42,10 @@ class Messenger
      * @ORM\Column(type="date")
      */
     private $date;
+
+    public function __construct(){
+$this->date=new \DateTime();
+    }
 
     public function getId(): ?int
     {

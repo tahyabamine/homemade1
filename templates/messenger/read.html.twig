@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Messagerie</h1>
+                <p>Message de {{ message.sender.email }}</p>
+                <p>Le {{ message.date|date }}</p>
+                <div>{{ message.contenue }}</div>
+                <a href="{{path('received')}}" class="btn btn-primary">Retour à la boite de réception</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

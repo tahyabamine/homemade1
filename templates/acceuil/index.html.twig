@@ -219,6 +219,14 @@
 								<p class="text-muted">Annonce par
 									<a href="#">{{annonce.user.nom}}</a>
 								</p>
+								<div class='d-flex justify-content-center align-items-center'>
+									<button id="message" class='m-4'><a href="{{path('send', {id: annonce.user.id})}}">Message</a>
+										
+									</button>
+									<button id="message">
+										Commender
+									</button>
+								</div>
 							{% endif %}
 
 						</div>
