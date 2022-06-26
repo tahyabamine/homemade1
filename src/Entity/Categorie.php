@@ -29,6 +29,11 @@ class Categorie
      */
     private $annonces;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $iamgeUrl;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -74,6 +79,18 @@ class Categorie
         if ($this->annonces->removeElement($annonce)) {
             $annonce->removeCategorie($this);
         }
+
+        return $this;
+    }
+
+    public function getIamgeUrl(): ?string
+    {
+        return $this->iamgeUrl;
+    }
+
+    public function setIamgeUrl(?string $iamgeUrl): self
+    {
+        $this->iamgeUrl = $iamgeUrl;
 
         return $this;
     }

@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -111,6 +112,22 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
+                    ]),
+                    new Regex([
+                        'pattern' => '/\d/',
+                        'message' => 'Votre mot de passe doit contenir au moins un chiffre.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/[a-z]/',
+                        'message' => 'Votre mot de passe doit contenir au moins une lettre minuscule.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/[A-Z]/',
+                        'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/[!@#$%^&*]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.'
                     ]),
                 ],
             ])

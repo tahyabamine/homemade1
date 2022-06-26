@@ -105,9 +105,7 @@ class AnnonceController extends AbstractController
             ]);
         }
     }
-    /**
-     * @Route("/annonce/{id}/delete", name="delete")
-     */
+    #[Route('/annonce/delete/{id}', name: 'delete')]
     public function delete($id, AnnonceRepository $an)
     {
 

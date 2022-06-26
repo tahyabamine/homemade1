@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 :root {
   --font-family: "Roboto", sans-serif;
   --dark: #000000;
-  --primary: #e26d5c;
+  --primary: rgb(139, 56, 33);
   --light: #444;
   --secondary: #fcf0d8;
   --background-light: #f5ca78;
@@ -10,7 +11,7 @@
   --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   --border: 1px solid #eee;
-  --button-red: #e26d5c;
+  --button-red: rgb(139, 56, 33)d5c;
 }
 body {
   font-family: var(--font-family);
@@ -18,8 +19,35 @@ body {
   padding: 0%;
   box-sizing: border-box;
   height: 100vh;
-  background-color: var(--secondary);
+  background-color: #fff;
 }
+svg {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: var(--box-shadow);
+}
+.containere {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 15%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.containere h1 {
+  position: absolute;
+  top: 10%;
+  width: 80%;
+  font-weight: 700;
+  color: rgb(139, 56, 33);
+  padding-left: 2%;
+  font-family: 'Acme', sans-serif;
+
+}
+
+
 .logo {
   margin: 0%;
   padding: 0%;
@@ -36,10 +64,15 @@ body {
 }
 .navbar {
   box-shadow: var(--box-shadow);
-  background-color: var(--primary) !important;
+  background-color: rgb(139, 56, 33) !important;
+  display: flex;
+padding-left: 30px;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .navbar li{
-  padding-left: 10px;
+  padding-left: 20px;
+  
 }
 .navbar li:hover {
   cursor: pointer;
@@ -75,8 +108,7 @@ body {
   margin-bottom: 30px;
 }
 .register{
-  margin:auto;
-  width: 50%;
+  width: 80%;
   background-color: #ffff;
   padding: 2rem;
   border-radius: 10px;
@@ -88,11 +120,27 @@ body {
   display: flex;
   align-items: center;
 }
+.page img{
+  width: 95%;
+}
 .btn-primary{
-background-color: #e26d5c;
-border-color: #e26d5c;
+background-color: var(--primary);
+border-color: var(--primary);
 box-shadow: var(--box-shadow);
 }
 .form-select{
   height: 30px;
+}
+hr {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:2rem;
+}
+footer {
+  clear: both;
+}
+.img_cook{
+width: 30%;
+height: inherit;
 }

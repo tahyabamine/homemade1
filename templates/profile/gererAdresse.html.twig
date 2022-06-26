@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{app.user.nom ~' '~ app.user.prenom }}
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+{% endblock %}
+
+{% block body %}
+<div class="profile">
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
+	<h3 class="w3-bar-item">Menu</h3>
+	<a href="{{path('app_info')}}" class="w3-bar-item w3-button">Mes informations</a>
+	<a href="#" class="w3-bar-item w3-button">Mes specialites culinaire</a>
+	<a href="#" class="w3-bar-item w3-button">Gerer mon adresse</a>
+	<a href="{{path('app_profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+	<a href="#" class="w3-bar-item w3-button">Mes favoris</a>
+	<a href="#" class="w3-bar-item w3-button">Messagerie</a>
+  </div>
+  <div class="d-flex left">
+    <h2 class="coloredTitle m-4">Bienvenue
+        {{app.user.prenom| capitalize }}
+        !</h2>
+        {% if app.user.codePostal is empty %}
+    <a href="{{path('app_ajoutAdresse', {user: app.user.id})}}"class='btn btn-primary'>Ajouter une adresse</a>
+{%else%}
+<div class="card w-50">
+  <div class="card-header">
+  Mon adresse </div>
+  <div class="card-body">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Code Postal</th>
+          <td>{{app.user.codePostal}}</td>
+
+        </tr>
+        <tr>
+          <th scope="row">Nom du Rue</th>
+
+          <td>{{app.user.numeroRue}} , {{app.user.nomRue}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Ville</th>
+
+          <td>{{app.user.ville}}</td>
+        </tr>
+        {% if app.user.complementAdresse is not empty %}
+        <tr>
+          <th scope="row">Complélément d'adresse</th>
+          <td>{{app.user.complementAdresse}}</td>
+        </tr>
+        {%endif%}
+
+      </tbody>
+    </table>
+    <a href="{{path('app_editProfile', {user: app.user.id})}}" class="btn btn-warning">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </a>  
+    <a href="{{path('app_editProfile', {user: app.user.id})}}" class="btn btn-danger">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </a>     
+  </div>
+</div>
+  </div>
+</div>
+{%endif%}
+
+{% endblock %}

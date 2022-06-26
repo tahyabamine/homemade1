@@ -76,7 +76,7 @@ class MessengerController extends AbstractController
     }
 
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("message/delete/{id}", name="deletemessage")
      */
     public function delete(Messenger $message): Response
     {

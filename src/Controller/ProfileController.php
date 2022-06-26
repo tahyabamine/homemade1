@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\Service\ResetInterface;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper;
 
 class ProfileController extends AbstractController
 {
@@ -37,7 +39,34 @@ class ProfileController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/profile/info", name="app_info")
+     */
+    public function info(): Response
+    {
 
+        return $this->render('profile/mesinfos.html.twig');
+    }
+    /**
+     * @Route("/profile/annonces", name="app_profile_annonces")
+     */
+    public function annonces(AnnonceRepository $an,  Request $request): Response
+    {
+
+        $limite = 4;
+        $page = (int) $request->query->get('page', 1);
+        $user = $this->getUser();
+        $annonces = $an->getPaginatedAnnonce($page, $limite, $user);
+        $total = $an->getAllAnnonces($user);
+
+        return $this->render('profile/annonces.html.twig', [
+            'annonce' => $annonces,
+            'limite' => $limite,
+            'page' => $page,
+            'total' => $total
+
+        ]);
+    }
     /**
      * @Route("/profile/edit/{user}", name="app_editProfile")
      */
@@ -80,5 +109,12 @@ class ProfileController extends AbstractController
 
             ]);
         }
+    }
+    /**
+     * @Route("/profile/adresse", name="gererAdresse")
+     */
+    public function gereAdresse()
+    {
+        return $this->render('profile/gererAdresse.html.twig');
     }
 }

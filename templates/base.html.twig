@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <title>
@@ -34,7 +34,6 @@
 
 <body>
   <div class="contenair">
-    <div class="m-4">
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
           <a href="/" class="navbar-brand logo ps-5">
@@ -92,29 +91,6 @@
 
           </div>
           </ul>
-          {% if app.user.avatar is not empty %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_profile')}}">
-              <img src="{{asset('avatars/' ~ app.user.avatar) }}" class="img-fluid avatar rounded" alt="" />
-            </a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_profile')}}"><img
-                src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200009.jpg"
-                class="img-fluid avatar rounded" alt="" /></a>
-          </li>
-          {% endif %}
-          <ul class="nav navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a href="#" class="dropdown-item">Reports</a>
-                <a href="#" class="dropdown-item">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">Logout</a>
-              </div>
-            </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{{ path('app_login') }}"> <i class="bi bi-person"></i>Compte</a>
@@ -123,7 +99,7 @@
 
           {% endif %}
         </div>
-    </div>
+
     </nav>
 
     {% for error in app.flashes('errors') %}
@@ -193,7 +169,7 @@
     </div>
   </section>
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">© 2022 Copyright:<a
-      class="text-reset fw-bold" href="https://mdbootstrap.com/">HOME-MADE.FR</a></div>
+      class="text-reset fw-bold" href="https://homemade.tahya-abdessalam.com/">homemade.tahya-abdessalam.com</a></div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

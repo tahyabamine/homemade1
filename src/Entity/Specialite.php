@@ -29,6 +29,11 @@ class Specialite
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $imageUrl;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -74,6 +79,18 @@ class Specialite
         if ($this->users->removeElement($user)) {
             $user->removeSpecialite($this);
         }
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }

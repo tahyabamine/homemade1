@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -62,6 +63,10 @@ class EditProfileType extends AbstractType
                 'required' => false,
                 'class' => Genre::class,
                 'choice_label' => 'nom',
+            ])
+            ->add('numTel', TelType::class, [
+                'label' => 'Numéro de téléphone',
+                'required' => false
             ])
             ->add('Modifier', SubmitType::class);
     }

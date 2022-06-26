@@ -4,66 +4,40 @@
 	{{app.user.nom ~' '~ app.user.prenom }}
 {% endblock %}
 {% block css %}
-	<link rel="stylesheet" href="{{asset("css/sidebar.css")}}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+
 {% endblock %}
 
 {% block body %}
+<div class="overflow">
+<div class="profile">
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
+	<h3 class="w3-bar-item">Menu</h3>
+	<a href="{{path('app_info')}}" class="w3-bar-item w3-button">Mes informations</a>
+	<a href="#" class="w3-bar-item w3-button">Mes specialites culinaire</a>
+	<a href="{{path('gererAdresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
+	<a href="{{path('app_profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+	<a href="#" class="w3-bar-item w3-button">Mes favoris</a>
+	<a href="{{path('received')}}" class="w3-bar-item w3-button">Messagerie</a>
+  </div>
+	<div class="d-flex left ">
+		{% if app.user.avatar is empty %}
 
-	<div class="containair">
-		<div class="d-flex gap-4">
-			<div class="d-flex left">
-				{% if app.user.avatar is empty %}
+			<img class="m-3 avatar-profile" src="{{asset('images/profile.png') }}" alt="">
 
-					<img class="m-3" src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200009.jpg" alt="">
+		{% else %}
+			<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
 
-				{% else %}
-					<img class="m-3" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+		{% endif %}
+		<H3>{{app.user.getNomEtPrenom()}}</H3>
+		<p class="p-2">{{app.user.email}}</p>
+		<p class="text-muted">
+			<i class="bi bi-geo-alt-fill"></i>
+			{{app.user.ville}}, France</p>
 
-				{% endif %}
-				<H3>{{app.user.getNomEtPrenom()}}</H3>
-				<p class="p-2">{{app.user.email}}</p>
-				<p class="text-muted">
-					<i class="bi bi-geo-alt-fill"></i>
-					{{app.user.ville}}, France</p>
-
-			</div>
-			<div class="middle">
-				<h2 class="coloredTitle m-4">Bienvenue
-					{{app.user.prenom| capitalize }}
-					!</h2>
-				<h3 class="m-4">Mes annonces: ({{app.user.annonces | length }})</h3>
-				{% for annonce in annonce %}
-					<a href="{{path('details', {annonce: annonce.id})}}" class=" card   ">
-
-
-						<h3 class="coloredTitle mx-4 my-2">{{annonce.titre}}</h3>
-						<p class='mx-3'>{{ annonce.resume()}}</p>
-					</a>
-				{% endfor %}
-				{% if app.user.annonces | length > 4 %}
-
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-end text-primary">
-
-							<li class="page-item text-primary{{ ( page == 1 ) ? 'disabled' : '' }}"></li>
-
-							<a class="page-link" href="?page ={{ page - 1}}">Previous</a>
-						</li>
-						{% set pages = (total / limite) | round (0, 'ceil') %}
-						{% for item in 1..(pages) %}
-
-							<li class="page-item {{ page == item ? 'active' : '' }}">
-								<a class="page-link" href="?page={{item}}">{{item}}</a>
-							</li>
-						{% endfor %}
-
-						<li class="page-item {{ ( page == pages ) ? 'disabled' : '' }}">
-							<a class="page-link" href="?page={{ page + 1 }}">Next</a>
-						</li>
-					</ul>
-				</nav>
-			{% endif %}
-		</div>
-
-
+</div>
+	</div>
+</div>
 	{% endblock %}
