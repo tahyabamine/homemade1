@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AddAdresseType extends AbstractType
 {
@@ -18,11 +19,16 @@ class AddAdresseType extends AbstractType
     {
         $builder
 
-            ->add('codePostal')
-            ->add('nomRue')
+            ->add('codePostal',TextType::class,[
+                'attr' => ['name' => 'cp'],
+            ])
+            ->add('nomRue',TextType::class, [
+                'attr' => ['name' => 'adresse']
+            ])
             ->add('numeroRue')
             ->add('complementAdresse')
-            ->add('ville')
+            ->add('ville', TextType::class, [
+                'attr' => ['name' => 'ville']])
             ->add('submit', SubmitType::class);
 
     }
