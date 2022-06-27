@@ -18,14 +18,7 @@ class AddAdresseType extends AbstractType
     {
         $builder
 
-            ->add('codePostal',NumberType::class, [               
-                'constraints' => [new Length([
-                    'min' => 5,
-                    'max' => 5
-                ])],
-            ]
-
-            )
+            ->add('codePostal')
             ->add('nomRue')
             ->add('numeroRue')
             ->add('complementAdresse')
