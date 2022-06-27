@@ -24,6 +24,7 @@ $("#cp").autocomplete({
       },
     });
   },
+  
   // On remplit aussi la ville
   select: function (event, ui) {
     $("#ville").val(ui.item.city);

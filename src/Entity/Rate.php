@@ -18,12 +18,12 @@ class Rate
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rates")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rates",cascade={"persist", "remove"})
      */
     private $userVoteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rates")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rates",cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $userVote;

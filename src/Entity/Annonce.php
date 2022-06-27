@@ -21,7 +21,8 @@ class Annonce
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces",cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true,onDelete="CASCADE")
      */
     private $user;
 
@@ -51,7 +52,7 @@ class Annonce
     private $images;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris", cascade={"remove"})
      */
     private $users;
 

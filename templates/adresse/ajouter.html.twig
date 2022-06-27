@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register
+{% endblock %}
+{% block
+css %}
+
+	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}" type="text/css"/>
+	<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
+
+{% endblock %}
+{% block body %}
+<div class='container page h-100 p-5'>
+<div class="register">
+<h2 class="mb-5 text-center">Ajouter une adresse</h1>
+{{form_start(form)}}
+{{form_row(form.codePostal,{ 'id': 'cp'})}}
+{{form_row(form.nomRue,{ 'id': 'adresse'})}}
+{{form_row(form.ville,{ 'id': 'ville'})}}
+{{form_rest(form)}}
+{{form_end(form)}}
+
+</div>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
+   <script src="{{asset('javascript/apiadresse.js')}}"></script>
+{% endblock %}

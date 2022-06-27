@@ -23,13 +23,15 @@
 	<a href="{{path('received')}}" class="w3-bar-item w3-button">Messagerie</a>
   </div>
 	<div class="d-flex left ">
-		{% if app.user.avatar is empty %}
+		{% if app.user.avatar is  empty %}
+		{% if app.user.genre.id == 1 %}
 
-			<img class="m-3 avatar-profile" src="{{asset('images/profile.png') }}" alt="">
-
-		{% else %}
+			<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.svg') }}" alt="">
+			{% elseif app.user.genre.id == 2 %}
+			<img class="m-3 avatar-profile" src="{{asset('images/home-avatar.svg') }}" alt="">
+			{% else %}
 			<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
-
+			{% endif %}
 		{% endif %}
 		<H3>{{app.user.getNomEtPrenom()}}</H3>
 		<p class="p-2">{{app.user.email}}</p>

@@ -144,3 +144,6 @@ footer {
 width: 30%;
 height: inherit;
 }
+svg{
+  z-index: -1;
+}

@@ -108,8 +108,8 @@
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row">{{app.user.password}}</th>
-            <td colspan="2"> <a href="#" class="btn btn-warning">
+            <th scope="row">************</th>
+            <td colspan="2"> <a href="{{path('changePassword')}}" class="btn btn-warning">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </a></td>
           </tr>
@@ -125,7 +125,7 @@
         <tbody>
           <tr>
             <th scope="row">Mon compte</th>
-            <td colspan="2"> <a href="#" class="btn btn-danger">
+            <td colspan="2"> <a href="{{path('delete_user')}}" class="btn btn-danger " onclick="return confirm('Êtes-vous sûr ?')">
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </a></td>
           </tr>
