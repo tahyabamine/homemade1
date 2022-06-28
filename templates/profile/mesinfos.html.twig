@@ -93,8 +93,11 @@
               <img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
         
             {% endif %}</th>
-            <td colspan="2"> <a href="#" class="btn btn-warning">
+            <td colspan="2"> <a href="{{path('app_editAvatar', {user: app.user.id})}}" class="btn btn-warning">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
+              </a>
+              <a href="{{path('app_editAvatar', {user: app.user.id})}}" class="btn btn-danger " onclick="return confirm('Êtes-vous sûr ?')">
+                <i class="fa fa-trash" aria-hidden="true"></i>
               </a></td>
           </tr>
         </tbody>

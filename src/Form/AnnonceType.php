@@ -10,12 +10,14 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -31,17 +33,13 @@ class AnnonceType extends AbstractType
                 'class' => Categorie::class,
                 'choice_label' => 'nom',
                 'mapped' => false,
-
-
-
             ])
             ->add('images', FileType::class, [
                 'required' => false,
-                'label' =>  'Photo de profile',
+                'label' =>  'Les images',
                 'multiple' => true,
                 'mapped' => false,
                 'constraints' => [
-
                     new All([
                         new File([
                             'maxSize' => '5M',
@@ -49,9 +47,9 @@ class AnnonceType extends AbstractType
                         new Image
                     ]),
                 ]
-
-
-
+            ])
+            ->add('showNumber', CheckboxType::class, [
+                'label' =>  'Afficher mon numero de telephone',
             ])
             ->add('submit', SubmitType::class);
     }

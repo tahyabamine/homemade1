@@ -23,7 +23,6 @@ $specialites=$spe->findBy([], ['id'=>'DESC'],10 );
         return $this->render('acceuil/index.html.twig', [
             'annonces' => $annonces,
             'categories'=>$categorie,
-            'specialite'=>$specialites
 
         ]);
     }

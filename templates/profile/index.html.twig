@@ -31,6 +31,8 @@
 			{% else %}
 			<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
 			{% endif %}
+			{% else %}
+			<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
 		{% endif %}
 		<H3>{{app.user.getNomEtPrenom()}}</H3>
 		<p class="p-2">{{app.user.email}}</p>
@@ -42,7 +44,7 @@
 			<div class="d-flex">
 			{%for spec in app.user.specialite%}
 			<div class="card" style="width: 18rem;">
-				<img class='img-fluid'src="{{spec.imageUrl}}" class="card-img-top" alt="...">
+				<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;"src="{{spec.imageUrl}}" class="card-img-top" alt="...">
 				<div class="card-body">
 				  <p class="card-text">{{spec.nom}}</p>
 				</div>

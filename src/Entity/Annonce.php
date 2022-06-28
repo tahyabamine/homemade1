@@ -61,6 +61,11 @@ class Annonce
      */
     private $prix;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showNumber;
+
 
 
     public function __construct()
@@ -227,6 +232,18 @@ class Annonce
     public function setPrix(?float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function isShowNumber(): ?bool
+    {
+        return $this->showNumber;
+    }
+
+    public function setShowNumber(?bool $showNumber): self
+    {
+        $this->showNumber = $showNumber;
 
         return $this;
     }
