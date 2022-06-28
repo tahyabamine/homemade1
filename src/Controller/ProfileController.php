@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\AddAdresseType;
+use App\Form\SpecialiteType;
 use App\Form\EditProfileType;
+use Doctrine\ORM\EntityManager;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Form\ChangePasswordFormType;
 use App\Repository\AnnonceRepository;
-use Doctrine\ORM\EntityManager;
+use App\Repository\SpecialiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -29,20 +31,23 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="app_profile")
      */
-    public function index(AnnonceRepository $an,  Request $request): Response
+    public function index(AnnonceRepository $an,  Request $request, UserRepository $use): Response
     {
+        $us=$this->getUser();
+        $user = $use->find($us);
 
         $limite = 4;
         $page = (int) $request->query->get('page', 1);
-        $user = $this->getUser();
         $annonces = $an->getPaginatedAnnonce($page, $limite, $user);
         $total = $an->getAllAnnonces($user);
+        $specialite=$user->getSpecialite();
 
         return $this->render('profile/index.html.twig', [
             'annonce' => $annonces,
             'limite' => $limite,
             'page' => $page,
-            'total' => $total
+            'total' => $total,
+            'specalite'=>$specialite
 
         ]);
     }
@@ -117,6 +122,27 @@ class ProfileController extends AbstractController
             ]);
         }
     }
+    #[Route('/profile/updateAdresse/{user}', name: 'app_updateAdresse')]
+    public function updateAdresse($user, UserRepository $er, Request $request)
+    {
+
+        $user = $er->find($user);
+
+        $formulaire = $this->createForm(AddAdresseType::class, $user);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($user);
+            return $this->redirectToRoute('app_profile');
+        } else {
+            return $this->render('adresse/ajouter.html.twig', [
+                'form' => $formulaire->createView(),
+
+
+            ]);
+        }
+    }
     /**
      * @Route("/profile/adresse", name="gererAdresse")
      */
@@ -170,5 +196,25 @@ class ProfileController extends AbstractController
         $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !'); 
 
         return $this->redirectToRoute('app_acceuil');
+    }
+    #[Route('/profile/ajoutSpacialite/{user}', name: 'app_ajoutSpecialite')]
+    public function ajouspecialite($user, UserRepository $er, Request $request, SpecialiteRepository $spec)
+    {
+        $user = $er->find($user);
+
+        $formulaire = $this->createForm(SpecialiteType::class, $user);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($user);
+            return $this->redirectToRoute('app_profile');
+        } else {
+            return $this->render('profile/ajouspecialite.html.twig', [
+                'form' => $formulaire->createView(),
+
+
+            ]);
+        }
     }
 }
