@@ -33,6 +33,9 @@ class AnnonceType extends AbstractType
                 'class' => Categorie::class,
                 'choice_label' => 'nom',
                 'mapped' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
             ])
             ->add('images', FileType::class, [
                 'required' => false,

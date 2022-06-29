@@ -137,6 +137,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Messenger::class, mappedBy="recepteur", orphanRemoval=true)
      */
     private $received;
+    
 
     public function __construct()
     {

@@ -29,7 +29,9 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;1,400;1,700&display=swap"
     rel="stylesheet" />
   <link rel="icon" href="{{ asset('icons/favicon.ico') }}" />
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" /> {% block css %}{% endblock %}
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{asset('css/sidebar.css')}}"> {% block css %}{% endblock %}
 </head>
 
 <body>
@@ -53,29 +55,27 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ path('create_annonce') }}" class="nav-link">
+                <a href="{{ path('annonce/create') }}" class="nav-link">
                   <i class="fa fa-plus-square " aria-hidden="true"></i>
                   Déposer une annonce
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ path('create_annonce') }}" class="nav-link">
+                <a href="{{ path('annonce/create') }}" class="nav-link">
                   <i class="fa fa-magnifying-glass "></i>
                   Recherche
                 </a>
               </li>
               {% if app.user %}
               <li class="nav-item dropdown">
-                <a href="{{ path('app_profile') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <a href="{{ path('profile/profile') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                   Bienvenue
                   {{ app.user.pseudo }}
                   !</a>
 
                 <div class="dropdown-menu">
-                  <a href="{{ path('app_profile') }}" class="dropdown-item">Mon profile</a>
+                  <a href="{{ path('profile/profile') }}" class="dropdown-item">Mon profile</a>
 
-                  <a href="{{path('app_editProfile', {user: app.user.id})}}" class="dropdown-item">Modifier mon
-                    profile</a>
 
                   <div class="dropdown-divider"></div>
                   <a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
@@ -151,7 +151,7 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">Questions ?</h6>
           <p>
-            <a class="text-reset" href="{{path('app_contact')}}">
+            <a class="text-reset" href="{{path('contact/contact')}}">
               <i class="bi bi-envelope"></i>Nous Contacter</a>
           </p>
           <p>

@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Region;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Console\Completion\Suggestion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +31,14 @@ class AddAdresseType extends AbstractType
             ->add('complementAdresse')
             ->add('ville', TextType::class, [
                 'attr' => ['name' => 'ville']])
+                ->add('region', EntityType::class, [
+                    'class' => Region::class,
+                    'choice_label' => 'nom',
+                    'mapped' => false,
+                    'attr' => array(
+                        'class' => 'form-control'
+                    )
+                ])
             ->add('submit', SubmitType::class);
 
     }

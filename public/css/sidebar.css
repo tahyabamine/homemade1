@@ -13,7 +13,16 @@ position:absolute  !important;
 flex: 1 !important;
 min-height: 100vh;
 }
-
+.w3-sidebar a:hover{
+  background-color: var(--primary) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+.w3-sidebar a:active{
+  background-color: var(--primary) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
 
 .left {
 flex: 1;
@@ -28,13 +37,7 @@ min-height: 100vh;
   height: 100px;
   clip-path: ellipse(50% 50%);
 }
-.middle {
-  flex: 3;
-  box-shadow: var(--box-shadow);
-  margin-top: 2%;
-  margin-bottom: 1%;
-  object-fit: contain;
-}
+
 .coloredTitle {
   color: var(--primary);
   text-align: left;

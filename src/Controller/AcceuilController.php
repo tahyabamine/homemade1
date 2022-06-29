@@ -9,12 +9,11 @@ use App\Repository\SpecialiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+#[Route('/', name: 'acceuil')]
 
 class AcceuilController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_acceuil")
-     */
+    #[Route('/', name: '/acceuil')]
     public function index(AnnonceRepository $an, CategorieRepository $cat, SpecialiteRepository $spe): Response
     {
         $annonces = $an->findAll();

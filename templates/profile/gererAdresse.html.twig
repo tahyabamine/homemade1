@@ -10,22 +10,23 @@
 
 {% block body %}
 <div class="profile">
-
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
-	<h3 class="w3-bar-item">Menu</h3>
-	<a href="{{path('app_info')}}" class="w3-bar-item w3-button">Mes informations</a>
-	<a href="#" class="w3-bar-item w3-button">Mes specialites culinaire</a>
-	<a href="#" class="w3-bar-item w3-button">Gerer mon adresse</a>
-	<a href="{{path('app_profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
-	<a href="#" class="w3-bar-item w3-button">Mes favoris</a>
-	<a href="#" class="w3-bar-item w3-button">Messagerie</a>
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
+    <h3 class="w3-bar-item">Menu</h3>
+    <a href="{{path('profile/info')}}" class="w3-bar-item w3-button">Mes informations</a>
+    <a href="{{path('profile/gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
+    <a href="{{path('profile/annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+    <a href="{{path('profile/mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
+    <a href="{{path('messenger/received')}}" class="w3-bar-item w3-button">Messagerie</a>
   </div>
   <div class="d-flex left">
     <h2 class="coloredTitle m-4">Bienvenue
         {{app.user.prenom| capitalize }}
         !</h2>
         {% if app.user.codePostal is empty %}
-    <a href="{{path('app_ajoutAdresse', {user: app.user.id})}}"class='btn btn-primary'>Ajouter une adresse</a>
+    <a href="{{path('profile/ajoutAdresse', {user: app.user.id})}}"class='btn btn-primary'>Ajouter une adresse</a>
+    <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="" srcset="">
+
 {%else%}
 <div class="card w-50">
   <div class="card-header">
@@ -57,9 +58,12 @@
 
       </tbody>
     </table>
-    <a href="{{path('app_updateAdresse', {user: app.user.id})}}" class="btn btn-warning">
+    <a href="{{path('profile/updateAdresse', {user: app.user.id})}}" class="btn btn-warning">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </a>  
+    <div>
+      <img src="{{ asset('images/login.png') }}" alt="">
+  </div>
     
   </div>
 </div>

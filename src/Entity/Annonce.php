@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnonceRepository;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -42,7 +43,7 @@ class Annonce
     private $dateDePublication;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="annonces")
+     * @ORM\ManyToMany(targetEntity=Categorie::class, cascade={"persist"},inversedBy="annonces")
      */
     private $categorie;
 
@@ -66,6 +67,12 @@ class Annonce
      */
     private $showNumber;
 
+     /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="favoris")
+     */
+    private $favoris;
+
+
 
 
     public function __construct()
@@ -74,6 +81,7 @@ class Annonce
         $this->images = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->dateDePublication = new DateTime();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +252,31 @@ class Annonce
     public function setShowNumber(?bool $showNumber): self
     {
         $this->showNumber = $showNumber;
+
+        return $this;
+    }
+        /**
+     * @return Collection|User[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(User $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(User $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+        }
 
         return $this;
     }

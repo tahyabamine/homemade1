@@ -41,7 +41,14 @@ class RegistrationFormType extends AbstractType
                 ],
                 'attr' => ['class' => 'req']
             ])
-
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'nom',
+                'mapped' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ])
             ->add('prenom', TextType::class,  [
                 'required' => true,
                 'constraints' => [
@@ -83,14 +90,13 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('genre', EntityType::class, [
-
                 'label' => 'Genre',
-                'attr' => ['class' => 'req'],
-
-
                 'required' => false,
                 'class' => Genre::class,
                 'choice_label' => 'nom',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

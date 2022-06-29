@@ -28,22 +28,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 
+#[Route('profile', name: 'profile')]
+
 class ProfileController extends AbstractController
 {
-    /**
-     * @Route("/profile", name="app_profile")
-     */
+    #[Route('/', name: '/profile')]
     public function index(AnnonceRepository $an,  Request $request, UserRepository $use): Response
     {
         $us = $this->getUser();
         $user = $use->find($us);
-
         $limite = 4;
         $page = (int) $request->query->get('page', 1);
         $annonces = $an->getPaginatedAnnonce($page, $limite, $user);
         $total = $an->getAllAnnonces($user);
         $specialite = $user->getSpecialite();
-
         return $this->render('profile/index.html.twig', [
             'annonce' => $annonces,
             'limite' => $limite,
@@ -53,25 +51,21 @@ class ProfileController extends AbstractController
 
         ]);
     }
-    /**
-     * @Route("/profile/info", name="app_info")
-     */
+
+    #[Route('/info', name: '/info')]
     public function info(UserRepository $er): Response
-    {;
+    {
         return $this->render('profile/mesinfos.html.twig');
     }
-    /**
-     * @Route("/profile/annonces", name="app_profile_annonces")
-     */
+
+    #[Route('/annonces', name: '/annonces')]
     public function annonces(AnnonceRepository $an,  Request $request): Response
     {
-
         $limite = 4;
         $page = (int) $request->query->get('page', 1);
         $user = $this->getUser();
         $annonces = $an->getPaginatedAnnonce($page, $limite, $user);
         $total = $an->getAllAnnonces($user);
-
         return $this->render('profile/annonces.html.twig', [
             'annonce' => $annonces,
             'limite' => $limite,
@@ -80,171 +74,129 @@ class ProfileController extends AbstractController
 
         ]);
     }
-    /**
-     * @Route("/profile/edit/{user}", name="app_editProfile")
-     */
+
+    #[Route('/edit/{user}', name: '/edit')]
     public function update($user, UserRepository $er, Request $request)
     {
-
         $user = $er->find($user);
-
         $formulaire = $this->createForm(EditProfileType::class, $user);
-
         $formulaire->handleRequest($request);
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('app_acceuil');
+            return $this->redirectToRoute('acceuil/acceuil');
         } else {
             return $this->render('registration/edit.html.twig', [
                 'form' => $formulaire->createView(),
-
-
             ]);
         }
     }
-    #[Route('/profile/ajout/{user}', name: 'app_ajoutAdresse')]
+
+    #[Route('/ajouter-adresse/{user}', name: '/ajoutAdresse')]
     public function addAdresse($user, UserRepository $er, Request $request)
     {
         $user = $er->find($user);
-
         $formulaire = $this->createForm(AddAdresseType::class, $user);
-
         $formulaire->handleRequest($request);
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('profile/profile');
         } else {
             return $this->render('adresse/ajouter.html.twig', [
                 'form' => $formulaire->createView(),
-
-
             ]);
         }
     }
-    #[Route('/profile/updateAdresse/{user}', name: 'app_updateAdresse')]
+    #[Route('/update-adresse/{user}', name: '/updateAdresse')]
     public function updateAdresse($user, UserRepository $er, Request $request)
     {
-
         $user = $er->find($user);
-
         $formulaire = $this->createForm(AddAdresseType::class, $user);
-
         $formulaire->handleRequest($request);
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('profile/profile');
         } else {
             return $this->render('adresse/ajouter.html.twig', [
                 'form' => $formulaire->createView(),
-
-
             ]);
         }
     }
-    /**
-     * @Route("/profile/adresse", name="gererAdresse")
-     */
+
+    #[Route('/adresse', name: '/gerermonadresse')]
     public function gereAdresse()
     {
         return $this->render('profile/gererAdresse.html.twig');
     }
-    /**
-     * @Route("/profile/changePassword", name="changePassword")
-     */
+
+    #[Route('/change-password', name: '/changePassword')]
     public function changePassword(UserRepository $er, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, TranslatorInterface $translator, string $token = null, Request $request): Response
     {
-
         $us = $this->getUser();
         $user = $er->find($us);
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $encodedPassword = $userPasswordHasher->hashPassword(
                 $user,
                 $form->get('plainPassword')->getData()
             );
-
             $user->setPassword($encodedPassword);
             $entityManager->flush();
-
             // The session is cleaned up after the password has been changed.
             // $this->cleanSessionAfterReset();
-
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('profile/profile');
         }
         return $this->render('reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/profile/delete", name="delete_user")
-     */
+
+    #[Route('/delete', name: '/deleteUser')]
     public function deleteUser(EntityManagerInterface $em): Response
     {
-
         $user = $this->getUser();
         $this->container->get('security.token_storage')->setToken(null);
-
         $em->remove($user);
         $em->flush();
-
         // Ceci ne fonctionne pas avec la création d'une nouvelle session !
         $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !');
-
-        return $this->redirectToRoute('app_acceuil');
+        return $this->redirectToRoute('acceuil/acceuil');
     }
-    #[Route('/profile/ajoutSpacialite/{user}', name: 'app_ajoutSpecialite')]
+
+    #[Route('/ajout-spacialite/{user}', name: '/ajoutSpecialite')]
     public function ajouspecialite($user, UserRepository $er, Request $request, SpecialiteRepository $spec)
     {
         $user = $er->find($user);
-
         $formulaire = $this->createForm(SpecialiteType::class, $user);
-
         $formulaire->handleRequest($request);
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute('profile/profile');
         } else {
             return $this->render('profile/ajouspecialite.html.twig', [
                 'form' => $formulaire->createView(),
-
-
             ]);
         }
     }
-    /**
-     * @Route("/profile/edit-avatar/{user}", name="app_editAvatar")
-     */
+
+    #[Route('/edit-avatar/{user}', name: '/editAvatar')]
     public function updateAvatar($user, UserRepository $er, Request $request, EntityManagerInterface $entityManager): Response
     {
-
         $user = $er->find($user);
-
         $formulaire = $this->createForm(EditImageType::class, $user);
-
         $formulaire->handleRequest($request);
-
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $avatar = $formulaire->get('avatar')->getData(); // $image = une instance de UploadedFile
             $ok = true;
             if ($avatar) {
                 $newName = uniqid() . '.' . $avatar->guessExtension(); // Je crée un nouveau nom
-
                 try {
                     // Je déplace l'image vers sa nouvelle destination
                     $avatar->move(
                         $this->getParameter('avatarDirectory'), // Le dossier de destination
                         $newName // Le nom du fichier à sa nouvelle destination
                     );
-
                     $user->setAvatar($newName);
-
                 } catch (Exception $e) {
                     $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
                     $ok = false;
@@ -253,57 +205,18 @@ class ProfileController extends AbstractController
             if ($ok) {
                 $entityManager->persist($user);
                 $entityManager->flush();
-                return $this->redirectToRoute('app_profile');
+                return $this->redirectToRoute('profile/profile');
             }
-          
-            } else {
-                return $this->render('registration/edit.html.twig', [
-                    'form' => $formulaire->createView(),
-                ]);
-            }
-        }
-            /**
-     * @Route("/profile/delete-avatar/{user}", name="app_deleteAvatar")
-     */
-    public function deleteAvatar($user, UserRepository $er, Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-        $user = $er->find($user);
-
-        $formulaire = $this->createForm(EditImageType::class, $user);
-
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $avatar = $formulaire->get('avatar')->getData(); // $image = une instance de UploadedFile
-            $ok = true;
-            if ($avatar) {
-                $newName = uniqid() . '.' . $avatar->guessExtension(); // Je crée un nouveau nom
-
-                try {
-                    // Je déplace l'image vers sa nouvelle destination
-                    $avatar->move(
-                        $this->getParameter('avatarDirectory'), // Le dossier de destination
-                        $newName // Le nom du fichier à sa nouvelle destination
-                    );
-
-                    $user->setAvatar($newName);
-
-                } catch (Exception $e) {
-                    $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
-                    $ok = false;
-                }
-            }
-            if ($ok) {
-                $entityManager->persist($user);
-                $entityManager->flush();
-                return $this->redirectToRoute('app_profile');
-            }
-          
-            } else {
-                return $this->render('registration/edit.html.twig', [
-                    'form' => $formulaire->createView(),
-                ]);
-            }
+        } else {
+            return $this->render('registration/edit.html.twig', [
+                'form' => $formulaire->createView(),
+            ]);
         }
     }
+
+    #[Route('/mes-favoris', name: '/mesFavoris')]
+    public function mesFavoris()
+    {
+        return $this->render('profile/favoris.html.twig');
+    }
+}

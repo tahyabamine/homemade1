@@ -1,24 +1,28 @@
 {% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
-    css %}
-    
-    <link
-      rel="stylesheet"
-      href="{{ asset('css/formulaire.css') }}"
-      type="text/css"
-    />
-   
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
-    
-    {% endblock %} {% block body %} 
-    <div class='container page'>
-      <div class="register">
-    <h2 class="mb-5 text-center">Ajouter une specialite</h1>
-    
-    
+css %}
+
+<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}" type="text/css" />
+
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
+
+{% endblock %} {% block body %}
+<div class="profile">
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
+    <h3 class="w3-bar-item">Mon profile</h3>
+    <a href="{{path('profile/info')}}" class="w3-bar-item w3-button">Mes informations</a>
+    <a href="{{path('profile/gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
+    <a href="{{path('profile/annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+    <a href="{{path('profile/mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
+    <a href="{{path('messenger/received')}}" class="w3-bar-item w3-button">Messagerie</a>
+  </div>
+  <div class='d-flex  left'>
+          <h2 class="title mb-5 py-4 text-center">Ajouter une specialite</h1>
+            <div class="register w-50">
+
               {{ form(form) }}
-    
+            </div>
     </div>
-   
+
     {% endblock %}
-    

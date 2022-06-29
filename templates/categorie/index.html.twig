@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{categorie.nom}}{% endblock %}
+
+{% block body %}
+<div class="container ">
+    <h1 class="title p-5">
+        {{categorie.nom}}
+    </h1>
+    <div class="row">
+        {%for annonce in categorie.annonces %}
+        <div class="col-3 my-4">
+            <div class="card shadow-sm" style="width: 25rem;">
+                {% if annonce.images is not empty %}
+                {% for image in annonce.images %}
+                {% if loop.first %}
+                <img src="{{ asset('images/' ~ image.img) }}" class="card-img-top "
+                    style="width:100%; height: 200px; overflow: hidden;" alt="...">
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{annonce.titre}}</h5>
+                    <p>{{annonce.resume()}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{path('annonce/detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ..</a>
+                        <div class="text-danger">
+                            {% if is_granted("ROLE_USER") %}
+                            {% set isFavorite = false %}
+                            {% for favoris in annonce.favoris %}
+                            {% if favoris.id == app.user.id %}
+                            {% set isFavorite = true %}
+                            {% endif %}
+                            {% endfor %}
+                            {% if isFavorite %}
+                            <a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id}) }}"><i
+                                class="fas fa-heart"></i></a>
+                                {% else %}
+                                <a class='text-danger' href="{{ path('annonce/ajout_favoris', {id: annonce.id}) }}"><i
+                                    class="far fa-heart"></i></a>
+                                    {% endif %}
+                                    
+                                    {% else %}
+                                    <i class="far fa-heart"></i>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        {%endfor%}
+    </div>
+</div>
+{% endblock %}

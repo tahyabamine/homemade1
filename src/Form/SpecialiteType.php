@@ -19,6 +19,9 @@ class SpecialiteType extends AbstractType
             ->add('specialite',EntityType::class, ['class' => Specialite::class,
             'multiple' => true,
 					'mapped' => true,
+                    'attr' => array(
+                        'class' => 'form-control'
+                    ),
             'choice_label' => 'nom'])
             ->add('Submit', SubmitType::class)
 

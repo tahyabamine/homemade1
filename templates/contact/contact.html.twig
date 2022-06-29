@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css" integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
+{% endblock %}
+{% block body %}
+<div class="container page">
+	<div>
+		<img src="{{ asset('images/contactUs.png') }}" alt="">
+	</div>
+	<div class="register">
+		<h2 class="title py-3 text-center">Contacter nous</h2>
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row"><i class="fas fa-phone"></i></th>
+                <td> +33 65 65 76 87</td>
+
+              </tr>
+              <tr>
+                <th scope="row"><i class="fas fa-map-location-dot"></i></th>
+                <td> 5, Avenue Jean Jaurès
+                    Paris, 75000
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><i class="fas fa-at"></i></th>
+                <td>contact@tahya-abdessalam.com
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><i class="fas fa-envelope"></i></th>
+                <td><a class="btn btn-primary" href="{{path('contact/contactUs')}}">Nous Contacter</a>
+                </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+		</div>
+
+
+	{% endblock %}

@@ -4,12 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	{% if app.user %}
+{% if app.user %}
 
-		<div class="container">
-			<h1>Ajouter une annonce</h1>
+<div class="container ">
+	<h1 class="title py-4 text-center">Ajouter une annonce</h1>
+	<div class="d-flex justify-content-center">
+		<div class="register ">
 			{{form(form)}}
-
-			</div>
-		{% endif %}
-	{% endblock %}
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

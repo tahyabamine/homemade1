@@ -22,7 +22,7 @@
 					{% set bold = "fw-bold" %}
 				{% endif %}
 
-				<div class="col-3 {{bold}}"><a href="{{ path('read', {id: message.id}) }}"></a>{{ message.envoyeur.nomEtprenom() }}</div>
+				<div class="col-3 {{bold}}"><a href="{{ path('messenger/read', {id: message.id}) }}"></a>{{ message.envoyeur.nomEtprenom() }}</div>
 
 				<div class="col-3 {{bold}}">{{ message.date|date }}</div>
 				<!-- <div class="col-3">

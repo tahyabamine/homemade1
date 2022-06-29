@@ -18,12 +18,12 @@
 	<h2 class="p-4 title text-center">Tous les specialites</h2>
 
 				{%for cat in categories%}
-<div class="col-3">
-	<div class="card shadow-sm" style="width: 25rem;">
+<div class="col-3 py-5">
+	<div class="card shadow-sm" style="width: 20rem;">
 		<img src="{{cat.iamgeUrl}}" class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" alt="...">
 		<div class="card-body">
 		  <h5 class="card-title m-3">{{cat.nom}}</h5>
-		  <a href="#" class="btn btn-primary my-3">Voir tous les annonces</a>
+		  <a href="{{path('categorie/categorie', {categorie:cat.id})}}" class="btn btn-primary my-3">Voir tous les annonces</a>
 		</div>
 	  </div>
 	</div>
@@ -33,8 +33,8 @@
 <div class="row">
 	<h2 class="p-4 title text-center">Liste de derieres annoces</h2>
 	{%for annonce in annonces%}
-<div class="col-3">
-<div class="card shadow-sm" style="width: 25rem;">
+<div class="col-3 py-5">
+<div class="card shadow-sm" style="width: 20rem;">
 	{% if annonce.images is not empty %}
 	{% for image in annonce.images %}
 		{% if loop.first %}
@@ -42,11 +42,30 @@
 		{% endif %}
 	{% endfor %}
 {% endif %}
-
 <div class="card-body">
 <h5 class="card-title">{{annonce.titre}}</h5>
 <p>{{annonce.resume()}}</p>
-<a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="d-flex justify-content-between align-items-center">
+	<a href="{{path('annonce/detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+	<div class="text-danger">
+		{% if is_granted("ROLE_USER") %}
+                            {% set isFavorite = false %}
+							{% for favoris in annonce.favoris %}
+								{% if favoris.id == app.user.id %}
+                                    {% set isFavorite = true %}
+								{% endif %}    
+							{% endfor %}
+                            {% if isFavorite %}
+								<a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
+                            {% else %}
+								<a class='text-danger'href="{{ path('annonce/ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+                            {% endif %}
+
+						{% else %}
+							<i class="far fa-heart"></i>
+						{% endif %}
+	</div>
+</div>
 </div>
 </div>
 </div>

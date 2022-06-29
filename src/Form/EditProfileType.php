@@ -63,6 +63,9 @@ class EditProfileType extends AbstractType
                 'required' => false,
                 'class' => Genre::class,
                 'choice_label' => 'nom',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
             ])
             ->add('numTel', TelType::class, [
                 'label' => 'Numéro de téléphone',

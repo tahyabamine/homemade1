@@ -128,9 +128,7 @@ background-color: var(--primary);
 border-color: var(--primary);
 box-shadow: var(--box-shadow);
 }
-.form-select{
-  height: 30px;
-}
+
 hr {
   width: 70%;
   margin-left: auto;

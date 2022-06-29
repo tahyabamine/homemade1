@@ -10,23 +10,22 @@
 
 {% block body %}
 <div class="profile">
-
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
-	<h3 class="w3-bar-item">Menu</h3>
-	<a href="{{path('app_info')}}" class="w3-bar-item w3-button">Mes informations</a>
-	<a href="#" class="w3-bar-item w3-button">Mes specialites culinaire</a>
-	<a href="#" class="w3-bar-item w3-button">Gerer mon adresse</a>
-	<a href="{{path('app_profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
-	<a href="#" class="w3-bar-item w3-button">Mes favoris</a>
-	<a href="#" class="w3-bar-item w3-button">Messagerie</a>
-  </div>
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
+        <h3 class="w3-bar-item">Menu</h3>
+        <a href="{{path('profile/info')}}" class="w3-bar-item w3-button">Mes informations</a>
+        <a href="{{path('profile/gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
+        <a href="{{path('profile/annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+        <a href="{{path('profile/mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
+        <a href="{{path('messenger/received')}}" class="w3-bar-item w3-button">Messagerie</a>
+    </div>
   <div class="d-flex left">
     <h2 class="coloredTitle m-4">Bienvenue
         {{app.user.prenom| capitalize }}
         !</h2>
         {% if app.user.annonces | length == 0 %}
     <h3 class="m-4">Vous avez pas encore des annonces!</h3>
-    <img src="{{asset('images/cooking.svg')}}" class="img_cook" alt="" srcset="">
+    <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="" srcset="">
 {%else%}
     <h3 class="m-4">Mes annonces: ({{app.user.annonces | length }})</h3>
     {% for annonce in annonce %}
@@ -35,7 +34,7 @@
             {{annonce.titre}}        </div>
         <div class="card-body">
           <p class="card-text">{{ annonce.resume()}}</p>
-          <a href="{{path('details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+          <a href="{{path('annonce/details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
         </div>
       </div>
     {% endfor %}
@@ -63,7 +62,7 @@
         </ul>
     </nav>
 {% endif %}
-<a href="{{ path('create_annonce') }}" class="btn btn-primary">Deposer une annonce</a>
+<a href="{{ path('annonce/create') }}" class="btn btn-primary">Deposer une annonce</a>
 
 </div>
 </div>
