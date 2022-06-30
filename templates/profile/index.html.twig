@@ -21,9 +21,9 @@
 		<div class="d-flex left ">
 			{% if app.user.avatar is empty %}
 			{% if app.user.genre is not empty %}
-			{% if app.user.genre.id == 2 %}
+			{% if app.user.genre.id == 1 %}
 			<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.png') }}" alt="">
-			{% elseif app.user.genre.id == 1 %}
+			{% elseif app.user.genre.id == 2 %}
 			<img class="m-3 avatar-profile" src="{{asset('images/homme-avatar.png') }}" alt="">
 			{% endif %}
 			{% else %}
