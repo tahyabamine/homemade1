@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
+ * @ORM\Table(name="annonce", indexes={@ORM\Index(columns={"titre", "contenue"}, flags={"fulltext"})})
  */
 class Annonce
 {

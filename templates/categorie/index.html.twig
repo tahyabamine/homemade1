@@ -9,8 +9,8 @@
     </h1>
     <div class="row">
         {%for annonce in categorie.annonces %}
-        <div class="col-3 my-4">
-            <div class="card shadow-sm" style="width: 25rem;">
+        <div class="col-lg-4 col-sm-12 my-4">
+            <div class="card shadow-sm" style="width: 20rem;">
                 {% if annonce.images is not empty %}
                 {% for image in annonce.images %}
                 {% if loop.first %}
@@ -33,10 +33,10 @@
                             {% endif %}
                             {% endfor %}
                             {% if isFavorite %}
-                            <a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id}) }}"><i
+                            <a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i
                                 class="fas fa-heart"></i></a>
                                 {% else %}
-                                <a class='text-danger' href="{{ path('annonce/ajout_favoris', {id: annonce.id}) }}"><i
+                                <a class='text-danger' href="{{ path('annonce/ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i
                                     class="far fa-heart"></i></a>
                                     {% endif %}
                                     
