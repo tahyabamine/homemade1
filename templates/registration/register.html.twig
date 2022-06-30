@@ -20,8 +20,27 @@ app.flashes('verify_email_error') %}
 	</div>
 <div class="register">
 <h2 class="mb-5 text-center">Créer votre compte</h1>
-  {{ form(registrationForm) }}
+	{{ form_start(registrationForm) }}
+	{{form_row(registrationForm.nom)}}
+	{{form_row(registrationForm.prenom)}}
+	{{form_row(registrationForm.genre)}}
+	{{form_row(registrationForm.email)}}
+	<div class="d-flex align-items-center">
+		{{form_row(registrationForm.plainPassword, { id: "pass" }) }}
+
+<div class="eye">
+	<i id="eye" class="bi ms-2 bi-eye-slash" onclick="change()"></i>
+</div>
+
+
+
+
+	</div>
+	{{form_rest(registrationForm)}}
+	{{form_end(registrationForm)}}
+
+
 </div>
    </div>
-
+<script src="{{asset('javascript/formulaire.js')}}"></script>
 {% endblock %}
