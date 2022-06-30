@@ -2,14 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
+use App\Entity\Genre;
+use App\Entity\Region;
 use App\Entity\Categorie;
+use App\Entity\Specialite;
 use App\Controller\Admin\GenreCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\CategorieCrudController;
-use App\Entity\Genre;
-use App\Entity\Region;
-use App\Entity\Specialite;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -52,5 +53,6 @@ class AdminController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Region', 'fas fa-list', Region::class);
          yield MenuItem::linkToCrud('Specialite', 'fas fa-list', Specialite::class);
          yield MenuItem::linkToCrud('categorie', 'fas fa-list', Categorie::class);
+         yield MenuItem::linkToCrud('user', 'fas fa-list', User::class);
     }
 }

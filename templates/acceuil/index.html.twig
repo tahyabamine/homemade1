@@ -56,9 +56,9 @@
 								{% endif %}    
 							{% endfor %}
                             {% if isFavorite %}
-								<a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id}) }}"><i class="fas fa-heart"></i></a>
+								<a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="fas fa-heart"></i></a>
                             {% else %}
-								<a class='text-danger'href="{{ path('annonce/ajout_favoris', {id: annonce.id}) }}"><i class="far fa-heart"></i></a>
+								<a class='text-danger'href="{{ path('annonce/ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="far fa-heart"></i></a>
                             {% endif %}
 
 						{% else %}

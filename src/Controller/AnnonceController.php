@@ -7,6 +7,7 @@ use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Repository\ImageRepository;
 use App\Repository\AnnonceRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -100,31 +101,41 @@ class AnnonceController extends AbstractController
         return $this->redirectToRoute('profile/profile');
     }
 
-    #[Route('/favoris/ajout/{id}', name: '/ajout_favoris')]
-    public function ajoutFavoris(Annonce $annonce)
+    #[Route('/favoris/ajout/{id}/{user}', name: '/ajout_favoris')]
+    public function ajoutFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {
             throw new NotFoundHttpException('Pas d\'annonce trouvée');
         }
         $annonce->addFavori($this->getUser());
-
+$user=$us->find($user);
+        $user->addFavori($annonce);
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
+        $em->flush();  
+         $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
         $em->flush();
         return $this->redirectToRoute('acceuil/acceuil');
     }
 
-    #[Route('/favoris/retrait/{id}', name: '/retrait_favoris')]
-    public function retraitFavoris(Annonce $annonce)
+    #[Route('/favoris/retrait/{id}/{user}', name: '/retrait_favoris')]
+    public function retraitFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {
             throw new NotFoundHttpException('Pas d\'annonce trouvée');
         }
         $annonce->removeFavori($this->getUser());
+        $user=$us->find($user);
+        $user->removeFavori($annonce);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($annonce);
         $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        
         return $this->redirectToRoute('acceuil/acceuil');
     }
 

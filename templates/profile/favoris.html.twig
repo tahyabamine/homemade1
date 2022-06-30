@@ -32,6 +32,7 @@
         </h3>
         <div class="row">
             {%for favoris in app.user.favoris%}
+
             <div class="col-5 my-4">
                 <div class="card shadow-sm" style="width: 18rem;">
                     {% if favoris.images is not empty %}
@@ -46,7 +47,7 @@
                         <h5 class="card-title">{{favoris.titre}}</h5>
                         <p>{{favoris.resume()}}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary">Voir plus ..</a>
+                            <a href="{{path('annonce/detailsAnnonce', {annonce: favoris.id})}}" class="btn btn-primary">Voir plus ..</a>
 
                         </div>
 
