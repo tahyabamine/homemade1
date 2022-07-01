@@ -11,16 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-#[Route('contact', name: 'contact')]
+#[Route('contact', name: 'contact_')]
 class ContactController extends AbstractController
 {
-    #[Route('/', name: '/contact')]
+    #[Route('/', name: 'contact')]
     public function index():Response
     {
             return $this->render('contact/contact.html.twig');
     }
 
-    #[Route('/formulaire', name: '/contactUs')]
+    #[Route('/formulaire', name: 'contactUs')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
         $formulaire = $this->createForm(ContactType::class);
@@ -35,7 +35,7 @@ class ContactController extends AbstractController
                 ->text($data['message']);
             $mailer->send($email);
             $this->addFlash('success', 'Vore message a été envoyé');
-            return $this->redirectToRoute('acceuil/acceuil');
+            return $this->redirectToRoute('acceuil_acceuil');
         } else {
             return $this->render('contact/index.html.twig', [
                 'form' => $formulaire->createView()

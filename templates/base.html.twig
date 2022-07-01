@@ -55,7 +55,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ path('annonce/create') }}" class="nav-link">
+                <a href="{{ path('annonce_create') }}" class="nav-link">
                   <i class="fa fa-plus-square " aria-hidden="true"></i>
                   Déposer une annonce
                 </a>
@@ -68,13 +68,13 @@
               </li>
               {% if app.user %}
               <li class="nav-item dropdown">
-                <a href="{{ path('profile/profile') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <a href="{{ path('profile_profile') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                   Bienvenue
                   {{ app.user.pseudo }}
                   !</a>
 
                 <div class="dropdown-menu">
-                  <a href="{{ path('profile/profile') }}" class="dropdown-item">Mon profile</a>
+                  <a href="{{ path('profile_profile') }}" class="dropdown-item">Mon profile</a>
 
 
                   <div class="dropdown-divider"></div>
@@ -151,7 +151,7 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">Questions ?</h6>
           <p>
-            <a class="text-reset" href="{{path('contact/contact')}}">
+            <a class="text-reset" href="{{path('contact_contact')}}">
               <i class="bi bi-envelope"></i>Nous Contacter</a>
           </p>
           <p>

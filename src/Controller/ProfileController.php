@@ -28,11 +28,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 
-#[Route('profile', name: 'profile')]
+#[Route('profile', name: 'profile_')]
 
 class ProfileController extends AbstractController
 {
-    #[Route('/', name: '/profile')]
+    #[Route('/', name: 'profile')]
     public function index(AnnonceRepository $an,  Request $request, UserRepository $use): Response
     {
         $us = $this->getUser();
@@ -52,13 +52,13 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/info', name: '/info')]
+    #[Route('/info', name: 'info')]
     public function info(UserRepository $er): Response
     {
         return $this->render('profile/mesinfos.html.twig');
     }
 
-    #[Route('/annonces', name: '/annonces')]
+    #[Route('/annonces', name: 'annonces')]
     public function annonces(AnnonceRepository $an,  Request $request): Response
     {
         $limite = 4;
@@ -75,7 +75,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{user}', name: '/edit')]
+    #[Route('/edit/{user}', name: 'edit')]
     public function update($user, UserRepository $er, Request $request)
     {
         $user = $er->find($user);
@@ -83,7 +83,7 @@ class ProfileController extends AbstractController
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('acceuil/acceuil');
+            return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('registration/edit.html.twig', [
                 'form' => $formulaire->createView(),
@@ -91,22 +91,23 @@ class ProfileController extends AbstractController
         }
     }
 
-    #[Route('/ajouter-adresse/{user}', name: '/ajoutAdresse')]
+    #[Route('/ajouter-adresse/{user}', name: 'ajoutAdresse')]
     public function addAdresse($user, UserRepository $er, Request $request)
     {
         $user = $er->find($user);
         $formulaire = $this->createForm(AddAdresseType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            
             $er->add($user);
-            return $this->redirectToRoute('profile/profile');
+            return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('adresse/ajouter.html.twig', [
                 'form' => $formulaire->createView(),
             ]);
         }
     }
-    #[Route('/update-adresse/{user}', name: '/updateAdresse')]
+    #[Route('/update-adresse/{user}', name: 'updateAdresse')]
     public function updateAdresse($user, UserRepository $er, Request $request)
     {
         $user = $er->find($user);
@@ -114,7 +115,7 @@ class ProfileController extends AbstractController
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('profile/profile');
+            return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('adresse/ajouter.html.twig', [
                 'form' => $formulaire->createView(),
@@ -122,13 +123,13 @@ class ProfileController extends AbstractController
         }
     }
 
-    #[Route('/adresse', name: '/gerermonadresse')]
+    #[Route('/adresse', name: 'gerermonadresse')]
     public function gereAdresse()
     {
         return $this->render('profile/gererAdresse.html.twig');
     }
 
-    #[Route('/change-password', name: '/changePassword')]
+    #[Route('/change-password', name: 'changePassword')]
     public function changePassword(UserRepository $er, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, TranslatorInterface $translator, string $token = null, Request $request): Response
     {
         $us = $this->getUser();
@@ -144,14 +145,14 @@ class ProfileController extends AbstractController
             $entityManager->flush();
             // The session is cleaned up after the password has been changed.
             // $this->cleanSessionAfterReset();
-            return $this->redirectToRoute('profile/profile');
+            return $this->redirectToRoute('profile_profile');
         }
         return $this->render('reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }
 
-    #[Route('/delete', name: '/deleteUser')]
+    #[Route('/delete', name: 'deleteUser')]
     public function deleteUser(EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
@@ -160,10 +161,10 @@ class ProfileController extends AbstractController
         $em->flush();
         // Ceci ne fonctionne pas avec la création d'une nouvelle session !
         $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !');
-        return $this->redirectToRoute('acceuil/acceuil');
+        return $this->redirectToRoute('acceuil_acceuil');
     }
 
-    #[Route('/ajout-spacialite/{user}', name: '/ajoutSpecialite')]
+    #[Route('/ajout-spacialite/{user}', name: 'ajoutSpecialite')]
     public function ajouspecialite($user, UserRepository $er, Request $request, SpecialiteRepository $spec)
     {
         $user = $er->find($user);
@@ -171,7 +172,7 @@ class ProfileController extends AbstractController
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $er->add($user);
-            return $this->redirectToRoute('profile/profile');
+            return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('profile/ajouspecialite.html.twig', [
                 'form' => $formulaire->createView(),
@@ -179,7 +180,7 @@ class ProfileController extends AbstractController
         }
     }
 
-    #[Route('/edit-avatar/{user}', name: '/editAvatar')]
+    #[Route('/edit-avatar/{user}', name: 'editAvatar')]
     public function updateAvatar($user, UserRepository $er, Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $er->find($user);
@@ -205,7 +206,7 @@ class ProfileController extends AbstractController
             if ($ok) {
                 $entityManager->persist($user);
                 $entityManager->flush();
-                return $this->redirectToRoute('profile/profile');
+                return $this->redirectToRoute('profile_profile');
             }
         } else {
             return $this->render('registration/edit.html.twig', [
@@ -214,7 +215,7 @@ class ProfileController extends AbstractController
         }
     }
 
-    #[Route('/mes-favoris', name: '/mesFavoris')]
+    #[Route('/mes-favoris', name: 'mesFavoris')]
     public function mesFavoris()
     {
         return $this->render('profile/favoris.html.twig');

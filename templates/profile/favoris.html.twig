@@ -13,11 +13,11 @@
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
         <h3 class="w3-bar-item">Menu</h3>
-        <a href="{{path('profile/info')}}" class="w3-bar-item w3-button">Mes informations</a>
-        <a href="{{path('profile/gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
-        <a href="{{path('profile/annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
-        <a href="{{path('profile/mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
-        <a href="{{path('messenger/received')}}" class="w3-bar-item w3-button">Messagerie</a>
+        <a href="{{path('profile_info')}}" class="w3-bar-item w3-button">Mes informations</a>
+        <a href="{{path('profile_gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
+        <a href="{{path('profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
+        <a href="{{path('profile_mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
+        <a href="{{path('messenger_received')}}" class="w3-bar-item w3-button">Messagerie</a>
     </div>
     <div class="d-flex left">
         <h2 class="coloredTitle m-4">Bienvenue
@@ -47,7 +47,7 @@
                         <h5 class="card-title">{{favoris.titre}}</h5>
                         <p>{{favoris.resume()}}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{path('annonce/detailsAnnonce', {annonce: favoris.id})}}" class="btn btn-primary">Voir plus ..</a>
+                            <a href="{{path('annonce_detailsAnnonce', {annonce: favoris.id})}}" class="btn btn-primary">Voir plus ..</a>
 
                         </div>
 

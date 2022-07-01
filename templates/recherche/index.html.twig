@@ -28,7 +28,7 @@
 <h5 class="card-title">{{annonce.titre}}</h5>
 <p>{{annonce.resume()}}</p>
 <div class="d-flex justify-content-between align-items-center">
-	<a href="{{path('annonce/detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+	<a href="{{path('annonce_detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
 	<div class="text-danger">
 		{% if is_granted("ROLE_USER") %}
                             {% set isFavorite = false %}
@@ -38,9 +38,9 @@
 								{% endif %}    
 							{% endfor %}
                             {% if isFavorite %}
-								<a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="fas fa-heart"></i></a>
+								<a class='text-danger' href="{{ path('annonce_retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="fas fa-heart"></i></a>
                             {% else %}
-								<a class='text-danger'href="{{ path('annonce/ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="far fa-heart"></i></a>
+								<a class='text-danger'href="{{ path('annonce_ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="far fa-heart"></i></a>
                             {% endif %}
 
 						{% else %}

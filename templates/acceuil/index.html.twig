@@ -22,7 +22,7 @@
 		<img src="{{cat.iamgeUrl}}" class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" alt="...">
 		<div class="card-body">
 		  <h5 class="card-title m-3">{{cat.nom}}</h5>
-		  <a href="{{path('categorie/categorie', {categorie:cat.id})}}" class="btn btn-primary my-3">Voir tous les annonces</a>
+		  <a href="{{path('categorie_categorie', {categorie:cat.id})}}" class="btn btn-primary my-3">Voir tous les annonces</a>
 		</div>
 	  </div>
 	</div>
@@ -45,7 +45,7 @@
 <h5 class="card-title">{{annonce.titre}}</h5>
 <p>{{annonce.resume()}}</p>
 <div class="d-flex justify-content-between align-items-center">
-	<a href="{{path('annonce/detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+	<a href="{{path('annonce_detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
 	<div class="text-danger">
 		{% if is_granted("ROLE_USER") %}
                             {% set isFavorite = false %}
@@ -55,9 +55,9 @@
 								{% endif %}    
 							{% endfor %}
                             {% if isFavorite %}
-								<a class='text-danger' href="{{ path('annonce/retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="fas fa-heart"></i></a>
+								<a class='text-danger' href="{{ path('annonce_retrait_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="fas fa-heart"></i></a>
                             {% else %}
-								<a class='text-danger'href="{{ path('annonce/ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="far fa-heart"></i></a>
+								<a class='text-danger'href="{{ path('annonce_ajout_favoris', {id: annonce.id, user:app.user.id}) }}"><i class="far fa-heart"></i></a>
                             {% endif %}
 
 						{% else %}

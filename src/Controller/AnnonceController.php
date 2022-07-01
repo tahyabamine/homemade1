@@ -5,12 +5,15 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
+use App\Repository\UserRepository;
 use App\Repository\ImageRepository;
 use App\Repository\AnnonceRepository;
-use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\IpValidator;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -18,10 +21,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-#[Route('annonce', name: 'annonce')]
+#[Route('annonce', name: 'annonce_')]
 class AnnonceController extends AbstractController
 {
-    #[Route('/create', name: '/create')]
+    #[Route('/create', name: 'create')]
     #[IsGranted('ROLE_USER')]
     public function creatAnnonce(Request $request, AnnonceRepository $an): Response
     {
@@ -55,7 +58,7 @@ class AnnonceController extends AbstractController
                 $an->add($annonce);
             }
 
-            return $this->redirectToRoute('acceuil/acceuil');
+            return $this->redirectToRoute('acceuil_acceuil');
         }
 
         return $this->render('annonce/form.html.twig', [
@@ -63,15 +66,16 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    #[Route('/{annonce}', name: '/details')]
+    #[Route('/{annonce}', name: 'details')]
     public function details(Annonce $annonce)
     {
         return $this->render('annonce/details.html.twig', [
             'annonce' => $annonce,
+          
         ]);
     }
 
-    #[Route('/update/{annonce}', name: '/update')]
+    #[Route('/update/{annonce}', name: 'update')]
     public function update($annonce, AnnonceRepository $an, Request $request)
     {
         $annonce = $an->find($annonce);
@@ -80,14 +84,14 @@ class AnnonceController extends AbstractController
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $an->add($annonce);
-            return $this->redirectToRoute('profile/profile');
+            return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('annonce/form.html.twig', [
                 'form' => $formulaire->createView(),
             ]);
         }
     }
-    #[Route('/delete/{annonce}', name: '/delete')]
+    #[Route('/delete/{annonce}', name: 'delete')]
     public function delete($annonce, AnnonceRepository $an)
     {
         $annonce = $an->find($annonce);
@@ -98,10 +102,10 @@ class AnnonceController extends AbstractController
         } else
             $an->remove($annonce);
 
-        return $this->redirectToRoute('profile/profile');
+        return $this->redirectToRoute('profile_profile');
     }
 
-    #[Route('/favoris/ajout/{id}/{user}', name: '/ajout_favoris')]
+    #[Route('/favoris/ajout/{id}/{user}', name: 'ajout_favoris')]
     public function ajoutFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {
@@ -116,10 +120,10 @@ $user=$us->find($user);
          $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
-        return $this->redirectToRoute('acceuil/acceuil');
+        return $this->redirectToRoute('acceuil_acceuil');
     }
 
-    #[Route('/favoris/retrait/{id}/{user}', name: '/retrait_favoris')]
+    #[Route('/favoris/retrait/{id}/{user}', name: 'retrait_favoris')]
     public function retraitFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {
@@ -136,14 +140,46 @@ $user=$us->find($user);
         $em->persist($user);
         $em->flush();
         
-        return $this->redirectToRoute('acceuil/acceuil');
+        return $this->redirectToRoute('acceuil_acceuil');
     }
 
-    #[Route('/annonce-details/{annonce}', name: '/detailsAnnonce')]
-    public function detailsAnnonce(Annonce $annonce)
-    {
+    #[Route('/annonce-details/{annonce}', name: 'detailsAnnonce')]
+    public function detailsAnnonce(Annonce $annonce,Request $request)
+    {// Partie commentaires
+        // On crée le commentaire "vierge"
+        $comment = new Commentaire;
+
+        // On génère le formulaire
+        $commentForm = $this->createForm(CommentaireType::class, $comment);
+
+        $commentForm->handleRequest($request);
+
+        // Traitement du formulaire
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $comment->setAnnonce($annonce);
+            $comment->setUser($this->getUser());
+            // On récupère le contenu du champ parentid
+            $parentid = $commentForm->get("parentid")->getData();
+
+            // On va chercher le commentaire correspondant
+            $em = $this->getDoctrine()->getManager();
+
+            if($parentid != null){
+                $parent = $em->getRepository(Commentaire::class)->find($parentid);
+            }
+
+            // On définit le parent
+            $comment->setParent($parent ?? null);
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('message', 'Votre commentaire a bien été envoyé');
+            return $this->redirectToRoute('annonce_detailsAnnonce',['annonce' => $annonce->getId()]);
+        }
         return $this->render('annonce/detailsAnnonces.html.twig', [
             'annonce' => $annonce,
+            'form'=>$commentForm->createView()
         ]);
     }
 }

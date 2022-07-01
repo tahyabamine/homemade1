@@ -10,19 +10,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('messenge', name: 'messenger')]
+#[Route('messenge', name: 'messenger_')]
 
 class MessengerController extends AbstractController
 {
-    #[Route('/', name: '/messenger')]
+    #[Route('/', name: 'messenger')]
     public function index(): Response
     {
-        return $this->render('messenger/index.html.twig', [
-            'controller_name' => 'MessengerController',
-        ]);
+        return $this->render('messenger/index.html.twig');
     }
 
-    #[Route('/send/{id}', name: '/send')]
+    #[Route('/send/{id}', name: 'send')]
     public function send($id, UserRepository $user, Request $request): Response
     {
         $message = new Messenger;
@@ -38,7 +36,7 @@ class MessengerController extends AbstractController
             $em->flush();
 
             $this->addFlash("message", "Message envoyé avec succès.");
-            return $this->redirectToRoute("profile/profile");
+            return $this->redirectToRoute("profile_profile");
         }
 
         return $this->render("messenger/index.html.twig", [
@@ -46,19 +44,19 @@ class MessengerController extends AbstractController
         ]);
     }
 
-    #[Route('/received', name: '/received')]
+    #[Route('/received', name: 'received')]
     public function received(): Response
     {
         return $this->render('messenger/received.html.twig');
     }
 
-    #[Route('/sent', name: '/sent')]
+    #[Route('/sent', name: 'sent')]
     public function sent(): Response
     {
         return $this->render('messeneger/sent.html.twig');
     }
 
-    #[Route('/read/{id}', name: '/read')]
+    #[Route('/read/{id}', name: 'read')]
     public function read(Messenger $message): Response
     {
         $message->setIsRead(true);
@@ -69,12 +67,12 @@ class MessengerController extends AbstractController
         return $this->render('messenger/read.html.twig', compact("message"));
     }
 
-    #[Route('/delete/{id}', name: '/delete')]
+    #[Route('/delete/{id}', name: 'delete')]
     public function delete(Messenger $message): Response
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($message);
         $em->flush();
-        return $this->redirectToRoute("messenger/received");
+        return $this->redirectToRoute("messenger_received");
     }
 }
