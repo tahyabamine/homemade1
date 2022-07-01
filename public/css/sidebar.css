@@ -51,8 +51,8 @@ min-height: 100vh;
 .card p {
   color: black;
 }
-.card:hover {
+/* .card:hover {
   cursor: pointer;
   transform: scale(1.01);
   box-shadow: var(--box-shadow);
-}
+} */

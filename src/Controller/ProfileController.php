@@ -98,7 +98,7 @@ class ProfileController extends AbstractController
         $formulaire = $this->createForm(AddAdresseType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            
+            $er->setRegion( $formulaire->get('region')->getData());
             $er->add($user);
             return $this->redirectToRoute('profile_profile');
         } else {

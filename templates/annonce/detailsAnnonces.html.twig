@@ -64,6 +64,7 @@
             </div>
         </div>
     </div>
+    {%if app.user%}
     <H3 class="text-muted">Les commentaires</H3>
     {%for comments in annonce.commentaires%}
     {% if comments.parent == null %}
@@ -134,5 +135,5 @@
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+{%endif%}
 {% endblock %}

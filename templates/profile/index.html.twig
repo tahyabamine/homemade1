@@ -37,7 +37,7 @@
 			<p class="text-muted">
 			{% if app.user.region is not empty %}
 				<i class="bi bi-geo-alt-fill"></i>
-				{{app.user.region}}
+				{{app.user.region.nom}}
 				{%endif%}
 			{% if app.user.ville is not empty %}
 			<i class="bi bi-geo-alt-fill"></i>
