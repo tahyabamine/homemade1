@@ -34,14 +34,15 @@
 			{% endif %}
 			<H3>{{app.user.getNomEtPrenom()}}</H3>
 			<p class="p-2">{{app.user.email}}</p>
+			<p>
+			{% if app.user.ville is not empty %}
+				{{app.user.ville}}, France
+				{%endif%}
+			</p>
 			<p class="text-muted">
 			{% if app.user.region is not empty %}
-				<i class="bi bi-geo-alt-fill"></i>
+			<i class="fas fa-location-dot"></i>
 				{{app.user.region.nom}}
-				{%endif%}
-			{% if app.user.ville is not empty %}
-			<i class="bi bi-geo-alt-fill"></i>
-				{{app.user.ville}}, France
 				{%endif%}
 			</p>
 			{% if app.user.specialite is not empty%}

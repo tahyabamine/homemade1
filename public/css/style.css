@@ -74,15 +74,15 @@ padding-left: 30px;
   padding-left: 20px;
   
 }
-.navbar li:hover {
+.nav-link:hover {
   cursor: pointer;
-  transform: scale(1.01);
-  color: #fff;
+  transform: scale(1.08);
+text-decoration-line: none;
 }
 
 .dropdown-item:hover {
-  background-color: var(--primary);
-  color: #fff;
+  background-color: var(--primary) !important;
+  color: #fff !important;
   text-decoration-line: none;
 }
 
