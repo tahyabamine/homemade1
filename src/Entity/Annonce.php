@@ -23,8 +23,7 @@ class Annonce
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces",cascade={"remove"})
-     * @ORM\JoinColumn(nullable=true,onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      */
     private $user;
 
@@ -54,7 +53,7 @@ class Annonce
     private $images;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris")
      */
     private $users;
 
@@ -74,7 +73,7 @@ class Annonce
     private $favoris;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="annonce", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="annonce",cascade={"remove"}, orphanRemoval=true)
      */
     private $commentaires;
 

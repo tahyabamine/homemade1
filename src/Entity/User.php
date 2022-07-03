@@ -139,7 +139,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $received;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user", cascade={"remove"})
      */
     private $commentaires;
     

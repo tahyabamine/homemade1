@@ -91,8 +91,8 @@ class AnnonceController extends AbstractController
             ]);
         }
     }
-    #[Route('/delete/{annonce}', name: 'delete')]
-    public function delete($annonce, AnnonceRepository $an)
+    #[Route('/supprimer/{annonce}', name: 'supprimer')]
+    public function supprimer($annonce, AnnonceRepository $an)
     {
         $annonce = $an->find($annonce);
         if (!$annonce) {

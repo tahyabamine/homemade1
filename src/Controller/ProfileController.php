@@ -98,7 +98,7 @@ class ProfileController extends AbstractController
         $formulaire = $this->createForm(AddAdresseType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $er->setRegion( $formulaire->get('region')->getData());
+            $er->setRegion($formulaire->get('region')->getData());
             $er->add($user);
             return $this->redirectToRoute('profile_profile');
         } else {
@@ -156,9 +156,10 @@ class ProfileController extends AbstractController
     public function deleteUser(EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-        $this->container->get('security.token_storage')->setToken(null);
         $em->remove($user);
         $em->flush();
+        $session = new Session();
+        $session->invalidate();
         // Ceci ne fonctionne pas avec la création d'une nouvelle session !
         $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !');
         return $this->redirectToRoute('acceuil_acceuil');
