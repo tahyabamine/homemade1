@@ -46,7 +46,7 @@
 			<div class="col-lg-8 col-sm-12 right ">
 				<h1 class='coloredTitle '>{{annonce.titre}}</h1>
 				<p>{{annonce.contenue}}</p>
-				<a href="{{ path('annonce/_delete', {annonce: annonce.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
+				<a href="{{ path('annonce_delete', {annonce: annonce.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
 
 					<i class="fa fa-trash" aria-hidden="true"></i>
 				</a>
