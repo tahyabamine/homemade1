@@ -82,6 +82,21 @@ class AnnonceRepository extends ServiceEntityRepository
             ->setParameter('id', $user);
         return $query->getQuery()->getSingleScalarResult();
     }
+    public function pagination($page, $limite)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->OrderBy('a.dateDePublication')
+            ->setFirstResult(($page * $limite) - $limite)
+            ->setMaxResults($limite);
+        return $query->getQuery()->getResult();
+    }
+    public function tousLesAnnonces()
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a)');
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

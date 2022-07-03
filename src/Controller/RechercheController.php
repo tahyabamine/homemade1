@@ -14,8 +14,10 @@ class RechercheController extends AbstractController
     #[Route('/recherche', name: 'app_recherche')]
     public function index(AnnonceRepository $annoncesRepo, Request $request): Response
     {
-        $annonces = $annoncesRepo->findBy([], ['id' => 'desc']);
-
+        $limite = 6;
+        $page = (int) $request->query->get('page', 1);
+        $annonces = $annoncesRepo->pagination($page, $limite);
+        $total = $annoncesRepo->tousLesAnnonces();
         $form = $this->createForm(SearchAnnonceType::class);
 
         $search = $form->handleRequest($request);
@@ -27,9 +29,11 @@ class RechercheController extends AbstractController
                 $search->get('categorie')->getData()
             );
         }
-
         return $this->render('recherche/index.html.twig', [
             'annonces' => $annonces,
+            'total' => $total,
+            'limite' => $limite,
+            'page' => $page,
             'form' => $form->createView()
         ]);
     }

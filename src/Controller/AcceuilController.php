@@ -16,9 +16,8 @@ class AcceuilController extends AbstractController
     #[Route('/', name: 'acceuil')]
     public function index(AnnonceRepository $an, CategorieRepository $cat, SpecialiteRepository $spe): Response
     {
-        $annonces = $an->findAll();
+        $annonces = $an->findBy([], ['id'=>'DESC'],10 );
 $categorie=$cat->findAll();
-$specialites=$spe->findBy([], ['id'=>'DESC'],10 );
         return $this->render('acceuil/index.html.twig', [
             'annonces' => $annonces,
             'categories'=>$categorie,

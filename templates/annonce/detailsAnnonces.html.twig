@@ -43,7 +43,13 @@
                 {% endif %}
                 <h4 class=' title'>Par :
                     {{annonce.user.pseudo |capitalize }}</h4>
-            </div>
+                </div>
+                    {%if annonce.showNumber and annonce.user.numTel %}
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fas fa-xl fa-phone"></i>
+                       <a class="big" href="tel:{{annonce.user.numTel}}"> {{annonce.user.numTel}} </a>
+                    </div>
+                    {%endif%}
             <div class="d-flex flex-column">
                 <a class="btn btn-primary my-5">Afficher le Numero de téléphone</a>
                 <a class="btn btn-primary">Envoyer un message</a>
@@ -83,7 +89,7 @@
                 {{comments.contenue}}
             </p>
             <div class="d-flex justify-content-end">
-                <small class="text-muted p-3">{{comments.date|ago}}</small>
+                <small class="text-muted p-3">{{comments.dateDePublication|ago ( locale = "fr")}}</small>
             </div>
         </div>
     </div>
@@ -110,7 +116,7 @@
                 </p>
                 <div class="d-flex justify-content-end">
 
-                    <small class="text-muted p-3">{{reply.date|ago}}</small>
+                    <small class="text-muted p-3">{{reply.dateDePublication|ago ( locale = "fr")}}</small>
                 </div>
             </div>
         </div>

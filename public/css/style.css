@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 :root {
   --font-family: "Roboto", sans-serif;
+  --bs-blue:rgb(139, 56, 33) !important;
+  --bs-primary: rgb(139, 56, 33) !important;
   --dark: #000000;
   --primary: rgb(139, 56, 33);
   --light: #444;
@@ -20,6 +22,20 @@ body {
   box-sizing: border-box;
   height: 100vh;
   background-color: #fff;
+}
+.page-link:hover{
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+.page-link{
+color: var(--primary) !important;
+
+}
+.page-item.active .page-link {
+  z-index: 3 !important;
+  color: #fff !important;
+  background-color: var(--primary) !important;
+  border-color:  var(--primary) !important;
 }
 svg {
   display: inline-block;
@@ -128,7 +144,16 @@ background-color: var(--primary);
 border-color: var(--primary);
 box-shadow: var(--box-shadow);
 }
+.btn-primary:hover{
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
 
+  }
+  .btn-primary:focus{
+    border-color: var(--primary);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(139 56 33 / 25%);
+    }
 hr {
   width: 70%;
   margin-left: auto;
@@ -158,4 +183,31 @@ border: solid 1px rgb(227, 217, 217);
 }
 .test{
   border: solid 4px red;
+}
+.form-control:focus{
+  border-color: var(--primary);
+}
+/* .form-select > option:hover{
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+} */
+ option:hover {
+  background-color: red !important;
+}
+.form-check-input:focus {
+  border-color: var(--primary);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(139 56 33 / 25%);
+}
+.form-check-input:checked {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+
+}
+.fa-phone{
+  color:var(--primary);
+  
+}
+.big{
+  font-size: 1.3rem;
 }

@@ -44,6 +44,8 @@
 <div class="card-body">
 <h5 class="card-title">{{annonce.titre}}</h5>
 <p>{{annonce.resume()}}</p>
+<small class="text-muted m-1">{{annonce.dateDePublication| ago ( locale = "fr") }}</small>
+
 <div class="d-flex justify-content-between align-items-center">
 	<a href="{{path('annonce_detailsAnnonce', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
 	<div class="text-danger">

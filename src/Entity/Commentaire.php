@@ -27,14 +27,13 @@ class Commentaire
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
-     *  @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $date;
+    private $dateDePublication;
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="commentaires")
@@ -55,7 +54,7 @@ class Commentaire
     public function __construct()
     {
         $this->reponse = new ArrayCollection();
-        $this->date = new DateTime();
+        $this->dateDePublication = new DateTime();
 
     }
 
@@ -88,14 +87,14 @@ class Commentaire
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDateDePublication(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->dateDePublication;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDateDePublication(\DateTimeInterface $dateDePublication): self
     {
-        $this->date = $date;
+        $this->dateDePublication = $dateDePublication;
 
         return $this;
     }
