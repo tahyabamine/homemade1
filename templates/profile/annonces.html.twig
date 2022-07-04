@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{app.user.nom ~' '~ app.user.prenom }}
+{{app.user.nom ~' '~ app.user.prenom }}
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,71 +11,76 @@
 {% block body %}
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-	aria-labelledby="offcanvasWithBothOptionsLabel">
-	<div class="offcanvas-header">
-		<h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
-		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-	</div>
-	<hr class="dropdown-divider">
-	<div class="offcanvas-body ">
-		<ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
-			<li class="nav-item">
-				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i>  Mes informations</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-location-dot"></i>  Gerer mon adresse</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes favoris</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>  Messagerie</a>
-			</li>
-		</ul>
-	</div>
+    aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="offcanvas-body ">
+        <ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item">
+                <a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i
+                        class="fas fa-xl fa-circle-info"></i> Mes informations</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i
+                        class="fas fa-xl fa-location-dot"></i> Gerer mon adresse</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i
+                        class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i
+                        class="fas fa-xl fa-heart"></i> Mes favoris</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i
+                        class="fas fa-xl fa-message"></i> Messagerie</a>
+            </li>
+        </ul>
+    </div>
 </div>
-  <div class="d-flex left ">
-    <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-    aria-controls="offcanvasWithBothOptions">Mon menu</button>
+<div class="d-flex left ">
+    <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
     <h2 class="coloredTitle m-4">Bienvenue
         {{app.user.prenom| capitalize }}
         !</h2>
-        {% if app.user.annonces | length == 0 %}
+    {% if app.user.annonces | length == 0 %}
     <h3 class="m-4">Vous avez pas encore des annonces!</h3>
     <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="" srcset="">
-{%else%}
+    {%else%}
     <h3 class="m-4">Mes annonces: ({{app.user.annonces | length }})</h3>
 
     {% for annonce in annonce %}
-    <div class="card col-lg-4 col-md-6 col-sm-12 w-50">
+    <div class="card  w-50">
         <div class="card-header btn-primary">
-            {{annonce.titre}}        </div>
+            {{annonce.titre}} </div>
         <div class="card-body">
-          <p class="card-text">{{ annonce.resume()}}</p>
-          <a href="{{path('annonce_details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+            <p class="card-text">{{ annonce.resume()}}</p>
+            <a href="{{path('annonce_details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
         </div>
-      </div>
-      {% endfor %}
-      {%endif%}
+    </div>
+    {% endfor %}
+    {%endif%}
 
     {% if app.user.annonces | length > 4 %}
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end text-primary">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end text-primary">
 
-                <li class="page-item text-primary{{ ( page == 1 ) ? 'disabled' : '' }}"></li>
+            <li class="page-item text-primary{{ ( page == 1 ) ? 'disabled' : '' }}"></li>
 
-                <a class="page-link" href="?page ={{ page - 1}}">Previous</a>
+            <a class="page-link" href="?page ={{ page - 1}}">Previous</a>
             </li>
             {% set pages = (total / limite) | round (0, 'ceil') %}
             {% for item in 1..(pages) %}
 
-                <li class="page-item {{ page == item ? 'active' : '' }}">
-                    <a class="page-link" href="?page={{item}}">{{item}}</a>
-                </li>
+            <li class="page-item {{ page == item ? 'active' : '' }}">
+                <a class="page-link" href="?page={{item}}">{{item}}</a>
+            </li>
             {% endfor %}
 
             <li class="page-item {{ ( page == pages ) ? 'disabled' : '' }}">
@@ -83,8 +88,8 @@
             </li>
         </ul>
     </nav>
-{% endif %}
-<a href="{{ path('annonce_create') }}" class="btn btn-primary">Deposer une annonce</a>
+    {% endif %}
+    <a href="{{ path('annonce_create') }}" class="btn btn-primary">Deposer une annonce</a>
 
 </div>
 

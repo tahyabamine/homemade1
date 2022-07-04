@@ -31,12 +31,12 @@ class Messenger
     private $contenue;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="yes",cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="yes")
      */
     private $envoyeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="yes",cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="yes")
      */
     private $recepteur;
 
@@ -56,7 +56,7 @@ class Messenger
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity=Messenger::class, mappedBy="parent")
+     * @ORM\OneToMany(targetEntity=Messenger::class, mappedBy="parent",cascade={"remove"})
      */
     private $reponses;
 
