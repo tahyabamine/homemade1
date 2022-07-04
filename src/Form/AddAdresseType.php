@@ -34,7 +34,6 @@ class AddAdresseType extends AbstractType
                 ->add('region', EntityType::class, [
                     'class' => Region::class,
                     'choice_label' => 'nom',
-                    'mapped' => false,
                     'attr' => array(
                         'class' => 'form-control'
                     )

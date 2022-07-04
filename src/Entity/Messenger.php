@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MessengerRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,12 +41,28 @@ class Messenger
     private $recepteur;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Messenger::class, inversedBy="reponses")
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messenger::class, mappedBy="parent")
+     */
+    private $reponses;
+
     public function __construct(){
 $this->date=new \DateTime();
+$this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,6 +126,60 @@ $this->date=new \DateTime();
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(self $reponse): self
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses[] = $reponse;
+            $reponse->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(self $reponse): self
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getParent() === $this) {
+                $reponse->setParent(null);
+            }
+        }
 
         return $this;
     }

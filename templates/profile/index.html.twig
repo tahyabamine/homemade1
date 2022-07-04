@@ -7,9 +7,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="overflow">
-	<div class="profile">
-		<!-- Sidebar -->
+
+<!-- Sidebar
 		<div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:18%">
 			<h3 class="w3-bar-item text-center py-2">Mon profile</h3>
 			<a href="{{path('profile_info')}}" class="w3-bar-item w3-button">Mes informations</a>
@@ -17,54 +16,91 @@
 			<a href="{{path('profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
 			<a href="{{path('profile_mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
 			<a href="{{path('messenger_received')}}" class="w3-bar-item w3-button">Messagerie</a>
-		</div>
-		<div class="d-flex left ">
-			{% if app.user.avatar is empty %}
-			{% if app.user.genre is not empty %}
-			{% if app.user.genre.id == 1 %}
-			<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.png') }}" alt="">
-			{% elseif app.user.genre.id == 2 %}
-			<img class="m-3 avatar-profile" src="{{asset('images/homme-avatar.png') }}" alt="">
-			{% endif %}
-			{% else %}
-			<img class="m-3 avatar-profile" src="{{asset('images/avatar.png')}}" alt="">
-			{% endif %}
-			{% else %}
-			<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
-			{% endif %}
-			<H3>{{app.user.getNomEtPrenom()}}</H3>
-			<p class="p-2">{{app.user.email}}</p>
-			<p>
-			{% if app.user.ville is not empty %}
-				{{app.user.ville}}, France
-				{%endif%}
-			</p>
-			<p class="text-muted">
-			{% if app.user.region is not empty %}
-			<i class="fas fa-location-dot"></i>
-				{{app.user.region.nom}}
-				{%endif%}
-			</p>
-			{% if app.user.specialite is not empty%}
-			<h3>Mes specialites culinaires</h3>
-			<div class="d-flex">
-				{%for spec in app.user.specialite%}
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;"
-						src="{{spec.imageUrl}}" class="card-img-top" alt="...">
-					<div class="card-body">
-						<p class="card-text">{{spec.nom}}</p>
-					</div>
-				</div>
-				{%endfor%}
-			</div>
-			{%endif%}
-			<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning">
-				<i class="fa fa-plus" aria-hidden="true"></i>  Ajouter des pecialites
-			</a>
+		</div> -->
 
 
-		</div>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+	aria-labelledby="offcanvasWithBothOptionsLabel">
+	<div class="offcanvas-header">
+		<h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<hr class="dropdown-divider">
+	<div class="offcanvas-body ">
+		<ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
+			<li class="nav-item">
+				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i
+						class="fas fa-xl fa-circle-info"></i> Mes informations</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i
+						class="fas fa-xl fa-location-dot"></i> Gerer mon adresse</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i
+						class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i
+						class="fas fa-xl fa-heart"></i> Mes favoris</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i
+						class="fas fa-xl fa-message"></i> Messagerie</a>
+			</li>
+		</ul>
 	</div>
 </div>
+<div class="d-flex left ">
+	{% if app.user.avatar is empty %}
+	{% if app.user.genre is not empty %}
+	{% if app.user.genre.nom == "Femme" %}
+	<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.png') }}" alt="">
+	{% elseif app.user.genre.nom == "Homme" %}
+	<img class="m-3 avatar-profile" src="{{asset('images/homme-avatar.png') }}" alt="">
+	{% endif %}
+	{% else %}
+	<img class="m-3 avatar-profile" src="{{asset('images/avatar.png')}}" alt="">
+	{% endif %}
+	{% else %}
+	<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+	{% endif %}
+	<H3>{{app.user.getNomEtPrenom()}}</H3>
+	<p class="p-2">{{app.user.email}}</p>
+	<p>
+		{% if app.user.ville is not empty %}
+		{{app.user.ville}}, France
+		{%endif%}
+	</p>
+	<p class="text-muted">
+		{% if app.user.region is not empty %}
+		<i class="fas fa-location-dot"></i>
+		{{app.user.region.nom}}
+		{%endif%}
+	</p>
+	{% if app.user.specialite is not empty%}
+	<h3>Mes specialites culinaires</h3>
+	<div class="row">
+		{%for spec in app.user.specialite%}
+		<div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
+			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
+				class="card-img-top" alt="...">
+			<div class="card-body">
+				<p class="card-text">{{spec.nom}}</p>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+	{%endif%}
+	<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning">
+		<i class="fa fa-plus" aria-hidden="true"></i> Ajouter des pecialites
+	</a>
+
+	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+		aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+
+</div>
+
+
 {% endblock %}

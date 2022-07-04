@@ -83,7 +83,30 @@ class AnnonceController extends AbstractController
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $an->add($annonce);
+            $images = $formulaire->get('images')->getData(); // $image = une instance de UploadedFile
+            $ok = true;
+            foreach ($images as $image) {
+                $newName = uniqid() . '.' . $image->guessExtension(); // Je crée un nouveau nom
+                try {
+                    // Je déplace l'image vers sa nouvelle destination
+                    $image->move(
+                        $this->getParameter('imagesDirectory'), // Le dossier de destination
+                        $newName // Le nom du fichier à sa nouvelle destination
+                    );
+                    $img = new Image;
+                    $img->setImg($newName);
+                    $annonce->addImage($img);
+                } catch (Exception $e) {
+                    $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
+                    $ok = false;
+                }
+            }
+
+            if ($ok) {
+                $annonce->addCategorie($formulaire->get('categorie')->getData());
+                $an->add($annonce);
+            }
+
             return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('annonce/form.html.twig', [

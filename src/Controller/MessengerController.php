@@ -27,7 +27,6 @@ class MessengerController extends AbstractController
         $form = $this->createForm(MessengerType::class, $message);
         $recepteur = $user->find($id);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setEnvoyeur($this->getUser());
             $message->setRecepteur($recepteur);

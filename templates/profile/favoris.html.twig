@@ -9,17 +9,37 @@
 {% endblock %}
 
 {% block body %}
-<div class="profile">
-    <!-- Sidebar -->
-    <div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:20%">
-        <h3 class="w3-bar-item">Menu</h3>
-        <a href="{{path('profile_info')}}" class="w3-bar-item w3-button">Mes informations</a>
-        <a href="{{path('profile_gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
-        <a href="{{path('profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
-        <a href="{{path('profile_mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
-        <a href="{{path('messenger_received')}}" class="w3-bar-item w3-button">Messagerie</a>
-    </div>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+	aria-labelledby="offcanvasWithBothOptionsLabel">
+	<div class="offcanvas-header">
+		<h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<hr class="dropdown-divider">
+	<div class="offcanvas-body ">
+		<ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
+			<li class="nav-item">
+				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i>  Mes informations</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-location-dot"></i>  Gerer mon adresse</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes favoris</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>  Messagerie</a>
+			</li>
+		</ul>
+	</div>
+</div>
     <div class="d-flex left">
+        <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions">Mon menu</button>
         <h2 class="coloredTitle m-4">Bienvenue
             {{app.user.prenom| capitalize }}
             !</h2>
@@ -33,8 +53,8 @@
         <div class="row">
             {%for favoris in app.user.favoris%}
 
-            <div class="col-5 my-4">
-                <div class="card shadow-sm" style="width: 18rem;">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card  shadow-sm" style="width: 18rem;">
                     {% if favoris.images is not empty %}
                     {% for image in favoris.images %}
                     {% if loop.first %}
