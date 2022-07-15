@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Messenger;
 use App\Form\MessengerType;
+use App\Repository\MessengerRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,11 +68,10 @@ class MessengerController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Messenger $message): Response
+    public function delete($id, MessengerRepository $messenger): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($message);
-        $em->flush();
+   $message=$messenger->find($id);
+        $messenger->remove($message);
         return $this->redirectToRoute("messenger_received");
     }
 }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{app.user.nom ~' '~ app.user.prenom }}
+{{app.user.nom ~' '~ app.user.prenom }}
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,82 +11,81 @@
 {% block body %}
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-	aria-labelledby="offcanvasWithBothOptionsLabel">
-	<div class="offcanvas-header">
-		<h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
-		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-	</div>
-	<hr class="dropdown-divider">
-	<div class="offcanvas-body ">
-		<ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
-			<li class="nav-item">
-				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i>  Mes informations</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-location-dot"></i>  Gerer mon adresse</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes favoris</a>
-			</li>
-			<li class="nav-item">
-				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>  Messagerie</a>
-			</li>
-		</ul>
-	</div>
-</div>
-  <div class="d-flex left">
-    <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-    aria-controls="offcanvasWithBothOptions">Mon menu</button>
-    <h2 class="coloredTitle m-4">Bienvenue
-        {{app.user.prenom| capitalize }}
-        !</h2>
-        {% if app.user.codePostal is empty %}
-    <a href="{{path('profile_ajoutAdresse', {user: app.user.id})}}"class='btn btn-primary'>Ajouter une adresse</a>
-    <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="" srcset="">
-
-{%else%}
-<div class="card w-50">
-  <div class="card-header">
-  Mon adresse </div>
-  <div class="card-body">
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="row">Code Postal</th>
-          <td>{{app.user.codePostal}}</td>
-
-        </tr>
-        <tr>
-          <th scope="row">Nom du Rue</th>
-
-          <td>{{app.user.numeroRue}} , {{app.user.nomRue}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Ville</th>
-
-          <td>{{app.user.ville}}</td>
-        </tr>
-        {% if app.user.complementAdresse is not empty %}
-        <tr>
-          <th scope="row">Complélément d'adresse</th>
-          <td>{{app.user.complementAdresse}}</td>
-        </tr>
-        {%endif%}
-
-      </tbody>
-    </table>
-    <a href="{{path('profile_updateAdresse', {user: app.user.id})}}" class="btn btn-warning">
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </a>  
-
-    
+  aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr class="dropdown-divider">
+  <div class="offcanvas-body ">
+    <ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
+      <li class="nav-item">
+        <a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i> Mes
+          informations</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i
+            class="fas fa-xl fa-location-dot"></i> Gerer mon adresse</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes
+          annonces</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes
+          favoris</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>
+          Messagerie</a>
+      </li>
+    </ul>
   </div>
 </div>
+<div class="d-flex left">
+  <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
+  <h2 class="coloredTitle m-4">Bienvenue
+    {{app.user.prenom| capitalize }}
+    !</h2>
+  {% if app.user.codePostal is empty %}
+  <a href="{{path('profile_ajoutAdresse', {user: app.user.id})}}" class='btn btn-primary'>Ajouter une adresse</a>
+  <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="" srcset="">
+
+  {%else%}
+
+    <div class="card w-50">
+      <div class="card-header">
+        Mon adresse
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">Code Postal</th>
+              <td>{{app.user.codePostal}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Nom du Rue</th>
+              <td>{{app.user.numeroRue}} , {{app.user.nomRue}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Ville</th>
+              <td>{{app.user.ville}}</td>
+            </tr>
+            {% if app.user.complementAdresse is not empty %}
+            <tr>
+              <th scope="row">Complélément d'adresse</th>
+              <td>{{app.user.complementAdresse}}</td>
+            </tr>
+            {%endif%}
+          </tbody>
+        </table>
+        <a href="{{path('profile_updateAdresse', {user: app.user.id})}}" class="btn btn-warning">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </a>
+    </div>
   </div>
-</div>
 {%endif%}
 
 

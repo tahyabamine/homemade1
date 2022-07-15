@@ -11,6 +11,8 @@ use App\Controller\Admin\GenreCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\CategorieCrudController;
+use App\Entity\Annonce;
+use App\Entity\Commentaire;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -54,5 +56,7 @@ class AdminController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Specialite', 'fas fa-list', Specialite::class);
          yield MenuItem::linkToCrud('categorie', 'fas fa-list', Categorie::class);
          yield MenuItem::linkToCrud('user', 'fas fa-list', User::class);
+         yield MenuItem::linkToCrud('Anonce', 'fas fa-list', Annonce::class);
+         yield MenuItem::linkToCrud('Commentaire', 'fas fa-list', Commentaire::class);
     }
 }

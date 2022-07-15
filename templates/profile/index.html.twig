@@ -30,29 +30,26 @@
 	<div class="offcanvas-body ">
 		<ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
 			<li class="nav-item">
-				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i
-						class="fas fa-xl fa-circle-info"></i> Mes informations</a>
+				<a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i>  Mes informations</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i
-						class="fas fa-xl fa-location-dot"></i> Gerer mon adresse</a>
+				<a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-location-dot"></i>  Gerer mon adresse</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i
-						class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
+				<a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i
-						class="fas fa-xl fa-heart"></i> Mes favoris</a>
+				<a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes favoris</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i
-						class="fas fa-xl fa-message"></i> Messagerie</a>
+				<a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>  Messagerie</a>
 			</li>
 		</ul>
 	</div>
 </div>
 <div class="d-flex left ">
+	<button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
 	{% if app.user.avatar is empty %}
 	{% if app.user.genre is not empty %}
 	{% if app.user.genre.nom == "Femme" %}
@@ -81,25 +78,24 @@
 	</p>
 	{% if app.user.specialite is not empty%}
 	<h3>Mes specialites culinaires</h3>
-	<div class="row">
+	<div class="row row-cols-1 row-cols-md-2 g-4">
 		{%for spec in app.user.specialite%}
-		<div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
+		<div class="col-lg-4 col-sm-12">
+		<div class="card" style="width: 18rem;">
 			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
 				class="card-img-top" alt="...">
 			<div class="card-body">
 				<p class="card-text">{{spec.nom}}</p>
 			</div>
 		</div>
-		{%endfor%}
 	</div>
+		{%endfor%}
+</div>
+
 	{%endif%}
 	<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning">
 		<i class="fa fa-plus" aria-hidden="true"></i> Ajouter des pecialites
 	</a>
-
-	<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-		aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
-
 </div>
 
 

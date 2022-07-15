@@ -35,7 +35,7 @@ class SearchAnnonceType extends AbstractType
         ->add('Rechercher', SubmitType::class, [
             'attr' => [
                 'class' => 'btn btn-primary',
-                'placeholder' => 'Categorie'
+     
 
             ]
         ])
