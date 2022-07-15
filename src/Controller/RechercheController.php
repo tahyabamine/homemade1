@@ -14,11 +14,10 @@ class RechercheController extends AbstractController
     #[Route('/recherche', name: 'app_recherche')]
     public function index(AnnonceRepository $annoncesRepo, Request $request): Response
     {
-        // $limite = 2;
-        // $page = (int) $request->query->get('page', 1);
-        // $annonces = $annoncesRepo->pagination($page, $limite);
-        // $total = $annoncesRepo->tousLesAnnonces();
-        $annonces= $annoncesRepo->findAll();
+        $limite = 4;
+        $page = (int) $request->query->get('page', 1);
+        $annonces = $annoncesRepo->pagination($page, $limite);
+        $total = $annoncesRepo->tousLesAnnonces();
         $form = $this->createForm(SearchAnnonceType::class);
 
         $search = $form->handleRequest($request);
