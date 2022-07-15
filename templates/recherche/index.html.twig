@@ -6,9 +6,11 @@
 <div class="container">
 	<div class="m-5">
 		{{form_start(form)}}
-		{{form(form.mots)}}
-<p>Ou par catégorie </p>
-{{form_rest(form)}}
+		{{form_errors(form.mots)}}
+		{{form_label(form.mots)}}
+		{{form_widget(form.mots)}}
+		<p>Ou par catégorie </p>
+		{{form_rest(form)}}
 		{{form_end(form)}}
 
 	</div>
@@ -63,5 +65,27 @@
 
 	</div>
 
+
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-end text-primary">
+
+			<li class="page-item text-primary{{ ( page == 1 ) ? 'disabled' : '' }}"></li>
+
+			<a class="page-link" href="?page ={{ page - 1}}">Previous</a>
+			</li>
+			{% set pages = (total / limite) | round (0, 'ceil') %}
+			{% for item in 1..(pages) %}
+
+			<li class="page-item {{ page == item ? 'active' : '' }}">
+				<a class="page-link" href="?page={{item}}">{{item}}</a>
+			</li>
+			{% endfor %}
+
+			<li class="page-item {{ ( page == pages ) ? 'disabled' : '' }}">
+				<a class="page-link" href="?page={{ page + 1 }}">Next</a>
+			</li>
+		</ul>
+	</nav>
+
 </div>
-	{% endblock %}
+{% endblock %}

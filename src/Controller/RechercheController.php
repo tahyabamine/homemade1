@@ -18,6 +18,7 @@ class RechercheController extends AbstractController
         $page = (int) $request->query->get('page', 1);
         $annonces = $annoncesRepo->pagination($page, $limite);
         $total = $annoncesRepo->tousLesAnnonces();
+   
         $form = $this->createForm(SearchAnnonceType::class);
 
         $search = $form->handleRequest($request);
@@ -28,14 +29,14 @@ class RechercheController extends AbstractController
                 $search->get('mots')->getData(),
                 $search->get('categorie')->getData()
             );
-            dd($annonces);
+
         }
         return $this->render('recherche/index.html.twig', [
             'form' => $form->createView(),
             'annonces' => $annonces,
-            // 'total' => $total,
-            // 'limite' => $limite,
-            // 'page' => $page,
+            'total' => $total,
+            'limite' => $limite,
+            'page' => $page,
         ]);
     }
 }
