@@ -78,8 +78,9 @@
 	</p>
 	{% if app.user.specialite is not empty%}
 	<h3>Mes specialites culinaires</h3>
-	<div class="d-flex">
+	<div class="row row-cols-1 row-cols-md-2 g-4">
 		{%for spec in app.user.specialite%}
+		<div class="col-lg-4 col-sm-12">
 		<div class="card" style="width: 18rem;">
 			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
 				class="card-img-top" alt="...">
@@ -87,8 +88,10 @@
 				<p class="card-text">{{spec.nom}}</p>
 			</div>
 		</div>
-		{%endfor%}
 	</div>
+		{%endfor%}
+</div>
+
 	{%endif%}
 	<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning">
 		<i class="fa fa-plus" aria-hidden="true"></i> Ajouter des pecialites

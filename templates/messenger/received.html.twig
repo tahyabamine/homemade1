@@ -13,6 +13,7 @@
 					{{ app.user.received|length }}
 					messages</p>
 			</div>
+			{% if app.user.received|length >0 %}
 			<table class="table caption-top">
 				<caption>Message Réçu</caption>
 				<thead>
@@ -40,6 +41,9 @@
 				</tbody>
 				{% endfor %}
 			  </table>
+			  {%else%}
+			  <img src="{{asset('images/messagerie.png')}}" alt="" srcset="">
+			  {%endif%}
 
 
 	</div>

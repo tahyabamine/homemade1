@@ -66,8 +66,8 @@
     {% endfor %}
     {%endif%}
 
+    <div class="d-flex">
     {% if app.user.annonces | length > 4 %}
-
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end text-primary">
 
@@ -89,6 +89,8 @@
         </ul>
     </nav>
     {% endif %}
+</div>
+
     <a href="{{ path('annonce_create') }}" class="btn btn-primary">Deposer une annonce</a>
 
 </div>

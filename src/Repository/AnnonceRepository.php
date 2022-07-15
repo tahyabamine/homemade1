@@ -45,17 +45,18 @@ class AnnonceRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-      /**
+    /**
      * Recherche les annonces en fonction du formulaire
      * @return void 
      */
-    public function search($mots = null, $categorie = null){
+    public function search($mots = null, $categorie = null)
+    {
         $query = $this->createQueryBuilder('a');
-        if($mots != null){
+        if ($mots != null) {
             $query->andWhere('MATCH_AGAINST(a.titre, a.contenue) AGAINST (:mots boolean)>0')
                 ->setParameter('mots', $mots);
         }
-        if($categorie != null){
+        if ($categorie != null) {
             $query->leftJoin('a.categorie', 'c');
             $query->andWhere('c.id = :id')
                 ->setParameter('id', $categorie);
@@ -96,7 +97,7 @@ class AnnonceRepository extends ServiceEntityRepository
             ->select('COUNT(a)');
         return $query->getQuery()->getSingleScalarResult();
     }
-    
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

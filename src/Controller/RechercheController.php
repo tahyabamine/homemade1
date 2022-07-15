@@ -14,7 +14,7 @@ class RechercheController extends AbstractController
     #[Route('/recherche', name: 'app_recherche')]
     public function index(AnnonceRepository $annoncesRepo, Request $request): Response
     {
-        $limite = 6;
+        $limite = 4;
         $page = (int) $request->query->get('page', 1);
         $annonces = $annoncesRepo->pagination($page, $limite);
         $total = $annoncesRepo->tousLesAnnonces();
