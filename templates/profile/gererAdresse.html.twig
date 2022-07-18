@@ -53,12 +53,13 @@
   <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="" srcset="">
 
   {%else%}
-
-    <div class="card w-50">
+<div class="row">
+    <div class="card col-12">
       <div class="card-header">
         Mon adresse
       </div>
       <div class="card-body">
+      <div class="table-responsive">
         <table class="table">
           <tbody>
             <tr>
@@ -81,9 +82,11 @@
             {%endif%}
           </tbody>
         </table>
+      </div>
         <a href="{{path('profile_updateAdresse', {user: app.user.id})}}" class="btn btn-warning">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </a>
+    </div>
     </div>
   </div>
 {%endif%}

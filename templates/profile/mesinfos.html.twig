@@ -10,154 +10,177 @@
 
 {% block body %}
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-aria-labelledby="offcanvasWithBothOptionsLabel">
-<div class="offcanvas-header">
-  <h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
-  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
-<hr class="dropdown-divider">
-<div class="offcanvas-body ">
-  <ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
-    <li class="nav-item">
-      <a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i>  Mes informations</a>
-    </li>
-    <li class="nav-item">
-      <a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-location-dot"></i>  Gerer mon adresse</a>
-    </li>
-    <li class="nav-item">
-      <a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes annonces</a>
-    </li>
-    <li class="nav-item">
-      <a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes favoris</a>
-    </li>
-    <li class="nav-item">
-      <a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>  Messagerie</a>
-    </li>
-  </ul>
-</div>
+  aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Mon Profile</h3>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <hr class="dropdown-divider">
+  <div class="offcanvas-body ">
+    <ul class=" navbar-nav me-auto mb-2 mb-lg-0 ">
+      <li class="nav-item">
+        <a href="{{path('profile_info')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-circle-info"></i> Mes
+          informations</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_gerermonadresse')}}" class="nav-link coloredTitle"><i
+            class="fas fa-xl fa-location-dot"></i> Gerer mon adresse</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_annonces')}}" class="nav-link coloredTitle"><i class="fas fa-xl fa-bullhorn"></i> Mes
+          annonces</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('profile_mesFavoris')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-heart"></i> Mes
+          favoris</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{path('messenger_received')}}" class="nav-link coloredTitle"> <i class="fas fa-xl fa-message"></i>
+          Messagerie</a>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class="d-flex left">
-    <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-    aria-controls="offcanvasWithBothOptions">Mon menu</button>
-    <h2 class="coloredTitle m-4">Bienvenue
-      {{app.user.prenom| capitalize }}
-      !</h2>
-    <div class="card w-50">
+  <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
+  <h2 class="coloredTitle m-4">Bienvenue
+    {{app.user.prenom| capitalize }}
+    !</h2>
+  <div class="row">
+    <div class="card col-sm-12 col-lg-12 col-md-12">
       <div class="card-header">
         Email </div>
       <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">{{app.user.email}}</th>
-              <td colspan="2"> <a href="#" class="btn btn-warning">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a></td>
-            </tr>
-          </tbody>
-        </table>
-
-
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">{{app.user.email}}</th>
+                <td colspan="2"> <a href="#" class="btn btn-warning">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="card w-50">
+  </div>
+  <div class="row">
+    <div class="card col-sm-12 col-lg-12 col-md-12">
       <div class="card-header">
         Mes information </div>
       <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">Nom</th>
-              <td>{{app.user.nom}}</td>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Nom</th>
+                <td>{{app.user.nom}}</td>
 
-            </tr>
-            <tr>
-              <th scope="row">Prénom</th>
+              </tr>
+              <tr>
+                <th scope="row">Prénom</th>
 
-              <td>{{app.user.prenom}}</td>
-            </tr>
-            <tr>
-              <th scope="row">Pseudo</th>
+                <td>{{app.user.prenom}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Pseudo</th>
 
-              <td>{{app.user.pseudo}}</td>
-            </tr>
-            <tr>
-              {% if app.user.genre is not empty %}
-              <th scope="row">Genre</th>
-              <td>{{app.user.genre.nom}}</td>
-              {%endif%}
-            </tr>
-            <tr>
-              {% if app.user.numTel is not empty %}
-              <th scope="row">Numéro de téléphone</th>
-              <td>{{app.user.numTel}}</td>
-              {%endif%}
-            </tr>
-          </tbody>
-        </table>
+                <td>{{app.user.pseudo}}</td>
+              </tr>
+              <tr>
+                {% if app.user.genre is not empty %}
+                <th scope="row">Genre</th>
+                <td>{{app.user.genre.nom}}</td>
+                {%endif%}
+              </tr>
+              <tr>
+                {% if app.user.numTel is not empty %}
+                <th scope="row">Numéro de téléphone</th>
+                <td>{{app.user.numTel}}</td>
+                {%endif%}
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <a href="{{path('profile_edit', {user: app.user.id})}}" class="btn btn-warning">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </a>
       </div>
     </div>
-    <div class="card w-50">
+  </div>
+  <div class="row">
+    <div class="card col-12">
       <div class="card-header">
         Ma photo de profile </div>
       <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">{% if app.user.avatar is empty %}
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">{% if app.user.avatar is empty %}
 
-                <img class="m-3 avatar-profile" src="{{asset('images/avatar.png') }}" alt="">
+                  <img class="m-3 avatar-profile" src="{{asset('images/avatar.png') }}" alt="">
 
-                {% else %}
-                <img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+                  {% else %}
+                  <img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
 
-                {% endif %}
-              </th>
-              <td colspan="2"> <a href="{{path('profile_editAvatar', {user: app.user.id})}}" class="btn btn-warning">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card w-50">
-      <div class="card-header">
-        Mon mot de passe </div>
-      <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">************</th>
-              <td colspan="2"> <a href="{{path('profile_changePassword')}}" class="btn btn-warning">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card w-50">
-      <div class="card-header">
-        Supprimer mon compte</div>
-      <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">Mon compte</th>
-              <td colspan="2"> <a href="{{path('profile_deleteUser')}}" class="btn btn-danger "
-                  onclick="return confirm('Êtes-vous sûr ?')">
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </a></td>
-            </tr>
-          </tbody>
-        </table>
+                  {% endif %}
+                </th>
+                <td colspan="2"> <a href="{{path('profile_editAvatar', {user: app.user.id})}}" class="btn btn-warning">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="card col-12">
+      <div class="card-header">
+        Mon mot de passe </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">************</th>
+                <td colspan="2"> <a href="{{path('profile_changePassword')}}" class="btn btn-warning">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card col-12">
+      <div class="card-header">
+        Supprimer mon compte</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Mon compte</th>
+                <td colspan="2"> <a href="{{path('profile_deleteUser')}}" class="btn btn-danger "
+                    onclick="return confirm('Êtes-vous sûr ?')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  {%endblock%}
+{%endblock%}

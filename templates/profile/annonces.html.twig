@@ -42,7 +42,7 @@
         </ul>
     </div>
 </div>
-<div class="d-flex left ">
+<div class="d-flex left container">
     <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
     <h2 class="coloredTitle m-4">Bienvenue
@@ -53,23 +53,23 @@
     <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="" srcset="">
     {%else%}
     <h3 class="m-4">Mes annonces: ({{app.user.annonces | length }})</h3>
-
     {% for annonce in annonce %}
-    <div class="card  w-50">
-        <div class="card-header btn-primary">
-            {{annonce.titre}} </div>
-        <div class="card-body">
-            <p class="card-text">{{ annonce.resume()}}</p>
-            <a href="{{path('annonce_details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+    <div class="row ">
+        <div class="card col-lg-4 col-sm-12 col-md-6 my-3">
+            <div class="card-header ">
+                {{annonce.titre}} </div>
+            <div class="card-body">
+                <p class="card-text">{{ annonce.resume()}}</p>
+                <a href="{{path('annonce_details', {annonce: annonce.id})}}" class="btn btn-primary">Voir plus ...</a>
+            </div>
         </div>
+        {% endfor %}
+        {%endif%}
     </div>
-    {% endfor %}
-    {%endif%}
-
-    <div class="d-flex">
     {% if app.user.annonces | length > 4 %}
+
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end text-primary">
+        <ul class="d-flex pagination justify-content-end text-primary">
 
             <li class="page-item text-primary{{ ( page == 1 ) ? 'disabled' : '' }}"></li>
 
@@ -88,13 +88,10 @@
             </li>
         </ul>
     </nav>
+
     {% endif %}
-</div>
 
-    <a href="{{ path('annonce_create') }}" class="btn btn-primary">Deposer une annonce</a>
-
-</div>
+    <a href="{{ path('annonce_create') }}" class="btn btn-primary col-sm-12 col-lg-4 my-3">Deposer une annonce</a>
 
 </div>
-
 {% endblock %}

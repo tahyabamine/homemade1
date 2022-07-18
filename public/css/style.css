@@ -208,3 +208,17 @@ border: solid 1px rgb(227, 217, 217);
 .big{
   font-size: 1.3rem;
 }
+.page-link:hover{
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+.page-link{
+color: var(--primary) !important;
+
+}
+.page-item.active .page-link {
+  z-index: 3 !important;
+  color: #fff !important;
+  background-color: var(--primary) !important;
+  border-color:  var(--primary) !important;
+}

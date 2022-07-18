@@ -3,12 +3,13 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class ChangePasswordFormType extends AbstractType
 {
@@ -20,15 +21,31 @@ class ChangePasswordFormType extends AbstractType
                 'first_options' => [
                     'attr' => ['autocomplete' => 'new-password'],
                     'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
+                            new NotBlank([
+                                'message' => 'Veuillez rensseigner votre mot de passe',
+                            ]),
+                            new Length([
+                                'min' => 6,
+                                'minMessage' => 'Votre mot de passe doit avoir  {{ limit }} characters',
+                                // max length allowed by Symfony for security reasons
+                                'max' => 4096,
+                            ]),
+                            new Regex([
+                                'pattern' => '/\d/',
+                                'message' => 'Votre mot de passe doit contenir au moins un chiffre.'
+                            ]),
+                            new Regex([
+                                'pattern' => '/[a-z]/',
+                                'message' => 'Votre mot de passe doit contenir au moins une lettre minuscule.'
+                            ]),
+                            new Regex([
+                                'pattern' => '/[A-Z]/',
+                                'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule.'
+                            ]),
+                            new Regex([
+                                'pattern' => '/[!@#$%^&*]/',
+                                'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.'
+                            ]),
                     ],
                     'label' => 'New password',
                 ],

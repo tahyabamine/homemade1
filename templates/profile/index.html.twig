@@ -7,19 +7,7 @@
 {% endblock %}
 
 {% block body %}
-
-<!-- Sidebar
-		<div class="w3-sidebar w3-light-grey w3-bar-block flex-1" style="width:18%">
-			<h3 class="w3-bar-item text-center py-2">Mon profile</h3>
-			<a href="{{path('profile_info')}}" class="w3-bar-item w3-button">Mes informations</a>
-			<a href="{{path('profile_gerermonadresse')}}" class="w3-bar-item w3-button">Gerer mon adresse</a>
-			<a href="{{path('profile_annonces')}}" class="w3-bar-item w3-button">Mes annonces</a>
-			<a href="{{path('profile_mesFavoris')}}" class="w3-bar-item w3-button">Mes favoris</a>
-			<a href="{{path('messenger_received')}}" class="w3-bar-item w3-button">Messagerie</a>
-		</div> -->
-
-
-
+ <!-- Sidebar  -->
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
 	aria-labelledby="offcanvasWithBothOptionsLabel">
 	<div class="offcanvas-header">
@@ -47,7 +35,7 @@
 		</ul>
 	</div>
 </div>
-<div class="d-flex left ">
+<div class="d-flex container left ">
 	<button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
 	{% if app.user.avatar is empty %}
@@ -77,11 +65,11 @@
 		{%endif%}
 	</p>
 	{% if app.user.specialite is not empty%}
-	<h3>Mes specialites culinaires</h3>
-	<div class="row row-cols-1 row-cols-md-2 g-4">
+	<h3 class="py-3">Mes specialites culinaires</h3>
+	<div class="row ">
 		{%for spec in app.user.specialite%}
-		<div class="col-lg-4 col-sm-12">
-		<div class="card" style="width: 18rem;">
+		<div class="col-lg-4 col-sm-12 p-3">
+		<div class="card" >
 			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
 				class="card-img-top" alt="...">
 			<div class="card-body">
@@ -93,7 +81,7 @@
 </div>
 
 	{%endif%}
-	<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning">
+	<a href="{{path('profile_ajoutSpecialite', {user: app.user.id})}}" class="btn btn-warning my-3">
 		<i class="fa fa-plus" aria-hidden="true"></i> Ajouter des pecialites
 	</a>
 </div>

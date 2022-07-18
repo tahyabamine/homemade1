@@ -21,25 +21,43 @@ class AddAdresseType extends AbstractType
     {
         $builder
 
-            ->add('codePostal',TextType::class,[
+            ->add('codePostal', NumberType::class, [
                 'attr' => ['name' => 'cp'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez rensseigner votre code postale',
+                    ]),
+                    new Length([
+                        'min' => 5,
+                        'max' => 5,
+                    ]),
+                ]
             ])
-            ->add('nomRue',TextType::class, [
+            ->add('nomRue', TextType::class, [
                 'attr' => ['name' => 'adresse']
             ])
-            ->add('numeroRue')
-            ->add('complementAdresse')
-            ->add('ville', TextType::class, [
-                'attr' => ['name' => 'ville']])
-                ->add('region', EntityType::class, [
-                    'class' => Region::class,
-                    'choice_label' => 'nom',
-                    'attr' => array(
-                        'class' => 'form-control'
-                    )
-                ])
-            ->add('submit', SubmitType::class);
+            ->add('numeroRue', NumberType::class)
+            ->add('complementAdresse',TextType::class,[
+                'constraints' => [
+                    new Length([
+                        'max' => 150
+                    ])
+                    ],
+                'required'=> false
 
+            ])
+            ->add('ville', TextType::class, [
+                'attr' => ['name' => 'ville']
+            ])
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'nom',
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+                'required'=> false
+            ])
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,11 +3,11 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-<div class="container page">
-    <div>
-        <img src="{{ asset('images/login.png') }}" alt="login">
+<div class="row p-5">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <img style="width: 95%;" src="{{ asset('images/login.png') }}" alt="login">
     </div>
-    <div class="register">
+    <div class="register col-lg-6 col-md-6 col-sm-12">
     <h2>Reset your password</h2>
 
     {{ form_start(resetForm) }}
