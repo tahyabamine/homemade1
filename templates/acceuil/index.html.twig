@@ -17,7 +17,7 @@
 	<h2 class="p-4 title text-center">Tous les spécialités</h2>
 
 				{%for cat in categories%}
-<div class="col-lg-4 col-sm-12 py-5">
+<div class="col-lg-4 col-md-6 col-sm-12 py-5">
 	<div class="card shadow-sm carte" style="width: 20rem;">
 		<img src="{{cat.iamgeUrl}}" class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" alt="...">
 		<div class="card-body ">
@@ -32,7 +32,7 @@
 <div class="row">
 	<h2 class="p-4 title text-center">Liste de dernieres annonces</h2>
 	{%for annonce in annonces%}
-<div class="col-lg-4 col-sm-12 py-5">
+<div class="col-lg-4 col-md-6 col-sm-12 py-5">
 <div class="card shadow-sm carte" style="width: 20rem;">
 	{% if annonce.images is not empty %}
 	{% for image in annonce.images %}
