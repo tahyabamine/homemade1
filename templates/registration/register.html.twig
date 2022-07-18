@@ -14,11 +14,11 @@ css %}
 app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
-<div class='container page h-100 p-5'>
-	<div>
-		<img src="{{ asset('images/register.png') }}" alt="">
+<div class='row h-100 p-5'>
+	<div class='col-lg-6 col-md-6 col-sm-12'>
+		<img style='width:95%;''  src="{{ asset('images/register.png') }}" alt="">
 	</div>
-<div class="register">
+<div class="register col-lg-6 col-md-6 col-sm-12">
 <h2 class="mb-5 text-center">Créer votre compte</h1>
 	{{ form_start(registrationForm) }}
 	{{form_row(registrationForm.nom)}}

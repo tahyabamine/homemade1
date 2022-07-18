@@ -3,12 +3,12 @@
 {% block title %}Réinitialisation de mot de passe{% endblock %}
 
 {% block body %}
-<div class="container page d-flex justify-content-center align-items-center" style="height: 100vh;" >
+<div class="row p-5" style="height: 100vh;" >
   
-    <div>
-        <img src="{{ asset('images/sent.png') }}" alt="">
+    <div class='col-lg-6 col-md-6 col-sm-12'>
+        <img style='width: 95%;' src="{{ asset('images/sent.png') }}" alt="">
     </div>
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning col-lg-6 col-md-6 col-sm-12" role="alert">
             <p> Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
                 Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
             <hr>

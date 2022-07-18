@@ -23,7 +23,7 @@ body {
   height: 100vh;
   background-color: #fff;
 }
-.page-link:hover{
+/* .page-link:hover{
   background-color: var(--primary) !important;
   color: #fff !important;
 }
@@ -36,7 +36,7 @@ color: var(--primary) !important;
   color: #fff !important;
   background-color: var(--primary) !important;
   border-color:  var(--primary) !important;
-}
+} */
 svg {
   display: inline-block;
   position: absolute;
@@ -44,14 +44,14 @@ svg {
   left: 0;
   box-shadow: var(--box-shadow);
 }
-.containere {
+/* .containere {
   display: inline-block;
   position: relative;
   width: 100%;
   padding-bottom: 15%;
   vertical-align: middle;
   overflow: hidden;
-}
+} */
 .containere h1 {
   position: absolute;
   top: 10%;
@@ -62,7 +62,11 @@ svg {
   font-family: 'Acme', sans-serif;
 
 }
-
+.carte:hover{
+  cursor: pointer;
+  transform: scale(1.08);
+text-decoration-line: none;
+}
 
 .logo {
   margin: 0%;
@@ -124,7 +128,7 @@ text-decoration-line: none;
   margin-bottom: 30px;
 }
 .register{
-  width: 80%;
+ 
   background-color: #ffff;
   padding: 2rem;
   border-radius: 10px;
@@ -181,19 +185,11 @@ border: solid 1px rgb(227, 217, 217);
   background-color:#eee ;
   padding: 8px;
 }
-.test{
-  border: solid 4px red;
-}
+
 .form-control:focus{
   border-color: var(--primary);
 }
-/* .form-select > option:hover{
-  background-color: var(--primary) !important;
-  border-color: var(--primary) !important;
-} */
- option:hover {
-  background-color: red !important;
-}
+
 .form-check-input:focus {
   border-color: var(--primary);
   outline: 0;

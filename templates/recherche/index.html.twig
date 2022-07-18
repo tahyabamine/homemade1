@@ -19,7 +19,7 @@
 		<h2 class="p-4 title text-center">Liste de derieres annoces</h2>
 		{%for annonce in annonces%}
 		<div class="col-lg-4 col-sm-12 py-5">
-			<div class="card shadow-sm" style="width: 20rem;">
+			<div class="card shadow-sm carte" style="width: 20rem;">
 				{% if annonce.images is not empty %}
 				{% for image in annonce.images %}
 				{% if loop.first %}

@@ -9,13 +9,13 @@
     </h1>
     <div class="row">
         {% if categorie.annonces is empty %}
-        <div class="d-flex justify-content-center">
-        <h3 class="text-center">Cette categorie est vide!</h3>
-        <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="" srcset="">
+        <div class="">
+        <h3 class=" col-lg-6 col-md-12 col-sm-12 text-center">Cette categorie est vide!</h3>
+        <img src="{{asset('images/cooking.png')}}" class="img_cook col-lg-6 col-md-12 col-sm-12" alt="" srcset="">
     </div>
         {%else%}
         {%for annonce in categorie.annonces %}
-        <div class="col-lg-4 col-sm-12 my-4">
+        <div class="col-lg-4 col-md-6 col-sm-12 ">
             <div class="card shadow-sm" style="width: 20rem;">
                 {% if annonce.images is not empty %}
                 {% for image in annonce.images %}

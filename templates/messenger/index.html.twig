@@ -3,5 +3,14 @@
 {% block title %}Hello MessengerController!{% endblock %}
 
 {% block body %}
-{{form(form)}}
+
+<div class="row p-5">
+	<div class="col-lg-6 col-md-3 col-sm-12">
+		<img style="width: 95%;" src="{{ asset('images/contact.png') }}" alt="">
+	</div>
+	<div class="register col-lg-6 col-md-9 col-sm-12">
+		<h2 class="title py-3 text-center">Message</h2>
+		{{form(form)}}
+
+		</div>
 {% endblock %}

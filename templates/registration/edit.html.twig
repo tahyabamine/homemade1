@@ -6,24 +6,6 @@ css %}
   href="{{ asset('css/formulaire.css') }}"
   type="text/css"
 />
-{# <link
-  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css"
-  rel="stylesheet"
-  type="text/css"
-/>
-<link
-  href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css"
-  rel="stylesheet"
-  type="text/css"
-/>
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/> #}
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
 
@@ -31,8 +13,8 @@ css %}
 app.flashes('verify_email_error') %}
 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 {% endfor %}
-<div class='container page'>
-  <div class="register ">
+<div class='row p-5'>
+  <div class="register col-lg-6 col-md-6 col-sm-12 ">
 <h2 class="mb-5 text-center">Modifier votre profile</h1>
 
 
