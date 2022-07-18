@@ -15,6 +15,24 @@
   --border: 1px solid #eee;
   --button-red: rgb(139, 56, 33)d5c;
 }
+@media screen and (max-width: 576px)
+{
+  .card{
+    width: auto;
+  }
+  .row{
+    justify-content: center;
+  }
+
+}
+@media (min-width: 768px) { 
+  .row{
+    justify-content: center;
+  }
+  .card{
+    width: 18rem;
+  }
+ }
 body {
   font-family: var(--font-family);
   margin: 0%;
@@ -23,20 +41,7 @@ body {
   height: 100vh;
   background-color: #fff;
 }
-/* .page-link:hover{
-  background-color: var(--primary) !important;
-  color: #fff !important;
-}
-.page-link{
-color: var(--primary) !important;
 
-}
-.page-item.active .page-link {
-  z-index: 3 !important;
-  color: #fff !important;
-  background-color: var(--primary) !important;
-  border-color:  var(--primary) !important;
-} */
 svg {
   display: inline-block;
   position: absolute;
@@ -44,17 +49,13 @@ svg {
   left: 0;
   box-shadow: var(--box-shadow);
 }
-/* .containere {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  padding-bottom: 15%;
-  vertical-align: middle;
-  overflow: hidden;
-} */
+.card{
+  width: 20rem;
+}
+
 .containere h1 {
   position: absolute;
-  top: 10%;
+  top: 8%;
   width: 80%;
   font-weight: 700;
   color: rgb(139, 56, 33);
@@ -168,7 +169,7 @@ footer {
   clear: both;
 }
 .img_cook{
-width: 30%;
+width: 100%;
 height: inherit;
 }
 svg{
