@@ -18,7 +18,7 @@
 				<div class="carousel-inner" role="listbox" data-interval="10000000">
 					{% for image in annonce.images %}
 					<div class="carousel-item {{ loop.first ? 'active' : '' }}">
-						<img src="{{ asset('images/' ~ image.img) }}" class="d-block w-75 m-auto my-2" alt="..." />
+						<img src="{{ asset('images/' ~ image.img) }}" class="d-block w-75 m-auto my-2" alt="Image de l\'annonce" />
 					</div>
 					{% endfor %}
 				</div>

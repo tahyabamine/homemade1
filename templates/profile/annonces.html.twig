@@ -53,7 +53,7 @@
         !</h2>
     {% if app.user.annonces | length == 0 %}
     <h3 class="m-4">Vous avez pas encore des annonces!</h3>
-    <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="" srcset="">
+    <img src="{{asset('images/cooking.png')}}" class="img_cook" alt="Image cooking" srcset="">
     {%else%}
     <h3 class="m-4">Mes annonces: ({{app.user.annonces | length }})</h3>
     {% for annonce in annonce %}

@@ -18,7 +18,7 @@
 			{%for cat in categories%}
 			<div class="col-lg-4 col-md-6 col-sm-12 py-5">
 				<div class="card shadow-sm carte">
-					<img src="{{cat.iamgeUrl}}" class="card-img-top "
+					<img src="{{cat.iamgeUrl}}" alt="'Image de categorie" class="card-img-top "
 						style="width:100%; height: 200px; overflow: hidden;" alt="...">
 					<div class="card-body ">
 						<h5 class="card-title m-3">{{cat.nom}}</h5>
@@ -38,7 +38,7 @@
 					{% if annonce.images is not empty %}
 					{% for image in annonce.images %}
 					{% if loop.first %}
-					<img src="{{ asset('images/' ~ image.img) }}" class="card-img-top "
+					<img src="{{ asset('images/' ~ image.img) }}" alt="Image de l\'annonce"class="card-img-top "
 						style="width:100%; height: 200px; overflow: hidden;" alt="...">
 					{% endif %}
 					{% endfor %}

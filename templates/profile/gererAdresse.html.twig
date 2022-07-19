@@ -53,7 +53,7 @@
     !</h2>
   {% if app.user.codePostal is empty %}
   <a href="{{path('profile_ajoutAdresse', {user: app.user.id})}}" class='btn btn-primary'>Ajouter une adresse</a>
-  <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="" srcset="">
+  <img src="{{asset('images/adresse.png')}}" class="img_cook py-5" alt="Image adresse" srcset="">
 
   {%else%}
 <div class="row width">

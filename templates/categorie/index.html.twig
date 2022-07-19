@@ -11,7 +11,7 @@
         {% if categorie.annonces is empty %}
         <div class="">
         <h3 class=" col-lg-6 col-md-12 col-sm-12 text-center">Cette categorie est vide!</h3>
-        <img src="{{asset('images/cooking.png')}}" class="img_cook col-lg-6 col-md-12 col-sm-12" alt="" srcset="">
+        <img src="{{asset('images/cooking.png')}}" class="img_cook col-lg-6 col-md-12 col-sm-12" alt="Image cooking" srcset="">
     </div>
         {%else%}
         {%for annonce in categorie.annonces %}
@@ -21,7 +21,7 @@
                 {% for image in annonce.images %}
                 {% if loop.first %}
                 <img src="{{ asset('images/' ~ image.img) }}" class="card-img-top "
-                    style="width:100%; height: 200px; overflow: hidden;" alt="...">
+                    style="width:100%; height: 200px; overflow: hidden;" alt="Image de l\'annonce">
                 {% endif %}
                 {% endfor %}
                 {% endif %}

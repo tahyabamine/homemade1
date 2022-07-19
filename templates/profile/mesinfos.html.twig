@@ -126,10 +126,10 @@
               <tr>
                 <th scope="row">{% if app.user.avatar is empty %}
 
-                  <img class="m-3 avatar-profile" src="{{asset('images/avatar.png') }}" alt="">
+                  <img class="m-3 avatar-profile" src="{{asset('images/avatar.png') }}" alt="avatar">
 
                   {% else %}
-                  <img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+                  <img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="avatar">
 
                   {% endif %}
                 </th>

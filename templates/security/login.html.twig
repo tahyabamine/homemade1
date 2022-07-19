@@ -5,7 +5,7 @@
 {% block body %}
 <div class="row p-5 h-100">
     <div class='col-lg-6 col-md-6 col-sm-12 mx-auto'>
-        <img style='width: 95%;'   src="{{ asset('images/login.png') }}" alt="">
+        <img style='width: 95%;'   src="{{ asset('images/login.png') }}" alt="login">
     </div>
     <div class="register col-lg-6 col-md-6 col-sm-12 mx-auto">
         <form class="my-4" method="post">
@@ -47,12 +47,15 @@
                 </div>
 
 
-                <button class="btn btn-lg btn-primary" type="submit">
+                <button class="btn  btn-primary" type="submit">
                     Connecxion </button>
 
         </form>
-        <a class="p-3" href="{{path('app_register')}}">Vous avez pas un compte?</a>
-        <a class="" href="{{path('app_forgot_password_request')}}">Mot de passe oublier?</a>
+          <div class="row align-items-lg-center">
+              <a class="col-lg-5 col-sm-12" href="{{path('app_register')}}">Vous avez pas un compte?
+              </a>
+              <a class=" my-3 col-lg-5 col-sm-12" href="{{path('app_forgot_password_request')}}">Mot de passe oublier?</a>
+          </div>
     </div>
 </div>
 <script src="{{asset('javascript/formulaire.js')}}"></script>

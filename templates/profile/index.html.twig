@@ -41,15 +41,15 @@
 	{% if app.user.avatar is empty %}
 	{% if app.user.genre is not empty %}
 	{% if app.user.genre.nom == "Femme" %}
-	<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.png') }}" alt="">
+	<img class="m-3 avatar-profile" src="{{asset('images/femme-avatar.png') }}" alt="avatar">
 	{% elseif app.user.genre.nom == "Homme" %}
-	<img class="m-3 avatar-profile" src="{{asset('images/homme-avatar.png') }}" alt="">
+	<img class="m-3 avatar-profile" src="{{asset('images/homme-avatar.png') }}" alt="avatar">
 	{% endif %}
 	{% else %}
-	<img class="m-3 avatar-profile" src="{{asset('images/avatar.png')}}" alt="">
+	<img class="m-3 avatar-profile" src="{{asset('images/avatar.png')}}" alt="avatar">
 	{% endif %}
 	{% else %}
-	<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="">
+	<img class="m-3 avatar-profile" src="{{asset('avatars/'~ app.user.avatar)}}" alt="avatar">
 	{% endif %}
 	<H3>{{app.user.getNomEtPrenom()}}</H3>
 	<p class="p-2">{{app.user.email}}</p>
@@ -71,7 +71,7 @@
 		<div class="col-lg-4 col-sm-12 p-3 mx-auto">
 		<div class="card" >
 			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
-				class="card-img-top" alt="...">
+				class="card-img-top" alt="Image de specialites">
 			<div class="card-body">
 				<p class="card-text">{{spec.nom}}</p>
 			</div>
