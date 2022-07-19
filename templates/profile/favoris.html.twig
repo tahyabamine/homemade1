@@ -37,7 +37,12 @@
 		</ul>
 	</div>
 </div>
-    <div class="d-flex left">
+    <div class="d-flex left mx-auto">
+        <div>
+            <a class='my-4' href="{{path('profile_profile')}}">Retourner a mon profile <i class="fas fa-arrow-rotate-left"></i></a>
+        </div>
+        <button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
         <h2 class="coloredTitle m-4">Bienvenue
             {{app.user.prenom| capitalize }}
             !</h2>
@@ -51,7 +56,7 @@
         <div class="row">
             {%for favoris in app.user.favoris%}
 
-            <div class="col-5 my-4">
+            <div class="col-lg-4 col-sm-12 col-md-6 mx-auto my-4">
                 <div class="card shadow-sm" style="width: 18rem;">
                     {% if favoris.images is not empty %}
                     {% for image in favoris.images %}

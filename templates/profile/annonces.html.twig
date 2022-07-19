@@ -43,7 +43,10 @@
     </div>
 </div>
 <div class="d-flex left container">
-    <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+    <div>
+        <a class='my-4' href="{{path('profile_profile')}}">Retourner a mon profile <i class="fas fa-arrow-rotate-left"></i></a>
+    </div>
+    <button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
     <h2 class="coloredTitle m-4">Bienvenue
         {{app.user.prenom| capitalize }}

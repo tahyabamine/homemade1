@@ -9,9 +9,9 @@
 {% endblock %}
 {% block body %}
 <div class="container h-100 details">
-    <div class="row ">
+    <div class="row w-100 mx-auto">
         {%if annonce.images%}
-        <div class="col-lg-8 col-sm-12">
+        <div class="mx-auto col-lg-8 col-sm-12">
             <div id="carouselExampleControls" class="carousel slide w-100 " data-bs-ride="carousel">
                 <div class="carousel-inner" role="listbox" data-interval="10000000">
                     {% for image in annonce.images %}
@@ -34,17 +34,17 @@
             </div>
             {%endif%}
             <h1 class='coloredTitle '>{{annonce.titre}}</h1>
-        <p class="py-3">{{annonce.contenue}}</p>
+            <p class="py-3">{{annonce.contenue}}</p>
 
-        <div class="d-flex justify-content-between">
-            {% if annonce.prix is not empty %}
-            <span id="price">{{annonce.prix}}
-                €</span>
-            {% endif %}
-            <small class="text-muted m-1">{{annonce.dateDePublication| ago ( locale = "fr") }}</small>
+            <div class="d-flex justify-content-between">
+                {% if annonce.prix is not empty %}
+                <span id="price">{{annonce.prix}}
+                    €</span>
+                {% endif %}
+                <small class="text-muted m-1">{{annonce.dateDePublication| ago ( locale = "fr") }}</small>
+            </div>
         </div>
-        </div>
-        <div class="middle d-flex  flex-column col-lg-4 col-sm-12">
+        <div class="middle d-flex mx-auto flex-column col-lg-4 col-sm-12">
             <div class='d-flex justify-content-center align-items-center'>
                 {% if annonce.user.avatar is empty %}
                 {% if annonce.user.genre is not empty %}
@@ -82,70 +82,73 @@
                 {%endif%}
             </div>
             <div class="d-flex flex-column">
-                <a href="{{path('messenger_send', {id:annonce.user.id})}}" class="btn btn-primary" >Envoyer un message</a>
+                <a href="{{path('messenger_send', {id:annonce.user.id})}}" class="my-3 mx-auto btn btn-primary">Envoyer un
+                    message</a>
             </div>
         </div>
 
     </div>
     <div class="col-lg-8 col-sm-12 right ">
-        
+
     </div>
 </div>
 {%if app.user%}
 <H3 class="text-muted">Les commentaires</H3>
-{%for comments in annonce.commentaires%}
-{% if comments.parent == null %}
-{%if comments.user.avatar is not empty%}
-<div class="d-flex align-items-center">
-    <img class=' me-2 avatar' src="{{asset('avatars/'~ comments.user.avatar)}}" alt="" srcset="">
-    {%else%}
-    <img class='me-2 avatar' src="{{asset('images/avatar.png')}}" alt="" srcset="">
-    {%endif%}
-    <p>
-        Publier par: {{comments.user.pseudo}}
-    </p>
-    <div class="card w-100 p-3">
 
-        <p>
-            {{comments.contenue}}
-        </p>
-        <div class="d-flex justify-content-end">
-            <small class="text-muted p-3">{{comments.dateDePublication|ago ( locale = "fr")}}</small>
-        </div>
-    </div>
-</div>
-<div class="d-flex justify-content-end">
-    <a href="#ajout-commentaire" data-reply data-id="{{comments.id}}"><i class="fas fa-reply"></i>
-        Répondre</a>
-</div>
-<div class="ms-5">
-    {% for reply in comments.reponse %}
-    {%if reply.user.avatar is not empty%}
-    <div class="d-flex align-items-center">
-        <img class='avatar me-2' src="{{asset('avatars/'~ comments.user.avatar)}}" alt="" srcset="">
+    {%for comments in annonce.commentaires%}
+    {% if comments.parent == null %}
+    {%if comments.user.avatar is not empty%}
+    <div class="d-flex align-items-center col-lg-12 col-sm-12 mx-auto">
+        <img class=' me-2 avatar' src="{{asset('avatars/'~ comments.user.avatar)}}" alt="" srcset="">
         {%else%}
-        <img class='avatar me-2' src="{{asset('images/avatar.png')}}" alt="" srcset="">
+        <img class='me-2 avatar' src="{{asset('images/avatar.png')}}" alt="" srcset="">
         {%endif%}
-
         <p>
-            Reponse par: {{reply.user.pseudo}}
+            Publier par: {{comments.user.pseudo}}
         </p>
         <div class="card w-100 p-3">
 
             <p>
-                {{reply.contenue}}
+                {{comments.contenue}}
             </p>
             <div class="d-flex justify-content-end">
-
-                <small class="text-muted p-3">{{reply.dateDePublication|ago ( locale = "fr")}}</small>
+                <small class="text-muted p-3">{{comments.dateDePublication|ago ( locale = "fr")}}</small>
             </div>
         </div>
     </div>
-    {% endfor %}
-</div>
-{%endif%}
+    <div class="d-flex justify-content-end">
+        <a href="#ajout-commentaire" data-reply data-id="{{comments.id}}"><i class="fas fa-reply"></i>
+            Répondre</a>
+    </div>
+    <div class="ms-5">
+        {% for reply in comments.reponse %}
+        {%if reply.user.avatar is not empty%}
+        <div class="d-flex align-items-center">
+            <img class='avatar me-2' src="{{asset('avatars/'~ comments.user.avatar)}}" alt="" srcset="">
+            {%else%}
+            <img class='avatar me-2' src="{{asset('images/avatar.png')}}" alt="" srcset="">
+            {%endif%}
 
-{%endfor%}
+            <p>
+                Reponse par: {{reply.user.pseudo}}
+            </p>
+            <div class="card w-100 p-3">
+
+                <p>
+                    {{reply.contenue}}
+                </p>
+                <div class="d-flex justify-content-end">
+
+                    <small class="text-muted p-3">{{reply.dateDePublication|ago ( locale = "fr")}}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {%endif%}
+
+    {%endfor%}
+
 <div id="ajout-commentaire">
     {{form(form)}}
 </div>

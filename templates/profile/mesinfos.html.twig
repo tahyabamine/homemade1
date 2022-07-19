@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block body %}
+
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
   aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
@@ -42,13 +43,16 @@
   </div>
 </div>
 <div class="d-flex left">
-  <button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+  <div>
+    <a class='my-4' href="{{path('profile_profile')}}">Retourner a mon profile <i class="fas fa-arrow-rotate-left"></i></a>
+  </div>
+  <button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
   <h2 class="coloredTitle m-4">Bienvenue
     {{app.user.prenom| capitalize }}
     !</h2>
-  <div class="row">
-    <div class="card col-sm-12 col-lg-12 col-md-12">
+  <div class="row width">
+    <div class="col-sm-12 col-lg-12 col-md-6 my-3 mx-auto">
       <div class="card-header">
         Email </div>
       <div class="card-body">
@@ -67,8 +71,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="card col-sm-12 col-lg-12 col-md-12">
+  <div class="row width">
+    <div class="col-sm-12 col-lg-12 col-md-12 my-3 mx-auto ">
       <div class="card-header">
         Mes information </div>
       <div class="card-body">
@@ -111,8 +115,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="card col-12">
+  <div class="row width">
+    <div class="-sm-12 col-lg-12 col-md-12 my-3 mx-auto w-100">
       <div class="card-header">
         Ma photo de profile </div>
       <div class="card-body">
@@ -140,8 +144,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="card col-12">
+  <div class="row width">
+    <div class="col-12 my-3 mx-auto w-100">
       <div class="card-header">
         Mon mot de passe </div>
       <div class="card-body">
@@ -160,8 +164,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="card col-12">
+  <div class="row width">
+    <div class=" col-12 my-3 mx-auto w-100">
       <div class="card-header">
         Supprimer mon compte</div>
       <div class="card-body">

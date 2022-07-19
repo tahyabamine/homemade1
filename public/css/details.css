@@ -9,22 +9,21 @@
   cursor: zoom-in;
 }
 .details {
-  height: 100vh;
+  height:fit-content;
 }
 .coloredTitle {
   color: var(--primary);
   text-align: center;
   padding: 1%;
 }
-.row {
-  margin: 8% 5%;
-}
+e
 .right p {
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 1px;
   color: var(--text-color);
   text-align: justify;
+
 }
 
 #price {

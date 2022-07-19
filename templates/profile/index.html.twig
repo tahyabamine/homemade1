@@ -35,8 +35,8 @@
 		</ul>
 	</div>
 </div>
-<div class="d-flex container left ">
-	<button class="btn btn-primary m-5" type="button" data-bs-toggle="offcanvas"
+<div class="d-flex container left mx-auto ">
+	<button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Mon menu</button>
 	{% if app.user.avatar is empty %}
 	{% if app.user.genre is not empty %}
@@ -68,7 +68,7 @@
 	<h3 class="py-3">Mes specialites culinaires</h3>
 	<div class="row ">
 		{%for spec in app.user.specialite%}
-		<div class="col-lg-4 col-sm-12 p-3">
+		<div class="col-lg-4 col-sm-12 p-3 mx-auto">
 		<div class="card" >
 			<img class="card-img-top " style="width:100%; height: 200px; overflow: hidden;" src="{{spec.imageUrl}}"
 				class="card-img-top" alt="...">

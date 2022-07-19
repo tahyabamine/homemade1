@@ -19,18 +19,25 @@
 {
   .card{
     width: auto;
+    margin: auto;
   }
   .row{
     justify-content: center;
   }
-
+.width{
+  width: 100%;
+}
 }
 @media (min-width: 768px) { 
   .row{
     justify-content: center;
   }
   .card{
+    margin: auto;
     width: 18rem;
+  }
+  .width{
+    width: 100%;
   }
  }
 body {
@@ -79,6 +86,9 @@ text-decoration-line: none;
   margin-top: 2%;
   margin-bottom: 1%;
   padding: 2% 1%;
+}
+.width{
+  width: 90%;
 }
 .title {
   color: var(--primary);

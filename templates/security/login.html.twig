@@ -4,10 +4,10 @@
 
 {% block body %}
 <div class="row p-5 h-100">
-    <div class='col-lg-6 col-md-6 col-sm-12'>
+    <div class='col-lg-6 col-md-6 col-sm-12 mx-auto'>
         <img style='width: 95%;'   src="{{ asset('images/login.png') }}" alt="">
     </div>
-    <div class="register col-lg-6 col-md-6 col-sm-12">
+    <div class="register col-lg-6 col-md-6 col-sm-12 mx-auto">
         <form class="my-4" method="post">
             {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
