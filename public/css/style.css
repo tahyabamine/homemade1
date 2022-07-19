@@ -107,6 +107,11 @@ text-decoration-line: none;
 .title {
   color: var(--primary);
 }
+.fa-heart:hover{
+  cursor: pointer;
+  transform: scale(1.08);
+text-decoration-line: none;
+}
 .navbar {
   box-shadow: var(--box-shadow);
   background-color: rgb(139, 56, 33) !important;

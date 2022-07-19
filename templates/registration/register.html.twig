@@ -3,44 +3,43 @@
 {% endblock %}
 {% block
 css %}
-
-	<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}" type="text/css"/>
-	<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
-
+<link rel="stylesheet" href="{{ asset('css/formulaire.css') }}" type="text/css" />
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
 {% endblock %}
 {% block body %}
-	{% for flash_error in
+{% for flash_error in
 app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
 <div class='row h-100 p-5'>
 	<div class='col-lg-6 col-md-6 col-sm-12'>
-		<img style='width:95%;''  src="{{ asset('images/register.png') }}" alt="Image register">
+		<img style='width:95%;' src="{{ asset('images/register.png') }}" alt="Image register">
 	</div>
-<div class="register col-lg-6 col-md-6 col-sm-12">
-<h2 class="mb-5 text-center">Créer votre compte</h1>
-	{{ form_start(registrationForm) }}
-	{{form_row(registrationForm.nom)}}
-	{{form_row(registrationForm.prenom)}}
-	{{form_row(registrationForm.genre)}}
-	{{form_row(registrationForm.email)}}
-	<div class="d-flex align-items-center">
-		{{form_row(registrationForm.plainPassword, { id: "pass" }) }}
-
-<div class="eye">
-	<i id="eye" class="bi ms-2 bi-eye-slash" onclick="change()"></i>
-</div>
-
-
-
-
+	<div class="register col-lg-6 col-md-6 col-sm-12">
+		<h2 class="mb-5 text-center">Créer votre compte</h1>
+			{{ form_start(registrationForm) }}
+			{{form_row(registrationForm.nom)}}
+			{{form_row(registrationForm.prenom)}}
+			{{form_row(registrationForm.genre)}}
+			{{form_row(registrationForm.email)}}
+			<div class="d-flex align-items-center">
+				{{form_row(registrationForm.plainPassword, { id: "pass" }) }}
+				<div class="eye">
+					<i id="eye" class="bi ms-2 bi-eye-slash" onclick="change()"></i>
+				</div>
+			</div>
+			{{form_row(registrationForm.region)}}
+			{{form_row(registrationForm.pseudo)}}
+			{{form_row(registrationForm.numTel)}}
+			{{form_row(registrationForm.avatar)}}
+			<div class="d-flex justify-content-between">
+				{{form_row(registrationForm.agreeTerms)}}
+				<a href="{{path('app_mention_legale')}}"> Lire le CGU</a>
+			</div>
+			{{form_rest(registrationForm)}}
+			{{form_end(registrationForm)}}
 	</div>
-	{{form_rest(registrationForm)}}
-	{{form_end(registrationForm)}}
-
-
 </div>
-   </div>
 <script src="{{asset('javascript/formulaire.js')}}"></script>
 {% endblock %}

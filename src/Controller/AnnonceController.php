@@ -29,7 +29,6 @@ class AnnonceController extends AbstractController
     public function creatAnnonce(Request $request, AnnonceRepository $an): Response
     {
         $annonce = new Annonce;
-
         $formulaire = $this->createForm(AnnonceType::class, $annonce);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
