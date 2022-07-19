@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $annonces;
 

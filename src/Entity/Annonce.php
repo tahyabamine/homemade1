@@ -53,7 +53,7 @@ class Annonce
     private $images;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoris", cascade={"remove"})
      */
     private $users;
 
