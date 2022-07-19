@@ -129,6 +129,7 @@ class AnnonceController extends AbstractController
     }
 
     #[Route('/favoris/ajout/{id}/{user}', name: 'ajout_favoris')]
+    #[IsGranted('ROLE_USER')]
     public function ajoutFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {
@@ -147,6 +148,8 @@ $user=$us->find($user);
     }
 
     #[Route('/favoris/retrait/{id}/{user}', name: 'retrait_favoris')]
+    #[IsGranted('ROLE_USER')]
+
     public function retraitFavoris($user,Annonce $annonce, UserRepository $us)
     {
         if (!$annonce) {

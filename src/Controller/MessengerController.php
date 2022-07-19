@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 #[Route('messenge', name: 'messenger_')]
 
@@ -22,6 +24,7 @@ class MessengerController extends AbstractController
     }
 
     #[Route('/send/{id}', name: 'send')]
+    #[IsGranted('ROLE_USER')]
     public function send($id, UserRepository $user, Request $request): Response
     {
         $message = new Messenger;
