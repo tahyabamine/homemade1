@@ -27,6 +27,13 @@
 .width{
   width: 100%;
 }
+.containere h1 {
+  z-index: -9999;
+}
+.navbar {
+  z-index: 9999;
+
+}
 }
 @media (min-width: 768px) { 
   .row{
@@ -38,6 +45,13 @@
   }
   .width{
     width: 100%;
+  }
+  .containere h1 {
+    z-index: -9999;
+  }
+  .navbar {
+    z-index: 9999;
+  
   }
  }
 body {
