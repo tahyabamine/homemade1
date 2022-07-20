@@ -38,7 +38,7 @@ class MessengerController extends AbstractController
             $em->persist($message);
             $em->flush();
 
-            $this->addFlash("message", "Message envoyé avec succès.");
+            $this->addFlash("success", "Message envoyé avec succès.");
             return $this->redirectToRoute("profile_profile");
         }
 

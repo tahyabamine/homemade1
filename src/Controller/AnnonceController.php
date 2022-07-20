@@ -199,7 +199,7 @@ $user=$us->find($user);
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('message', 'Votre commentaire a bien été envoyé');
+            $this->addFlash('success', 'Votre commentaire a bien été envoyé');
             return $this->redirectToRoute('annonce_detailsAnnonce',['annonce' => $annonce->getId()]);
         }
         return $this->render('annonce/detailsAnnonces.html.twig', [

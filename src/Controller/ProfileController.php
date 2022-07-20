@@ -145,6 +145,7 @@ class ProfileController extends AbstractController
             $entityManager->flush();
             // The session is cleaned up after the password has been changed.
             // $this->cleanSessionAfterReset();
+        $this->addFlash('success', 'Votre mot de passe a été changer !');
             return $this->redirectToRoute('profile_profile');
         }
         return $this->render('reset_password/reset.html.twig', [

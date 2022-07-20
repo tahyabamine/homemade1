@@ -17,7 +17,11 @@
 	</div>
 	<hr>
 	<div class="row">
-		<h2 class="p-4 title text-center">Liste de dernieres annonces</h2>
+		{%if annonces |length ==0%}
+		<div>
+			Zéro annonces trouver!
+		</div>
+		{%else%}
 		{%for annonce in annonces%}
 		<div class="col-lg-4 col-sm-12 py-5 mx-auto">
 			<div class="card shadow-sm carte" style="width: 20rem;">
@@ -62,7 +66,7 @@
 			</div>
 		</div>
 		{%endfor%}
-
+{%endif%}
 
 	</div>
     {% if app.user.annonces | length > 4 %}

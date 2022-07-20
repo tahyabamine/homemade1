@@ -116,27 +116,18 @@
       </div>
     </nav>
     {% for error in app.flashes('errors') %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Erreur</strong>
+    <div class="alert alert-danger" role="alert">
       {{ error }}
     </div>
     {% endfor %}
-    {% for error in app.flashes('success') %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Succès</strong>
-      {{ error }}
+    {% for success in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+      {{ success }}
     </div>
     {% endfor %}
     <main>
       {% block body %}{% endblock %}
     </main>
-
   </div>
   <footer class="text-center text-lg-start bg-light text-muted">
     <section class="d-flex justify-content-center container justify-content-lg-between p-4 border-bottom">
