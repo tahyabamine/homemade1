@@ -14,11 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('contact', name: 'contact_')]
 class ContactController extends AbstractController
 {
-    #[Route('/', name: 'contact')]
-    public function index():Response
-    {
-            return $this->render('contact/contact.html.twig');
-    }
 
     #[Route('/formulaire', name: 'contactUs')]
     public function contact(Request $request, MailerInterface $mailer): Response
@@ -29,10 +24,10 @@ class ContactController extends AbstractController
             $data = $formulaire->getData();
             // J'envoie mon mail
             $email = new Email();
-            $email->from('contact@tahya-abdesssalam.com')
-                ->to($data['email'])
-                ->subject($data['sujet'])
-                ->text($data['message']);
+            $email->from($data['email'])
+            ->to('contact@tahya-abdessalam.com')
+            ->subject($data['sujet'])
+            ->text($data['message']);
             $mailer->send($email);
             $this->addFlash('success', 'Vore message a été envoyé');
             return $this->redirectToRoute('acceuil_acceuil');

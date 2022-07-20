@@ -10,7 +10,12 @@
 	</div>
 	<div class="register col-lg-6 col-md-9 col-sm-12">
 		<h2 class="title py-3 text-center">Contacter nous</h2>
-		{{form(form)}}
+		{{form_start(form)}}
+		{{form_row(form.email)}}
+		{{form_row(form.sujet)}}
+		{{form_row(form.message)}}
+		{{form_rest(form)}}
+		{{form_end(form)}}
 
 		</div>
 
