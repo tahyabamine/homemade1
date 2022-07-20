@@ -69,6 +69,7 @@ svg {
   top: 0;
   left: 0;
   box-shadow: var(--box-shadow);
+  z-index: -9999;
 }
 .card{
   width: 20rem;
@@ -82,6 +83,11 @@ svg {
   color: rgb(139, 56, 33);
   padding-left: 2%;
   font-family: 'Acme', sans-serif;
+  z-index: 999;
+
+} 
+.alert{
+  z-index: 9999;
 
 }
 .carte:hover{
