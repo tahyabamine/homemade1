@@ -83,7 +83,7 @@
 										<td class=" {{bold}}"><a
 												href="{{ path('messenger_read', {id: message.id}) }}">{{
 												message.date|ago ( locale = "fr")}}</a></td>
-										<td class=" {{bold}}"><a href="{{ path('messenger_delete', {id: message.id})}}">
+										<td class=" {{bold}}"><a onclick="return confirm('Êtes-vous sûr ?')" href="{{ path('messenger_delete', {id: message.id})}}">
 												<i class="fas fa-trash" aria-hidden="true"></i></a></td>
 									</tr>
 								</tbody>
