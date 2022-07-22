@@ -233,7 +233,7 @@ class Annonce
     {
         return $this->prix;
     }
-    public function resume($taille = 200): string
+    public function resume($taille = 50): string
     {
 
         if (strlen($this->contenue) > $taille)

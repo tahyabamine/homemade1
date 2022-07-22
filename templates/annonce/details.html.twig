@@ -10,29 +10,39 @@
 {% block body %}
 <div class="container details">
 	<div>
-		<a class='my-4' href="{{path('profile_profile')}}">Retourner a mon profile <i class="fas fa-arrow-rotate-left"></i></a>
+		<a class='my-4' href="{{path('profile_profile')}}">Retourner a mon profile <i
+				class="fas fa-arrow-rotate-left"></i></a>
 	</div>
+	{% if annonce.images %}
 	<div class="row justify-content-center mx-auto my-5">
 		<div class="col-lg-10  col-sm-12">
 			<div id="carouselExampleControls" class="carousel slide w-100 " data-bs-ride="carousel">
 				<div class="carousel-inner" role="listbox" data-interval="10000000">
 					{% for image in annonce.images %}
 					<div class="carousel-item {{ loop.first ? 'active' : '' }}">
-						<img src="{{ asset('images/' ~ image.img) }}" class="d-block w-75 m-auto my-2" alt="Image de l\'annonce" />
+						<img src="{{ asset('images/' ~ image.img) }}" class="d-block w-75 m-auto my-2"
+							alt="Image de l\'annonce" />
+					</div>
+					{%else%}
+					<div class="carousel-item {{ loop.first ? 'active' : '' }}">
+						<img src="https://toppng.com/uploads/preview/clipart-free-seaweed-clipart-draw-food-placeholder-11562968708qhzooxrjly.png"
+							alt="Image de l\'annonce" class="card-img-top "
+							style="width:100%; height: 200px; overflow: hidden;" alt="Image annonca">
 					</div>
 					{% endfor %}
 				</div>
 				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-					data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-					data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
+				data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+			data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+	{%endif%}
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-10 mx-auto col-sm-12 right ">

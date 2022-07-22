@@ -18,6 +18,12 @@
                     <div class="carousel-item {{ loop.first ? 'active' : '' }}">
                         <img src="{{ asset('images/' ~ image.img) }}" class="d-block w-75 m-auto my-2" alt="Image de l\'annonce" />
                     </div>
+                    {%else%}
+					<div class="carousel-item {{ loop.first ? 'active' : '' }}">
+						<img src="https://toppng.com/uploads/preview/clipart-free-seaweed-clipart-draw-food-placeholder-11562968708qhzooxrjly.png"
+							alt="Image de l\'annonce" class="card-img-top "
+							style="width:100%; height: 200px; overflow: hidden;" alt="Image annonca">
+					</div>
                     {% endfor %}
                 </div>
 

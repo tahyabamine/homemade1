@@ -39,9 +39,12 @@
 					{% for image in annonce.images %}
 					{% if loop.first %}
 					<img src="{{ asset('images/' ~ image.img) }}" alt="Image de l\'annonce"class="card-img-top "
-						style="width:100%; height: 200px; overflow: hidden;" alt="...">
+						style="width:100%; height: 200px; overflow: hidden;" alt="Image annonce">
 					{% endif %}
 					{% endfor %}
+{%else%}
+<img src="https://toppng.com/uploads/preview/clipart-free-seaweed-clipart-draw-food-placeholder-11562968708qhzooxrjly.png" alt="Image de l\'annonce"class="card-img-top "
+style="width:100%; height: 200px; overflow: hidden;" alt="Image annonca">
 					{% endif %}
 					<div class="card-body ">
 						<h5 class="card-title">{{annonce.titre}}</h5>
