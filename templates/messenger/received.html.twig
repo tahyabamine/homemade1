@@ -52,7 +52,7 @@
 						<button class="btn btn-default"><span class="fas fa-mail-reply-all"></span></button>
 						<button class="btn btn-default"><span class="fas fa-mail-forward"></span></button>
 					</span>
-					<div class="message-title">
+
 						<div class="table-responsive">
 							{% if app.user.received|length >0 %}
 							<table class="table caption-top">
@@ -66,7 +66,7 @@
 										<th scope="col">Action</th>
 									</tr>
 								</thead>
-								{% for message in app.user.received %}
+								{% for message in app.user.received|reverse %}
 								{% set bold = "" %}
 								{% if message.isRead == 0 %}
 								{% set bold = "fw-bold" %}
