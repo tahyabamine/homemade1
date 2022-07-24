@@ -27,12 +27,16 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class)
-            ->add('contenue', TextareaType::class)
+            ->add('contenue', TextareaType::class,[
+                'label' =>  'Contenu',
+
+            ])
             ->add('prix', NumberType::class, [
                 'required' => false,
                 'label' =>  'Prix',
             ])
             ->add('categorie', EntityType::class, [
+                'label' =>  'Catégorie',
                 'class' => Categorie::class,
                 'choice_label' => 'nom',
                 'mapped' => false,
@@ -56,7 +60,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('showNumber', CheckboxType::class, [
                 'required' => false,
-                'label' =>  'Afficher mon numero de telephone',
+                'label' =>  'Afficher mon numéro de téléphone',
             ])
             ->add('submit', SubmitType::class);
     }

@@ -42,6 +42,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'req']
             ])
             ->add('region', EntityType::class, [
+                'label' => 'Région',
                 'class' => Region::class,
                 'choice_label' => 'nom',
                 'mapped' => false,
@@ -50,6 +51,7 @@ class RegistrationFormType extends AbstractType
                 )
             ])
             ->add('prenom', TextType::class,  [
+                'label' => 'Prénom',
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
