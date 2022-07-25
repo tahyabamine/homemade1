@@ -47,7 +47,7 @@ class AnnonceController extends AbstractController
                     $img->setImg($newName);
                     $annonce->addImage($img);
                 } catch (Exception $e) {
-                    $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
+                    $this->addFlash('error', 'Un problème est survenu pendant l\'upload du fichier.');
                     $ok = false;
                 }
             }
@@ -55,6 +55,8 @@ class AnnonceController extends AbstractController
             if ($ok) {
                 $annonce->addCategorie($formulaire->get('categorie')->getData());
                 $an->add($annonce);
+                $this->addFlash("success", "Votre annoce a été ajouter avec succès.");
+
             }
 
             return $this->redirectToRoute('acceuil_acceuil');
@@ -96,7 +98,7 @@ class AnnonceController extends AbstractController
                     $img->setImg($newName);
                     $annonce->addImage($img);
                 } catch (Exception $e) {
-                    $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
+                    $this->addFlash('error', 'Un problème est survenu pendant l\'upload du fichier.');
                     $ok = false;
                 }
             }
@@ -104,8 +106,8 @@ class AnnonceController extends AbstractController
             if ($ok) {
                 $annonce->addCategorie($formulaire->get('categorie')->getData());
                 $an->add($annonce);
+                $this->addFlash("success", "Votre annoce a été modifier avec succès.");
             }
-
             return $this->redirectToRoute('profile_profile');
         } else {
             return $this->render('annonce/form.html.twig', [

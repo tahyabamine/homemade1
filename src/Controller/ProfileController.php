@@ -201,7 +201,7 @@ class ProfileController extends AbstractController
                     );
                     $user->setAvatar($newName);
                 } catch (Exception $e) {
-                    $this->addFlash('errors', 'Un problème est survenu pendant l\'upload du fichier.');
+                    $this->addFlash('error', 'Un problème est survenu pendant l\'upload du fichier.');
                     $ok = false;
                 }
             }
