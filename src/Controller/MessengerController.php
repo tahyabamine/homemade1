@@ -33,13 +33,21 @@ class MessengerController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setEnvoyeur($this->getUser());
+            $envoyeur=$message->getEnvoyeur();
             $message->setRecepteur($recepteur);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
-            $em->flush();
-
-            $this->addFlash("success", "Message envoyé avec succès.");
+            $r=$id;
+            $e=$envoyeur->getId();
+            if ($e==$r){
+            $this->addFlash("error", "you cant send a message to your count.");
             return $this->redirectToRoute("profile_profile");
+            }
+            else{
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($message);
+                $em->flush();
+                $this->addFlash("success", "Message envoyé avec succès.");
+                return $this->redirectToRoute("profile_profile");
+            }
         }
 
         return $this->render("messenger/index.html.twig", [
