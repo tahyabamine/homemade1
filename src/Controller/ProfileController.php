@@ -25,6 +25,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelper;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 
@@ -53,7 +55,7 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/info', name: 'info')]
-    public function info(UserRepository $er): Response
+    public function info(): Response
     {
         return $this->render('profile/mesinfos.html.twig');
     }
@@ -75,10 +77,10 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{user}', name: 'edit')]
-    public function update($user, UserRepository $er, Request $request)
+    #[Route('/edit', name: 'edit')]
+    public function update( UserRepository $er, Request $request)
     {
-        $user = $er->find($user);
+        $user = $this->getUser();
         $formulaire = $this->createForm(EditProfileType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -89,12 +91,13 @@ class ProfileController extends AbstractController
                 'form' => $formulaire->createView(),
             ]);
         }
+    
     }
 
-    #[Route('/ajouter-adresse/{user}', name: 'ajoutAdresse')]
-    public function addAdresse($user, UserRepository $er, Request $request)
+    #[Route('/ajouter-adresse', name: 'ajoutAdresse')]
+    public function addAdresse( UserRepository $er, Request $request)
     {
-        $user = $er->find($user);
+        $user = $this->getUser();
         $formulaire = $this->createForm(AddAdresseType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -107,10 +110,10 @@ class ProfileController extends AbstractController
             ]);
         }
     }
-    #[Route('/update-adresse/{user}', name: 'updateAdresse')]
-    public function updateAdresse($user, UserRepository $er, Request $request)
+    #[Route('/update-adresse', name: 'updateAdresse')]
+    public function updateAdresse( UserRepository $er, Request $request)
     {
-        $user = $er->find($user);
+        $user =$this->getUser();
         $formulaire = $this->createForm(AddAdresseType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -134,6 +137,9 @@ class ProfileController extends AbstractController
     {
         $us = $this->getUser();
         $user = $er->find($us);
+        if (!$this->getUser() || !$user || $user != $this->getUser()) {
+            throw new AccessDeniedException();
+        }
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -157,6 +163,9 @@ class ProfileController extends AbstractController
     public function deleteUser(EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
+        if (!$this->getUser() || !$user || $user != $this->getUser()) {
+            throw new AccessDeniedException();
+        }
         $em->remove($user);
         $em->flush();
         $session = new Session();
@@ -166,10 +175,10 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute('acceuil_acceuil');
     }
 
-    #[Route('/ajout-spacialite/{user}', name: 'ajoutSpecialite')]
-    public function ajouspecialite($user, UserRepository $er, Request $request, SpecialiteRepository $spec)
+    #[Route('/ajout-spacialite', name: 'ajoutSpecialite')]
+    public function ajouspecialite( UserRepository $er, Request $request, SpecialiteRepository $spec)
     {
-        $user = $er->find($user);
+        $user = $this->getUser();
         $formulaire = $this->createForm(SpecialiteType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -182,10 +191,10 @@ class ProfileController extends AbstractController
         }
     }
 
-    #[Route('/edit-avatar/{user}', name: 'editAvatar')]
-    public function updateAvatar($user, UserRepository $er, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/edit-avatar', name: 'editAvatar')]
+    public function updateAvatar( UserRepository $er, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = $er->find($user);
+        $user = $this->getUser();
         $formulaire = $this->createForm(EditImageType::class, $user);
         $formulaire->handleRequest($request);
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
